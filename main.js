@@ -1,5 +1,6 @@
 /** Helpful functionality. */
 const UTILS = {
+
   /**
    * Create a svg element.
    * @param {string} elementName - Name of created svg element like "svg", "circle" etc.
@@ -10,8 +11,12 @@ const UTILS = {
 };
 
 
-/** Class representing a svg layer. */
+/**
+ * Class representing a svg layer.
+ * @class
+ */
 class SVGLayer {
+
   /**
    * Create a svg layer.
    * @constructor
@@ -23,20 +28,32 @@ class SVGLayer {
 
 
 /**
-  Class representing a scene.
-  Scene is what a user sees.
+ * Class representing a screen (what a user sees).
+ * @class
  */
-class Scene {
+class Screen {
+
   /**
-   * Create a scene.
+   * Create a screen.
    * @constructor
    * @param {string} elementId - DOM element id.
-   * @param {array} layers - Layers instances.
+   * @param {Object} options - Screen creation options.
    */
-  constructor(elementId, layers) {
+  constructor(elementId, options) {
     this.element = document.getElementById(elementId);
-    for (let layer of layers) {
-      this.element.appendChild(layer.element);
+    this.layers = {};
+  }
+
+  /**
+   * Add a layer.
+   * @param {string} name - Layer name.
+   * @param {any Layer class instance} layer - Layer instance.
+   */
+  addLayer(name, layer) {
+    if (name in this.layers) {
+      throw Error(`Layer with name ${name} already exists.`);
     }
+    this.layers[name] = layer;
+    this.element.appendChild(layer.element);
   }
 }

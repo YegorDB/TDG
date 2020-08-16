@@ -6,11 +6,12 @@
   </head>
 
   <body>
-    <div id="scene-id"></div>
+    <div id="screen-id"></div>
   </body>
 
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript">
-  	const scene = new Scene('scene-id', [new SVGLayer()]);
+    const screen = new Screen('screen-id');
+    screen.addLayer('layer-1', new SVGLayer());
   </script>
 </html>
