@@ -23,6 +23,7 @@ class SVGLayer {
    */
   constructor() {
     this.element = UTILS.createSvgElement('svg');
+    this.element.classList.add('tdg-layer');
   }
 }
 
@@ -37,11 +38,30 @@ class Screen {
    * Create a screen.
    * @constructor
    * @param {string} elementId - DOM element id.
-   * @param {Object} options - Screen creation options.
+   * @param {Object} [options] - Screen creation options.
+   * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions (two integers array - width and height).
    */
   constructor(elementId, options) {
     this.element = document.getElementById(elementId);
+
+    options = options || {};
+
+    let dimensions = options.dimensions || [100, 100];
+    this.dimensions = {
+      _width: dimensions[0],
+      get width() { return this._width; },
+      _height: dimensions[1],
+      get height() { return this._height; },
+    };
+    this._setDimensions();
+
     this.layers = {};
+  }
+
+  /** Set screen dimentions. */
+  _setDimensions() {
+    this.element.style.width = `${this.dimensions.width}px`;
+    this.element.style.height = `${this.dimensions.height}px`;
   }
 
   /**
