@@ -13,7 +13,18 @@
 
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript">
-    const screen = new Screen('screen-id');
-    screen.addLayer('layer-1', new SVGLayer());
+    const screen = new Screen('screen-id', {
+      dimensions: [300, 300],
+    });
+    let layer = new SVGLayer();
+    screen.addLayer('main', layer);
+    let circle = new SVGItem('circle', {
+      cx: 60,
+      cy: 60,
+      r: 50,
+      fill: 'yellow',
+      stroke: 'black',
+    });
+    screen.layers.main.addItem('circle', circle);
   </script>
 </html>

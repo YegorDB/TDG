@@ -12,6 +12,27 @@ const UTILS = {
 
 
 /**
+ * Class representing a svg item.
+ * @class
+ */
+class SVGItem {
+
+  /**
+   * Create a svg layer.
+   * @constructor
+   * @param {string} name - SVG element name.
+   * @param {Object} [attrs] - SVG element attributes.
+   */
+  constructor(name, attrs) {
+    this.element = UTILS.createSvgElement(name);
+    for (let [name, value] of Object.entries(attrs || {})) {
+      this.element.setAttribute(name, value);
+    }
+  }
+}
+
+
+/**
  * Class representing a svg layer.
  * @class
  */
@@ -24,6 +45,20 @@ class SVGLayer {
   constructor() {
     this.element = UTILS.createSvgElement('svg');
     this.element.classList.add('tdg-layer');
+    this.items = {};
+  }
+
+  /**
+   * Add an item.
+   * @param {string} name - Item name.
+   * @param {any Item class instance} item - Item instance.
+   */
+  addItem(name, item) {
+    if (name in this.items) {
+      throw Error(`Item with name ${name} already exists.`);
+    }
+    this.items[name] = item;
+    this.element.appendChild(item.element);
   }
 }
 
