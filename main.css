@@ -1,4 +1,13 @@
+.tdg-screen {
+  position: relative;
+}
+
+
 .tdg-layer {
   width: inherit;
   height: inherit;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }

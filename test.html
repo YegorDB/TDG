@@ -16,15 +16,23 @@
     const screen = new Screen('screen-id', {
       dimensions: [300, 300],
     });
-    let layer = new SVGLayer();
-    screen.addLayer('main', layer);
-    let circle = new SVGItem('circle', {
+
+    screen.addLayer('back', new SVGLayer());
+    screen.layers.back.addItem('circle', new SVGItem('circle', {
+      cx: 80,
+      cy: 80,
+      r: 50,
+      fill: 'green',
+      stroke: 'black',
+    }));
+
+    screen.addLayer('front', new SVGLayer());
+    screen.layers.front.addItem('circle', new SVGItem('circle', {
       cx: 60,
       cy: 60,
       r: 50,
       fill: 'yellow',
       stroke: 'black',
-    });
-    screen.layers.main.addItem('circle', circle);
+    }));
   </script>
 </html>

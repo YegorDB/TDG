@@ -78,6 +78,14 @@ class SVGLayer {
     this.items[name] = item;
     this.element.appendChild(item.element);
   }
+
+  /**
+   * Set layer z-index value.
+   * @param {integer} value - Z-index name.
+   */
+  setZIndex(value) {
+    this.element.style.zIndex = value;
+  }
 }
 
 
@@ -96,6 +104,7 @@ class Screen {
    */
   constructor(elementId, options) {
     this.element = document.getElementById(elementId);
+    this.element.classList.add('tdg-screen');
 
     options = options || {};
 
@@ -126,6 +135,7 @@ class Screen {
     if (name in this.layers) {
       throw Error(`Layer with name ${name} already exists.`);
     }
+    layer.setZIndex(Object.keys(this.layers).length);
     this.layers[name] = layer;
     this.element.appendChild(layer.element);
   }
