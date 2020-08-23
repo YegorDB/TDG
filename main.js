@@ -2,7 +2,7 @@
 const UTILS = {
 
   /**
-   * Create a svg element.
+   * Create svg element.
    * @param {string} elementName - Name of created svg element like "svg", "circle" etc.
    */
   createSvgElement(elementName) {
@@ -12,13 +12,13 @@ const UTILS = {
 
 
 /**
- * Class representing a svg item.
+ * Class representing svg item.
  * @class
  */
 class SVGItem {
 
   /**
-   * Create a svg layer.
+   * Create svg item.
    * @constructor
    * @param {string} name - SVG element name.
    * @param {Object} [attrs] - SVG element attributes.
@@ -29,17 +29,35 @@ class SVGItem {
       this.element.setAttribute(name, value);
     }
   }
+
+  /**
+   * Get svg item attribute.
+   * @param {string} name - SVG element attribute name.
+   * @return {string} SVG element attribute value.
+   */
+  getAttr(name) {
+    return this.element.getAttribute(name);
+  }
+
+  /**
+   * Set svg item attribute.
+   * @param {string} name - SVG element attribute name.
+   * @param {string} value - SVG element attribute value.
+   */
+  setAttr(name, value) {
+    this.element.setAttribute(name, value);
+  }
 }
 
 
 /**
- * Class representing a svg layer.
+ * Class representing svg layer.
  * @class
  */
 class SVGLayer {
 
   /**
-   * Create a svg layer.
+   * Create svg layer.
    * @constructor
    */
   constructor() {
@@ -74,7 +92,7 @@ class Screen {
    * @constructor
    * @param {string} elementId - DOM element id.
    * @param {Object} [options] - Screen creation options.
-   * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions (two integers array - width and height).
+   * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions [width, height].
    */
   constructor(elementId, options) {
     this.element = document.getElementById(elementId);
