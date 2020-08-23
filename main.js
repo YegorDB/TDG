@@ -64,6 +64,7 @@ class SVGLayer {
     this.element = UTILS.createSvgElement('svg');
     this.element.classList.add('tdg-layer');
     this.items = {};
+    this._initialZIndex = null;
     this._isShowed = true;
   }
 
@@ -82,7 +83,7 @@ class SVGLayer {
    */
   addItem(name, item) {
     if (name in this.items) {
-      throw Error(`Item with name ${name} already exists.`);
+      throw Error(`Item with name "${name}" already exists.`);
     }
     this.items[name] = item;
     this.element.appendChild(item.element);
@@ -93,7 +94,19 @@ class SVGLayer {
    * @param {integer} value - Z-index name.
    */
   setZIndex(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Z-index value has to be an integer.');
+    }
+    if (this._initialZIndex == null) {
+      this._initialZIndex = value;
+    }
     this.element.style.zIndex = value;
+  }
+
+  /** Set layer z-index to initial value. */
+  resetZIndex() {
+    if (this._initialZIndex == null) return;
+    this.element.style.zIndex = this._initialZIndex;
   }
 
   /** Show layer. */
@@ -139,6 +152,8 @@ class Screen {
     this._setDimensions();
 
     this.layers = {};
+
+    this._activeLayerName = null;
   }
 
   /** Set screen dimentions. */
@@ -154,10 +169,33 @@ class Screen {
    */
   addLayer(name, layer) {
     if (name in this.layers) {
-      throw Error(`Layer with name ${name} already exists.`);
+      throw Error(`Layer with name "${name}" already exists.`);
     }
     layer.setZIndex(Object.keys(this.layers).length);
     this.layers[name] = layer;
     this.element.appendChild(layer.element);
+    if (this._activeLayerName) {
+      this.activateLayer(this._activeLayerName);
+    }
+  }
+
+  /**
+   * Move layer in front of other layers.
+   * @param {string} name - Layer name.
+   */
+  activateLayer(name) {
+    if (!(name in this.layers)) {
+      throw Error(`Layer with name "${name}" does not exist.`);
+    }
+    this.deactivateLayer();
+    this.layers[name].setZIndex(Object.keys(this.layers).length);
+    this._activeLayerName = name;
+  }
+
+  /** Move activated layer to its original position in relation to other layers. */
+  deactivateLayer() {
+    if (this._activeLayerName == null) return;
+    this.layers[this._activeLayerName].resetZIndex();
+    this._activeLayerName = null;
   }
 }
