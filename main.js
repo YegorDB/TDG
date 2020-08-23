@@ -64,6 +64,15 @@ class SVGLayer {
     this.element = UTILS.createSvgElement('svg');
     this.element.classList.add('tdg-layer');
     this.items = {};
+    this._isShowed = true;
+  }
+
+  /**
+   * Get whether layer is showed or not.
+   * @return {boolean} Layer is showed state.
+   */
+  get isShowed() {
+    return this._isShowed;
   }
 
   /**
@@ -85,6 +94,18 @@ class SVGLayer {
    */
   setZIndex(value) {
     this.element.style.zIndex = value;
+  }
+
+  /** Show layer. */
+  show() {
+    this._isShowed = true;
+    this.element.classList.remove('tdg-hide');
+  }
+
+  /** Hide layer. */
+  hide() {
+    this._isShowed = false;
+    this.element.classList.add('tdg-hide');
   }
 }
 
