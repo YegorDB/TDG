@@ -17,6 +17,10 @@
       dimensions: [300, 300],
     });
 
+    screen.addLayer('background', new CanvasLayer());
+    screen.layers.background.ctx.fillStyle = 'black';
+    screen.layers.background.ctx.fillRect(5, 5, 110, 110);
+
     screen.addLayer('back', new SVGLayer());
     screen.layers.back.addItem('circle', new SVGItem('circle', {
       cx: 80,

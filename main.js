@@ -51,19 +51,19 @@ class SVGItem {
 
 
 /**
- * Class representing svg layer.
+ * Base layer class.
+ * @abstract
  * @class
  */
-class SVGLayer {
+class BaseLayer {
 
   /**
-   * Create svg layer.
+   * Create a layer.
    * @constructor
    */
   constructor() {
-    this.element = UTILS.createSvgElement('svg');
+    this.element = this._createElement();
     this.element.classList.add('tdg-layer');
-    this.items = {};
     this._initialZIndex = null;
     this._isShowed = true;
   }
@@ -77,16 +77,22 @@ class SVGLayer {
   }
 
   /**
-   * Add an item.
-   * @param {string} name - Item name.
-   * @param {any Item class instance} item - Item instance.
+   * Create layer element.
+   * @abstract
+   * @return {DOM element} Layer element.
    */
-  addItem(name, item) {
-    if (name in this.items) {
-      throw Error(`Item with name "${name}" already exists.`);
-    }
-    this.items[name] = item;
-    this.element.appendChild(item.element);
+  _createElement() {
+    throw new Error('Need to be implemented by subclass!');
+  }
+
+  /**
+   * Set layer dimentions.
+   * @abstract
+   * @param {integer} width.
+   * @param {integer} height.
+   */
+  setDimensions(width, height) {
+    throw new Error('Need to be implemented by subclass!');
   }
 
   /**
@@ -119,6 +125,89 @@ class SVGLayer {
   hide() {
     this._isShowed = false;
     this.element.classList.add('tdg-hide');
+  }
+}
+
+
+/**
+ * Class representing canvas layer.
+ * @class
+ */
+class CanvasLayer extends BaseLayer {
+
+  /**
+   * Create canvas layer.
+   * @constructor
+   */
+  constructor() {
+    super();
+    this.ctx = this.element.getContext('2d');
+  }
+
+  /**
+   * Create layer element.
+   * @return {canvas element} Layer element.
+   */
+  _createElement() {
+    return document.createElement('canvas');
+  }
+
+  /**
+   * Set layer dimentions.
+   * @param {integer} width.
+   * @param {integer} height.
+   */
+  setDimensions(width, height) {
+    this.element.width = width;
+    this.element.height = height;
+  }
+}
+
+
+/**
+ * Class representing svg layer.
+ * @class
+ */
+class SVGLayer extends BaseLayer {
+
+  /**
+   * Create svg layer.
+   * @constructor
+   */
+  constructor() {
+    super();
+    this.items = {};
+  }
+
+  /**
+   * Create layer element.
+   * @return {svg element} Layer element.
+   */
+  _createElement() {
+    return UTILS.createSvgElement('svg');
+  }
+
+  /**
+   * Set layer dimentions.
+   * @param {integer} width.
+   * @param {integer} height.
+   */
+  setDimensions(width, height) {
+    this.element.style.width = `${width}px`;
+    this.element.style.height = `${height}px`;
+  }
+
+  /**
+   * Add an item.
+   * @param {string} name - Item name.
+   * @param {any Item class instance} item - Item instance.
+   */
+  addItem(name, item) {
+    if (name in this.items) {
+      throw Error(`Item with name "${name}" already exists.`);
+    }
+    this.items[name] = item;
+    this.element.appendChild(item.element);
   }
 }
 
@@ -172,6 +261,7 @@ class Screen {
       throw Error(`Layer with name "${name}" already exists.`);
     }
     layer.setZIndex(Object.keys(this.layers).length);
+    layer.setDimensions(this.dimensions.width, this.dimensions.height);
     this.layers[name] = layer;
     this.element.appendChild(layer.element);
     if (this._activeLayerName) {
