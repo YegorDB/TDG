@@ -209,6 +209,20 @@ class SVGLayer extends BaseLayer {
     this.items[name] = item;
     this.element.appendChild(item.element);
   }
+
+  /**
+   * Remove an item.
+   * @param {string} name - Item name.
+   */
+  removeItem(name) {
+    if (!(name in this.items)) {
+      throw Error(`Item with name "${name}" does not exist.`);
+    }
+
+    this.items[name].element.remove();
+    this.items[name].element = null;
+    delete this.items[name];
+  }
 }
 
 
