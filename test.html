@@ -4,25 +4,25 @@
     <meta charset="utf-8">
     <title>Test</title>
 
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="./src/css/tdg.min.css">
   </head>
 
   <body>
-    <div id="screen-id"></div>
+    <div id="composition-id"></div>
   </body>
 
-  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="./src/js/tdg.min.js"></script>
   <script type="text/javascript">
-    const screen = new Screen('screen-id', {
+    const composition = new Composition('composition-id', {
       dimensions: [300, 300],
     });
 
-    screen.addLayer('background', new CanvasLayer());
-    screen.layers.background.ctx.fillStyle = 'black';
-    screen.layers.background.ctx.fillRect(5, 5, 110, 110);
+    composition.addLayer('background', new CanvasLayer());
+    composition.layers.background.ctx.fillStyle = 'black';
+    composition.layers.background.ctx.fillRect(5, 5, 110, 110);
 
-    screen.addLayer('back', new SVGLayer());
-    screen.layers.back.addItem('circle', new SVGItem('circle', {
+    composition.addLayer('back', new SVGLayer());
+    composition.layers.back.addItem('circle', new SVGItem('circle', {
       cx: 80,
       cy: 80,
       r: 50,
@@ -30,8 +30,8 @@
       stroke: 'black',
     }));
 
-    screen.addLayer('front', new SVGLayer());
-    screen.layers.front.addItem('circle', new SVGItem('circle', {
+    composition.addLayer('front', new SVGLayer());
+    composition.layers.front.addItem('circle', new SVGItem('circle', {
       cx: 60,
       cy: 60,
       r: 50,

@@ -19,7 +19,6 @@ class SVGItem {
 
   /**
    * Create svg item.
-   * @constructor
    * @param {string} name - SVG element name.
    * @param {Object} [attrs] - SVG element attributes.
    */
@@ -57,10 +56,7 @@ class SVGItem {
  */
 class BaseLayer {
 
-  /**
-   * Create a layer.
-   * @constructor
-   */
+  /** Create a layer. */
   constructor() {
     this.element = this._createElement();
     this.element.classList.add('tdg-layer');
@@ -81,9 +77,7 @@ class BaseLayer {
    * @abstract
    * @return {DOM element} Layer element.
    */
-  _createElement() {
-    throw new Error('Need to be implemented by subclass!');
-  }
+  _createElement() {}
 
   /**
    * Set layer dimentions.
@@ -91,9 +85,7 @@ class BaseLayer {
    * @param {integer} width.
    * @param {integer} height.
    */
-  setDimensions(width, height) {
-    throw new Error('Need to be implemented by subclass!');
-  }
+  setDimensions(width, height) {}
 
   /**
    * Set layer z-index value.
@@ -135,10 +127,7 @@ class BaseLayer {
  */
 class CanvasLayer extends BaseLayer {
 
-  /**
-   * Create canvas layer.
-   * @constructor
-   */
+  /** Create canvas layer. */
   constructor() {
     super();
     this.ctx = this.element.getContext('2d');
@@ -170,10 +159,7 @@ class CanvasLayer extends BaseLayer {
  */
 class SVGLayer extends BaseLayer {
 
-  /**
-   * Create svg layer.
-   * @constructor
-   */
+  /** Create svg layer. */
   constructor() {
     super();
     this.items = {};
@@ -227,21 +213,20 @@ class SVGLayer extends BaseLayer {
 
 
 /**
- * Class representing a screen (what a user sees).
+ * Class representing a composition of layers.
  * @class
  */
-class Screen {
+class Composition {
 
   /**
-   * Create a screen.
-   * @constructor
+   * Create a composition.
    * @param {string} elementId - DOM element id.
-   * @param {Object} [options] - Screen creation options.
-   * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions [width, height].
+   * @param {Object} [options] - Composition creation options.
+   * @param {integer[]} [options.dimensions=[100, 100]] - Composition dimensions [width, height].
    */
   constructor(elementId, options) {
     this.element = document.getElementById(elementId);
-    this.element.classList.add('tdg-screen');
+    this.element.classList.add('tdg-composition');
 
     options = options || {};
 
@@ -259,7 +244,7 @@ class Screen {
     this._activeLayerName = null;
   }
 
-  /** Set screen dimentions. */
+  /** Set composition dimentions. */
   _setDimensions() {
     this.element.style.width = `${this.dimensions.width}px`;
     this.element.style.height = `${this.dimensions.height}px`;
