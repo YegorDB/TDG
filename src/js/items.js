@@ -2,13 +2,13 @@ const { UTILS } = require('./base');
 
 
 /**
- * Class representing svg item.
+ * Class representing SVG item.
  * @class
  */
 class SVGItem {
 
   /**
-   * Create svg item.
+   * Create SVG item.
    * @param {string} name - SVG element name.
    * @param {Object} [attrs] - SVG element attributes.
    */
@@ -20,7 +20,7 @@ class SVGItem {
   }
 
   /**
-   * Get svg item attribute.
+   * Get SVG item attribute.
    * @param {string} name - SVG element attribute name.
    * @return {string} SVG element attribute value.
    */
@@ -29,7 +29,7 @@ class SVGItem {
   }
 
   /**
-   * Set svg item attribute.
+   * Set SVG item attribute.
    * @param {string} name - SVG element attribute name.
    * @param {string} value - SVG element attribute value.
    */

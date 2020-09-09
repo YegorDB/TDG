@@ -12,31 +12,5 @@
   </body>
 
   <script type="text/javascript" src="../builds/0.1.0/tdg.min.js"></script>
-  <script type="text/javascript">
-    const screen = new TDG.screen.Screen('screen-id', {
-      dimensions: [300, 300],
-    });
-
-    screen.addLayer('background', new TDG.layers.CanvasLayer());
-    screen.layers.background.ctx.fillStyle = 'black';
-    screen.layers.background.ctx.fillRect(5, 5, 110, 110);
-
-    screen.addLayer('back', new TDG.layers.SVGLayer());
-    screen.layers.back.addItem('circle', new TDG.items.SVGItem('circle', {
-      cx: 80,
-      cy: 80,
-      r: 50,
-      fill: 'green',
-      stroke: 'black',
-    }));
-
-    screen.addLayer('front', new TDG.layers.SVGLayer());
-    screen.layers.front.addItem('circle', new TDG.items.SVGItem('circle', {
-      cx: 60,
-      cy: 60,
-      r: 50,
-      fill: 'yellow',
-      stroke: 'black',
-    }));
-  </script>
+  <script type="text/javascript" src="static_layers.js"></script>
 </html>
