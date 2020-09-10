@@ -8,22 +8,22 @@ const csso = require('gulp-csso');
 
 
 function javascript(cb) {
-  browserify('src/js/tdg.js')
+  browserify('../src/js/tdg.js')
     .bundle()
     .pipe(source('tdg.js'))
     .pipe(buffer())
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(dest('builds/0.1.0/'));
+    .pipe(dest('../lib/0.1.0/'));
   cb();
 }
 
 
 function css(cb) {
-  src('src/css/*.css')
+  src('../src/css/*.css')
     .pipe(csso())
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(dest('builds/0.1.0/'));
+    .pipe(dest('../lib/0.1.0/'));
   cb();
 }
 
