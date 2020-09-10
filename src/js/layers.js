@@ -12,6 +12,7 @@ class BaseLayer {
   constructor() {
     this.element = this._createElement();
     this.element.classList.add('tdg-layer');
+    this._zIndex = null;
     this._initialZIndex = null;
     this._isShowed = true;
   }
@@ -22,6 +23,35 @@ class BaseLayer {
    */
   get isShowed() {
     return this._isShowed;
+  }
+
+  /**
+   * Get layer z-index.
+   * @return {integer or null} Layer z-index.
+   */
+  get zIndex() {
+    return this._zIndex;
+  }
+
+  /**
+   * Set layer z-index.
+   * @param {integer} value - Z-index value.
+   */
+  set zIndex(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Z-index value has to be an integer.');
+    }
+    if (this._initialZIndex == null) {
+      this._initialZIndex = value;
+    }
+    this.element.style.zIndex = value;
+    this._zIndex = value;
+  }
+
+  /** Set layer z-index to initial value. */
+  resetZIndex() {
+    if (this._initialZIndex == null) return;
+    this.zIndex = this._initialZIndex;
   }
 
   /**
@@ -38,26 +68,6 @@ class BaseLayer {
    * @param {integer} height.
    */
   setDimensions(width, height) {}
-
-  /**
-   * Set layer z-index value.
-   * @param {integer} value - Z-index name.
-   */
-  setZIndex(value) {
-    if (!Number.isInteger(value)) {
-      throw Error('Z-index value has to be an integer.');
-    }
-    if (this._initialZIndex == null) {
-      this._initialZIndex = value;
-    }
-    this.element.style.zIndex = value;
-  }
-
-  /** Set layer z-index to initial value. */
-  resetZIndex() {
-    if (this._initialZIndex == null) return;
-    this.element.style.zIndex = this._initialZIndex;
-  }
 
   /** Show layer. */
   show() {

@@ -45,7 +45,7 @@ class Screen {
     if (name in this.layers) {
       throw Error(`Layer with name "${name}" already exists.`);
     }
-    layer.setZIndex(Object.keys(this.layers).length);
+    layer.zIndex = Object.keys(this.layers).length;
     layer.setDimensions(this.dimensions.width, this.dimensions.height);
     this.layers[name] = layer;
     this.element.appendChild(layer.element);
@@ -63,7 +63,7 @@ class Screen {
       throw Error(`Layer with name "${name}" does not exist.`);
     }
     this.deactivateLayer();
-    this.layers[name].setZIndex(Object.keys(this.layers).length);
+    this.layers[name].zIndex = Object.keys(this.layers).length;
     this._activeLayerName = name;
   }
 

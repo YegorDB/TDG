@@ -105,18 +105,18 @@ Object { ... }
 - `name` {string} - Layer name.
 
 ```javascript
-> screen.layers.background.element.style.zIndex
-"0"
+> screen.layers.background.zIndex
+0
 > screen.addLayer('foreground', new TDG.layers.SVGLayer());
 undefined
-> screen.layers.foreground.element.style.zIndex
-"1"
+> screen.layers.foreground.zIndex
+1
 > screen.activateLayer('background');
 undefined
-> screen.layers.background.element.style.zIndex
-"2"
-> screen.layers.foreground.element.style.zIndex
-"1"
+> screen.layers.background.zIndex
+2
+> screen.layers.foreground.zIndex
+1
 ```
 
 
@@ -127,8 +127,8 @@ undefined
 ```javascript
 > screen.deactivateLayer();
 undefined
-> screen.layers.background.element.style.zIndex
-"0"
-> screen.layers.foreground.element.style.zIndex
-"1"
+> screen.layers.background.zIndex
+0
+> screen.layers.foreground.zIndex
+1
 ```
