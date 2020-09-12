@@ -14,7 +14,7 @@ function javascript(cb) {
     .pipe(buffer())
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(dest('../lib/0.1.0/'));
+    .pipe(dest('../lib/'));
   cb();
 }
 
@@ -23,7 +23,7 @@ function css(cb) {
   src('../src/css/*.css')
     .pipe(csso())
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(dest('../lib/0.1.0/'));
+    .pipe(dest('../lib/'));
   cb();
 }
 
