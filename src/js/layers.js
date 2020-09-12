@@ -116,12 +116,12 @@ class CanvasLayer extends BaseLayer {
 
 
 /**
- * Class representing svg layer.
+ * Class representing SVG layer.
  * @class
  */
 class SVGLayer extends BaseLayer {
 
-  /** Create svg layer. */
+  /** Create SVG layer. */
   constructor() {
     super();
     this.items = {};
@@ -129,7 +129,7 @@ class SVGLayer extends BaseLayer {
 
   /**
    * Create layer element.
-   * @return {svg element} Layer element.
+   * @return {SVG element} Layer element.
    */
   _createElement() {
     return UTILS.createSvgElement('svg');
@@ -148,7 +148,7 @@ class SVGLayer extends BaseLayer {
   /**
    * Add an item.
    * @param {string} name - Item name.
-   * @param {any Item class instance} item - Item instance.
+   * @param {any SVG Item class instance} item - Item instance.
    */
   addItem(name, item) {
     if (name in this.items) {
