@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-const { UTILS } = require('./base');
+const { UTILS } = require('../../base');
 
 
 /**
