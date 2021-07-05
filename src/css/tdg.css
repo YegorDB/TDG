@@ -12,18 +12,6 @@ limitations under the License.
 */
 
 
-.tdg-hide {
-  display: none;
-}
-
-
 .tdg-screen {
   position: relative;
-}
-
-
-.tdg-layer {
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }

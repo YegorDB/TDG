@@ -9,7 +9,7 @@
   "author": "Yegor Bitensky",
   "license": "Apache-2.0",
   "dependencies": {
-    "browserify": "^16.5.2",
+    "browserify": "^17.0.0",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-rename": "^2.0.0",

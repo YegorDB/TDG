@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Yegor Bitensky
+Copyright 2020-2021 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -14,6 +14,6 @@ limitations under the License.
 
 window.TDG = {
   items: require('./items/main'),
-  layers: require('./layers'),
+  layers: require('./layers/main'),
   screen: require('./screen'),
 };

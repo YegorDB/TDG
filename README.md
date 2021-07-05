@@ -16,12 +16,12 @@ const screen = new TDG.screen.Screen('dom-element-id', {
   dimensions: [150, 150],
 });
 
-screen.addLayer('background', new TDG.layers.CanvasLayer());
-screen.layers.background.ctx.fillStyle = 'green';
+screen.addLayer('background', new TDG.layers.canvas.CanvasLayer());
+screen.layers.background.ctx.fillStyle = 'black';
 screen.layers.background.ctx.fillRect(10, 10, 100, 100);
 
-screen.addLayer('foreground', new TDG.layers.SVGLayer());
-let whiteCircle = new TDG.items.SVGItem('circle', {
+screen.addLayer('foreground', new TDG.layers.svg.SVGLayer());
+let whiteCircle = new TDG.items.svg.SVGItem('circle', {
   cx: 75,
   cy: 75,
   r: 40,
