@@ -5,8 +5,8 @@
 
 ## Install
 
-1. Copy lib files (`tdg.min.js` and `tdg.min.css`).
-2. Add to html file links to copied files.
+1. Copy lib file (`tdg.min.js`).
+2. Add to html file link to copied file.
 
 
 ## Usage

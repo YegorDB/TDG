@@ -1,14 +1,13 @@
-const { parallel, src, dest } = require('gulp');
+const { dest, watch } = require('gulp');
 const uglify = require('gulp-uglify-es').default;
 const rename = require('gulp-rename');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
-const csso = require('gulp-csso');
 
 
-function javascript(cb) {
-  browserify('../src/js/tdg.js')
+function build(cb) {
+  browserify('../src/tdg.js')
     .bundle()
     .pipe(source('tdg.js'))
     .pipe(buffer())
@@ -19,13 +18,6 @@ function javascript(cb) {
 }
 
 
-function css(cb) {
-  src('../src/css/*.css')
-    .pipe(csso())
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(dest('../lib/'));
-  cb();
-}
-
-
-exports.default = parallel(javascript, css);
+exports.default = function() {
+  watch('../src/**/*.js', build);
+};

@@ -66,9 +66,9 @@ class BaseLayer {
    */
   createElement() {
     let element = this._createElement();
-    element.style.position = "absolute";
-    element.style.top = "0px";
-    element.style.left = "0px";
+    element.style.position = 'absolute';
+    element.style.top = '0px';
+    element.style.left = '0px';
     return element;
   }
 
@@ -91,13 +91,13 @@ class BaseLayer {
   /** Show layer. */
   show() {
     this._isShowed = true;
-    this.element.style.display = "block";
+    this.element.style.display = 'block';
   }
 
   /** Hide layer. */
   hide() {
     this._isShowed = false;
-    this.element.style.display = "none";
+    this.element.style.display = 'none';
   }
 }
 

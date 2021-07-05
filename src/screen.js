@@ -26,7 +26,7 @@ class Screen {
    */
   constructor(elementId, options) {
     this.element = document.getElementById(elementId);
-    this.element.classList.add('tdg-screen');
+    this.element.style.position = 'relative';
 
     options = options || {};
 
