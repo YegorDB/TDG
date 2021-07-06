@@ -13,6 +13,7 @@ limitations under the License.
 
 
 window.TDG = {
+  base: require('./base'),
   items: require('./items/main'),
   layers: require('./layers/main'),
   screen: require('./screen'),

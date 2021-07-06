@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { BaseLayer } = require('../base');
-const { UTILS } = require('../../base');
+const { Dimensions, UTILS } = require('../../base');
 
 
 /** SVG layer logic. */
@@ -26,21 +26,13 @@ class SVGLayer extends BaseLayer {
   }
 
   /**
-   * Create layer element.
-   * @return {SVG element} Layer element.
-   */
-  _createElement() {
-    return UTILS.createSvgElement('svg');
-  }
-
-  /**
    * Set layer dimentions.
-   * @param {integer} width.
-   * @param {integer} height.
+   * @param {Dimensions} value.
    */
-  setDimensions(width, height) {
-    this.element.style.width = `${width}px`;
-    this.element.style.height = `${height}px`;
+  set dimensions(value) {
+    super.dimensions = value;
+    this.element.style.width = `${value.width}px`;
+    this.element.style.height = `${value.height}px`;
   }
 
   /**
@@ -68,6 +60,15 @@ class SVGLayer extends BaseLayer {
     this.items[name].element.remove();
     this.items[name].element = null;
     delete this.items[name];
+  }
+
+  /**
+   * Create layer element.
+   * @private
+   * @return {SVG element} Layer element.
+   */
+  _createElement() {
+    return UTILS.createSvgElement('svg');
   }
 }
 

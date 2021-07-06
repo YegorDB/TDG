@@ -12,6 +12,9 @@ limitations under the License.
 */
 
 
+const { Dimensions } = require('./base');
+
+
 /**
  * Class representing a screen (composition of layers).
  * @class
@@ -30,24 +33,31 @@ class Screen {
 
     options = options || {};
 
-    let dimensions = options.dimensions || [100, 100];
-    this.dimensions = {
-      _width: dimensions[0],
-      get width() { return this._width; },
-      _height: dimensions[1],
-      get height() { return this._height; },
-    };
-    this._setDimensions();
+    let [width, height] = options.dimensions || [100, 100];
+    this.dimensions = new Dimensions(width, height);
 
     this.layers = {};
 
     this._activeLayerName = null;
   }
 
-  /** Set screen dimentions. */
-  _setDimensions() {
-    this.element.style.width = `${this.dimensions.width}px`;
-    this.element.style.height = `${this.dimensions.height}px`;
+  /**
+   * Get screen dimentions.
+   * @return {Dimensions} dimentions.
+   */
+  get dimensions() {
+    return this._dimensions;
+  }
+
+  /**
+   * Set screen dimentions.
+   * @param {Dimensions} value.
+   */
+  set dimensions(value) {
+    Dimensions.validate(value);
+    this._dimensions = value;
+    this.element.style.width = `${value.width}px`;
+    this.element.style.height = `${value.height}px`;
   }
 
   /**
@@ -60,7 +70,7 @@ class Screen {
       throw Error(`Layer with name "${name}" already exists.`);
     }
     layer.zIndex = Object.keys(this.layers).length;
-    layer.setDimensions(this.dimensions.width, this.dimensions.height);
+    layer.dimensions = this.dimensions;
     this.layers[name] = layer;
     this.element.appendChild(layer.element);
     if (this._activeLayerName) {

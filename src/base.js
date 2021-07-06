@@ -25,6 +25,44 @@ const UTILS = {
 };
 
 
+/** Dimensions logic. */
+class Dimensions {
+
+  /** Validate value. */
+  static validate(value) {
+    if (value instanceof Dimensions) return;
+    throw Error('Value has to be an instance of Dimensions.');
+  };
+
+  /**
+   * Creation.
+   * @param {integer} width.
+   * @param {integer} height.
+   */
+  constructor(width, height) {
+    this._width = width;
+    this._height = height;
+  }
+
+  /**
+   * Get width.
+   * @return {integer} Width.
+   */
+  get width() {
+    return this._width;
+  }
+
+  /**
+   * Get height.
+   * @return {integer} Height.
+   */
+  get height() {
+    return this._height;
+  }
+}
+
+
 module.exports = {
   UTILS: UTILS,
+  Dimensions: Dimensions,
 };

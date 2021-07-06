@@ -13,6 +13,7 @@ limitations under the License.
 
 
 const { BaseLayer } = require('../base');
+const { Dimensions } = require('../../base');
 
 
 /** Canvas layer logic. */
@@ -25,21 +26,26 @@ class CanvasLayer extends BaseLayer {
   }
 
   /**
+   * Set layer dimentions.
+   * @param {Dimensions} value.
+   */
+  set dimensions(value) {
+    super.dimensions = value;
+    this.element.width = value.width;
+    this.element.height = value.height;
+  }
+
+  /** Clear layer element. */
+  clear() {
+    this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
+  }
+
+  /**
    * Create layer element.
    * @return {canvas element} Layer element.
    */
   _createElement() {
     return document.createElement('canvas');
-  }
-
-  /**
-   * Set layer dimentions.
-   * @param {integer} width.
-   * @param {integer} height.
-   */
-  setDimensions(width, height) {
-    this.element.width = width;
-    this.element.height = height;
   }
 }
 

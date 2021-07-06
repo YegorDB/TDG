@@ -12,6 +12,9 @@ limitations under the License.
 */
 
 
+const { Dimensions } = require('../base');
+
+
 /** Base layers logic. */
 class BaseLayer {
 
@@ -21,6 +24,23 @@ class BaseLayer {
     this._zIndex = null;
     this._initialZIndex = null;
     this._isShowed = true;
+  }
+
+  /**
+   * Get layer dimentions.
+   * @return {Dimensions} dimentions.
+   */
+  get dimensions() {
+    return this._dimensions;
+  }
+
+  /**
+   * Set layer dimentions.
+   * @param {Dimensions} value.
+   */
+  set dimensions(value) {
+    Dimensions.validate(value);
+    this._dimensions = value;
   }
 
   /**
@@ -79,14 +99,6 @@ class BaseLayer {
    * @return {DOM element} Layer element.
    */
   _createElement() {}
-
-  /**
-   * Set layer dimentions.
-   * @abstract
-   * @param {integer} width.
-   * @param {integer} height.
-   */
-  setDimensions(width, height) {}
 
   /** Show layer. */
   show() {
