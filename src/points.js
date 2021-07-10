@@ -46,6 +46,17 @@ class Point {
   }
 
   /**
+   * Primitive.
+   * @return {string|null} Primitive value.
+   */
+  [Symbol.toPrimitive](hint) {
+    if (hint === 'string') {
+      return `${this.x},${this.y}`;
+    }
+    return null;
+  }
+
+  /**
    * Get x value.
    * @return {number} X coordinate.
    */
@@ -99,6 +110,17 @@ class Points {
       for (let item of this._items) {
           yield item;
       }
+  }
+
+  /**
+   * Get SVG string path.
+   * @returns {string} SVG string path.
+   */
+  get path() {
+    return this._items.map((point, index) => {
+      let command = index === 0 ? 'M' : 'L';
+      return `${command} ${point}`;
+    }).join(' ');
   }
 }
 
