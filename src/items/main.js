@@ -13,5 +13,6 @@ limitations under the License.
 
 
 module.exports = {
+  canvas: require('./canvas/main'),
   svg: require('./svg/main'),
 };

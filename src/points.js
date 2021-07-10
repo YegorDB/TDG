@@ -99,7 +99,7 @@ class Points {
    */
   constructor(items) {
     Points.validateItems(items);
-    this._items = items.map(coords => Point(...coords));
+    this._items = items.map(coords => new Point(...coords));
   }
 
   /**

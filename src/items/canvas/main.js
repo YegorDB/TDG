@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-const { CanvasLayer } = require('../../layers/canvas');
+const { CanvasLayer } = require('../../layers/canvas/main');
 const { Points } = require('../../points');
 
 
@@ -20,12 +20,17 @@ class CanvasPolygon {
 
   /**
    * Creation.
-   * @param {CanvasLayer} layer - Layer to draw polygon.
-   * @param {number[][]} points - Array of (x, y) pairs.
+   * @param {Points|number[][]} points - Points instatce or array of (x, y) pairs.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
    */
-  constructor(layer, points) {
-    this._layer = layer;
-    this.points = new Points(points);
+  constructor(points, options=null) {
+    this.points = points;
+    this._options = {
+      stroke: true,
+      ...(options || {}),
+    };
   }
 
   /**
@@ -38,10 +43,48 @@ class CanvasPolygon {
 
   /**
    * Set points.
-   * @param {Points} value - Points.
+   * @param {Points|number[][]} value - Points instatce or array of (x, y) pairs.
    */
   set points(value) {
-    this._points = value;
+    if (value instanceof Points) {
+      this._points = value;
+    } else {
+      this._points = new Points(value);
+    }
+  }
+
+  /**
+   * Get layer.
+   * @return {CanvasLayer} Layer.
+   */
+  get layer() {
+    return this._layer;
+  }
+
+  /**
+   * Set layer.
+   * @param {CanvasLayer} value - Layer.
+   */
+  set layer(value) {
+    if (!(value instanceof CanvasLayer)) {
+      throw Error('Layer has to be instance of CanvasLayer.');
+    }
+    this._layer = value;
+  }
+
+  draw() {
+    if (!this.layer) {
+      throw Error('Object has no layer to draw to.');
+    }
+    var path = new Path2D(this.points.path);
+    if (this._options.stroke) {
+      this.layer.ctx.strokeStyle = 'black';
+      this.layer.ctx.stroke(path);
+    }
+    if (this._options.fill) {
+      this.layer.ctx.fillStyle = 'black';
+      this.layer.ctx.fill(path);
+    }
   }
 }
 
