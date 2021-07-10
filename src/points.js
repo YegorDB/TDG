@@ -98,8 +98,7 @@ class Points {
    * @param {number[][]} items - Array of (x, y) pairs.
    */
   constructor(items) {
-    Points.validateItems(items);
-    this._items = items.map(coords => new Point(...coords));
+    this.items = items;
   }
 
   /**
@@ -107,9 +106,26 @@ class Points {
    * @returns {Generator} Points.
    */
   *[Symbol.iterator]() {
-      for (let item of this._items) {
+      for (let item of this.items) {
           yield item;
       }
+  }
+
+  /**
+   * Get items.
+   * @returns {Point[]} Items.
+   */
+  get items() {
+    return this._items;
+  }
+
+  /**
+   * Set items.
+   * @param {number[][]} items - Array of (x, y) pairs.
+   */
+  set items(items) {
+    Points.validateItems(items);
+    this._items = this._createItems(items);
   }
 
   /**
@@ -117,10 +133,64 @@ class Points {
    * @returns {string} SVG string path.
    */
   get path() {
-    return this._items.map((point, index) => {
+    return this.items.map((point, index) => {
       let command = index === 0 ? 'M' : 'L';
       return `${command} ${point}`;
     }).join(' ');
+  }
+
+  /**
+   * Create items.
+   * @private
+   * @param {number[][]} items - Array of (x, y) pairs.
+   */
+  _createItems(items) {
+    return items.map(coords => new Point(...coords));
+  }
+}
+
+
+/** PolygonPoints logic. */
+class PolygonPoints extends Points {
+
+  /**
+   * Validate items.
+   * @param {number[][]} items - Array of (x, y) pairs.
+   */
+  static validateItems(items) {
+    Points.validateItems(items);
+    if (
+      items.length < 3
+    ||
+      items.length == 3
+      &&
+      items[0][0] == items[items.length - 1][0]
+      &&
+      items[0][1] == items[items.length - 1][1]
+    ) {
+      throw Error('Polygon points array has to include at least 3 items.');
+    }
+  };
+
+  /**
+   * Get items.
+   * @returns {Point[]} Items.
+   */
+  get items() {
+    return super.items;
+  }
+
+  /**
+   * Set items.
+   * @param {number[][]} itemsData - Array of (x, y) pairs.
+   */
+  set items(items) {
+    PolygonPoints.validateItems(items);
+    let latest = items.length - 1;
+    if (items[0][0] != items[latest][0] || items[0][1] != items[latest][1]) {
+      items.push(items[0]);
+    }
+    this._items = this._createItems(items);
   }
 }
 
@@ -128,4 +198,5 @@ class Points {
 module.exports = {
   Point: Point,
   Points: Points,
+  PolygonPoints: PolygonPoints,
 };
