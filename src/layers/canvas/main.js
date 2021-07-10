@@ -35,6 +35,34 @@ class CanvasLayer extends BaseLayer {
     this.element.height = value.height;
   }
 
+  /**
+   * Add item.
+   * @param {string} name - Item name.
+   * @param {Object} item - Item instance.
+   */
+  addItem(name, item) {
+    super.addItem(name, item);
+    item.layer = this;
+    item.draw();
+  }
+
+  /**
+   * Remove item.
+   * @param {string} name - Item name.
+   */
+  removeItem(name) {
+    super.removeItem(name);
+    this.refresh();
+  }
+
+  /** Refresh layer items. */
+  refresh() {
+    this.clear();
+    for (let item of this.items) {
+      item.draw();
+    }
+  }
+
   /** Clear layer element. */
   clear() {
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);

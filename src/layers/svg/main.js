@@ -19,12 +19,6 @@ const { Dimensions, UTILS } = require('../../base');
 /** SVG layer logic. */
 class SVGLayer extends BaseLayer {
 
-  /** Create SVG layer. */
-  constructor() {
-    super();
-    this.items = {};
-  }
-
   /**
    * Set layer dimentions.
    * @param {Dimensions} value.
@@ -36,30 +30,22 @@ class SVGLayer extends BaseLayer {
   }
 
   /**
-   * Add an item.
+   * Add item.
    * @param {string} name - Item name.
-   * @param {any SVG Item class instance} item - Item instance.
+   * @param {Object} item - Item instance.
    */
   addItem(name, item) {
-    if (name in this.items) {
-      throw Error(`Item with name "${name}" already exists.`);
-    }
-    this.items[name] = item;
+    super.addItem(name, item);
     this.element.appendChild(item.element);
   }
 
   /**
-   * Remove an item.
-   * @param {string} name - Item name.
+   * Remove item additional logic.
+   * @param {Object} item - Item.
    */
-  removeItem(name) {
-    if (!(name in this.items)) {
-      throw Error(`Item with name "${name}" does not exist.`);
-    }
-
-    this.items[name].element.remove();
-    this.items[name].element = null;
-    delete this.items[name];
+  _removeItemAdditional(item) {
+    item.element.remove();
+    item.element = null;
   }
 
   /**
