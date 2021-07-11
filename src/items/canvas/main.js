@@ -24,11 +24,17 @@ class CanvasPolygon {
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {string} [options.strokeStyle='#000'] - Stroke style.
+   * @param {string} [options.fillStyle='#000'] - Fill style.
+   * @param {number} [options.globalAlpha=1.0] - Transparency.
    */
   constructor(points, options=null) {
     this.points = points;
     this._options = {
       stroke: true,
+      strokeStyle: '#000',
+      fillStyle: '#000',
+      globalAlpha: 1.0,
       ...(options || {}),
     };
   }
@@ -72,17 +78,19 @@ class CanvasPolygon {
     this._layer = value;
   }
 
+  /** Draw object. */
   draw() {
     if (!this.layer) {
       throw Error('Object has no layer to draw to.');
     }
     var path = new Path2D(this.points.path);
+    this.layer.ctx.globalAlpha = this._options.globalAlpha;
     if (this._options.stroke) {
-      this.layer.ctx.strokeStyle = 'black';
+      this.layer.ctx.strokeStyle = this._options.strokeStyle;
       this.layer.ctx.stroke(path);
     }
     if (this._options.fill) {
-      this.layer.ctx.fillStyle = 'black';
+      this.layer.ctx.fillStyle = this._options.fillStyle;
       this.layer.ctx.fill(path);
     }
   }
