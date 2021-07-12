@@ -24,18 +24,32 @@ class CanvasPolygon {
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {string} [options.strokeStyle='#000'] - Stroke style.
-   * @param {string} [options.fillStyle='#000'] - Fill style.
-   * @param {number} [options.globalAlpha=1.0] - Transparency.
+   * @param {Object} [options.params] - Canvas 2d context params.
+   * @param {string} [options.params.strokeStyle='#000'] - Stroke style.
+   * @param {string} [options.params.fillStyle='#000'] - Fill style.
+   * @param {number} [options.params.globalAlpha=1.0] - Transparency.
+   * @param {number} [options.params.lineWidth=1.0] - Line width.
+   * @param {string} [options.params.lineCap='butt'] - Line cap.
+   * @param {string} [options.params.lineJoin='miter'] - Line join.
+   * @param {number} [options.params.miterLimit=10.0] - Miter limit.
    */
   constructor(points, options=null) {
+    options = options || {};
+
     this.points = points;
     this._options = {
-      stroke: true,
-      strokeStyle: '#000',
-      fillStyle: '#000',
-      globalAlpha: 1.0,
-      ...(options || {}),
+      stroke: options.stroke || true,
+      fill: options.fill,
+      params: {
+        strokeStyle: '#000',
+        fillStyle: '#000',
+        globalAlpha: 1.0,
+        lineWidth: 1.0,
+        lineCap: 'butt',
+        lineJoin: 'miter',
+        miterLimit: 10.0,
+        ...(options.params || {}),
+      },
     };
   }
 
@@ -83,15 +97,20 @@ class CanvasPolygon {
     if (!this.layer) {
       throw Error('Object has no layer to draw to.');
     }
-    var path = new Path2D(this.points.path);
-    this.layer.ctx.globalAlpha = this._options.globalAlpha;
+    let path = new Path2D(this.points.path);
+    this._setParams();
     if (this._options.stroke) {
-      this.layer.ctx.strokeStyle = this._options.strokeStyle;
       this.layer.ctx.stroke(path);
     }
     if (this._options.fill) {
-      this.layer.ctx.fillStyle = this._options.fillStyle;
       this.layer.ctx.fill(path);
+    }
+  }
+
+  /** Set canvas 2d context params. */
+  _setParams() {
+    for (let [key, value] of Object.entries(this._options.params)) {
+      this.layer.ctx[key] = value;
     }
   }
 }
