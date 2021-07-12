@@ -24,32 +24,14 @@ class CanvasPolygon {
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.params] - Canvas 2d context params.
-   * @param {string} [options.params.strokeStyle='#000'] - Stroke style.
-   * @param {string} [options.params.fillStyle='#000'] - Fill style.
-   * @param {number} [options.params.globalAlpha=1.0] - Transparency.
-   * @param {number} [options.params.lineWidth=1.0] - Line width.
-   * @param {string} [options.params.lineCap='butt'] - Line cap.
-   * @param {string} [options.params.lineJoin='miter'] - Line join.
-   * @param {number} [options.params.miterLimit=10.0] - Miter limit.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
   constructor(points, options=null) {
-    options = options || {};
-
     this.points = points;
     this._options = {
-      stroke: options.stroke || true,
-      fill: options.fill,
-      params: {
-        strokeStyle: '#000',
-        fillStyle: '#000',
-        globalAlpha: 1.0,
-        lineWidth: 1.0,
-        lineCap: 'butt',
-        lineJoin: 'miter',
-        miterLimit: 10.0,
-        ...(options.params || {}),
-      },
+      stroke: true,
+      ...(options || {}),
     };
   }
 
@@ -98,19 +80,31 @@ class CanvasPolygon {
       throw Error('Object has no layer to draw to.');
     }
     let path = new Path2D(this.points.path);
-    this._setParams();
+    this.layer.ctx.save();
+    this._setFlatParams();
+    this._setByMethodParams();
     if (this._options.stroke) {
       this.layer.ctx.stroke(path);
     }
     if (this._options.fill) {
       this.layer.ctx.fill(path);
     }
+    this.layer.ctx.restore();
   }
 
-  /** Set canvas 2d context params. */
-  _setParams() {
-    for (let [key, value] of Object.entries(this._options.params)) {
+  /** Set canvas 2d context flat params. */
+  _setFlatParams() {
+    if (!this._options.flatParams) return;
+    for (let [key, value] of Object.entries(this._options.flatParams)) {
       this.layer.ctx[key] = value;
+    }
+  }
+
+  /** Set canvas 2d context by method params. */
+  _setByMethodParams() {
+    if (!this._options.byMethodParams) return;
+    for (let [method, args] of Object.entries(this._options.byMethodParams)) {
+      this.layer.ctx[method](...args);
     }
   }
 }
