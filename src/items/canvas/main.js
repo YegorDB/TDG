@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('../../layers/canvas/main');
-const { PolygonPoints } = require('../../points');
+const { Points } = require('../../points');
 
 
 class CanvasItem {
@@ -100,7 +100,7 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Creation.
-   * @param {PolygonPoints|number[][]} points - PolygonPoints instatce or array of (x, y) pairs.
+   * @param {Points|number[][]} points - Points instatce or array of (x, y) pairs.
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
@@ -114,7 +114,7 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Get points.
-   * @return {PolygonPoints} Points.
+   * @return {Points} Points.
    */
   get points() {
     return this._points;
@@ -122,13 +122,13 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Set points.
-   * @param {PolygonPoints|number[][]} value - Points instatce or array of (x, y) pairs.
+   * @param {Points|number[][]} value - Points instatce or array of (x, y) pairs.
    */
   set points(value) {
-    if (value instanceof PolygonPoints) {
+    if (value instanceof Points) {
       this._points = value;
     } else {
-      this._points = new PolygonPoints(value);
+      this._points = new Points(value);
     }
   }
 

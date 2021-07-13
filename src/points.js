@@ -96,8 +96,11 @@ class Points {
   /**
    * Creation.
    * @param {number[][]} items - Array of (x, y) pairs.
+   * @param {Object|null} [options] - Options.
+   * @param {boolean} [options.isOpen] - Whether poins path is open or close.
    */
-  constructor(items) {
+  constructor(items, options=null) {
+    this._options = options || {};
     this.items = items;
   }
 
@@ -133,10 +136,14 @@ class Points {
    * @returns {string} SVG string path.
    */
   get path() {
-    return this.items.map((point, index) => {
+    let parts = this.items.map((point, index) => {
       let command = index === 0 ? 'M' : 'L';
       return `${command} ${point}`;
-    }).join(' ');
+    });
+    if (!this._options.isOpen) {
+      parts.push('Z');
+    }
+    return parts.join(' ');
   }
 
   /**
@@ -150,53 +157,7 @@ class Points {
 }
 
 
-/** PolygonPoints logic. */
-class PolygonPoints extends Points {
-
-  /**
-   * Validate items.
-   * @param {number[][]} items - Array of (x, y) pairs.
-   */
-  static validateItems(items) {
-    Points.validateItems(items);
-    if (
-      items.length < 3
-    ||
-      items.length == 3
-      &&
-      items[0][0] == items[items.length - 1][0]
-      &&
-      items[0][1] == items[items.length - 1][1]
-    ) {
-      throw Error('Polygon points array has to include at least 3 items.');
-    }
-  };
-
-  /**
-   * Get items.
-   * @returns {Point[]} Items.
-   */
-  get items() {
-    return super.items;
-  }
-
-  /**
-   * Set items.
-   * @param {number[][]} itemsData - Array of (x, y) pairs.
-   */
-  set items(items) {
-    PolygonPoints.validateItems(items);
-    let latest = items.length - 1;
-    if (items[0][0] != items[latest][0] || items[0][1] != items[latest][1]) {
-      items.push(items[0]);
-    }
-    this._items = this._createItems(items);
-  }
-}
-
-
 module.exports = {
   Point: Point,
   Points: Points,
-  PolygonPoints: PolygonPoints,
 };
