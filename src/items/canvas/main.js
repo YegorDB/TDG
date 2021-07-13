@@ -16,19 +16,17 @@ const { CanvasLayer } = require('../../layers/canvas/main');
 const { PolygonPoints } = require('../../points');
 
 
-class CanvasPolygon {
+class CanvasItem {
 
   /**
    * Creation.
-   * @param {PolygonPoints|number[][]} points - PolygonPoints instatce or array of (x, y) pairs.
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  constructor(points, options=null) {
-    this.points = points;
+  constructor(options=null) {
     this._options = {
       stroke: true,
       ...(options || {}),
@@ -36,23 +34,11 @@ class CanvasPolygon {
   }
 
   /**
-   * Get points.
-   * @return {PolygonPoints} Points.
+   * Get path.
+   * @returns {string} SVG string path.
    */
-  get points() {
-    return this._points;
-  }
-
-  /**
-   * Set points.
-   * @param {PolygonPoints|number[][]} value - Points instatce or array of (x, y) pairs.
-   */
-  set points(value) {
-    if (value instanceof PolygonPoints) {
-      this._points = value;
-    } else {
-      this._points = new PolygonPoints(value);
-    }
+  get path() {
+    return '';
   }
 
   /**
@@ -79,7 +65,7 @@ class CanvasPolygon {
     if (!this.layer) {
       throw Error('Object has no layer to draw to.');
     }
-    let path = new Path2D(this.points.path);
+    let path = new Path2D(this.path);
     this.layer.ctx.save();
     this._setFlatParams();
     this._setByMethodParams();
@@ -110,6 +96,53 @@ class CanvasPolygon {
 }
 
 
+class CanvasPolygon extends CanvasItem {
+
+  /**
+   * Creation.
+   * @param {PolygonPoints|number[][]} points - PolygonPoints instatce or array of (x, y) pairs.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  constructor(points, options=null) {
+    super(options);
+    this.points = points;
+  }
+
+  /**
+   * Get points.
+   * @return {PolygonPoints} Points.
+   */
+  get points() {
+    return this._points;
+  }
+
+  /**
+   * Set points.
+   * @param {PolygonPoints|number[][]} value - Points instatce or array of (x, y) pairs.
+   */
+  set points(value) {
+    if (value instanceof PolygonPoints) {
+      this._points = value;
+    } else {
+      this._points = new PolygonPoints(value);
+    }
+  }
+
+  /**
+   * Get path.
+   * @returns {string} SVG string path.
+   */
+  get path() {
+    return this.points.path;
+  }
+}
+
+
 module.exports = {
+  CanvasItem: CanvasItem,
   CanvasPolygon: CanvasPolygon,
 };
