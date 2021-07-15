@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('../../layers/canvas/main');
-const { Points } = require('../../points');
+const { Point, Points } = require('../../points');
 
 
 class CanvasItem {
@@ -142,7 +142,67 @@ class CanvasPolygon extends CanvasItem {
 }
 
 
+class CanvasCircle extends CanvasItem {
+
+  /**
+   * Creation.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {number} radius - Radius.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  constructor(centre, radius, options=null) {
+    super(options);
+    this.centre = centre;
+    this.radius = radius;
+  }
+
+  /**
+   * Get centre.
+   * @return {Point} Point.
+   */
+  get centre() {
+    return this._centre;
+  }
+
+  /**
+   * Set centre.
+   * @param {Point|number[]} value - Point instatce or (x, y) pair.
+   */
+  set centre(value) {
+    if (value instanceof Point) {
+      this._centre = value;
+    } else {
+      this._centre = new Point(value);
+    }
+  }
+
+  /**
+   * Get radius.
+   * @return {number} Radius.
+   */
+  get radius() {
+    return this._radius;
+  }
+
+  /**
+   * Set radius.
+   * @param {number} value - Radius.
+   */
+  set radius(value) {
+    if (!Number.isInteger(value)) {
+      throw Error('Radius value has to be an integer.');
+    }
+    this._radius = value;
+  }
+}
+
+
 module.exports = {
   CanvasItem: CanvasItem,
   CanvasPolygon: CanvasPolygon,
+  CanvasCircle: CanvasCircle,
 };
