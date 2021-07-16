@@ -176,7 +176,7 @@ class CanvasCircle extends CanvasItem {
     if (value instanceof Point) {
       this._centre = value;
     } else {
-      this._centre = new Point(value);
+      this._centre = new Point(...value);
     }
   }
 
@@ -197,6 +197,21 @@ class CanvasCircle extends CanvasItem {
       throw Error('Radius value has to be an integer.');
     }
     this._radius = value;
+  }
+
+  /**
+   * Get path.
+   * @returns {string} SVG string path.
+   */
+  get path() {
+    let x1 = this._centre.x - this._radius;
+    let x2 = this._centre.x + this._radius;
+    return `
+      M ${x1},${this._centre.y}
+      A ${this._radius} ${this._radius} 0 1 0 ${x2},${this._centre.y}
+      A ${this._radius} ${this._radius} 0 1 0 ${x1},${this._centre.y}
+      Z
+    `;
   }
 }
 
