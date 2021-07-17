@@ -15,10 +15,41 @@ limitations under the License.
 class PathCommands {
 
   /**
-   * Creation.
-   * @param {string|null} value - Path commands value.
+   * Validate value.
+   * @param {string} value - Path commands value.
    */
-  constructor(value=null) {
+  static validate(value) {
+    if ((typeof value) != 'string') {
+      throw Error('Path commands has to be an string.');
+    }
+
+    let starts = [
+      '(M(\\s+\\d+,\\d+)+)',
+      '(m(\\s+\\-?\\d+,\\-?\\d+)+)',
+    ].join('|');
+    let draws = [
+      '(\\s+[LT](\\s+\\d+,\\d+)+)',
+      '(\\s+[lt](\\s+\\-?\\d+,\\-?\\d+)+)',
+      '(\\s+[HV](\\s+\\d+)+)',
+      '(\\s+[hv](\\s+\\-?\\d+)+)',
+      '(\\s+[C]((\\s+\\d+,\\d+){3})+)',
+      '(\\s+[c]((\\s+\\-?\\d+,\\-?\\d+){3})+)',
+      '(\\s+[SQ]((\\s+\\d+,\\d+){2})+)',
+      '(\\s+[sq]((\\s+\\-?\\d+,\\-?\\d+){2})+)',
+      '(\\s+[A]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\d+,\\d+)+)',
+      '(\\s+[a]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\-?\\d+,\\-?\\d+)+)',
+    ].join('|');
+    let re = new RegExp(`^(${starts})(${draws})((\\s+(${starts}))?(${draws}))*(\\s+[Zz])?$`);
+    if (!value.match(re)) {
+      throw Error('Wrond path commands string.');
+    }
+  };
+
+  /**
+   * Creation.
+   * @param {string} value - Path commands value.
+   */
+  constructor(value) {
     this._value = value;
   }
 
@@ -32,9 +63,11 @@ class PathCommands {
 
   /**
    * Set value.
-   * @param {string|null} value - Path commands value.
+   * @param {string} value - Path commands value.
    */
   set value(value) {
-    this._value = value || '';
+    if (!value) return;
+    PathCommands.validate(value);
+    this._value = value;
   }
 }
