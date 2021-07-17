@@ -204,12 +204,12 @@ class CanvasCircle extends CanvasItem {
    * @returns {string} SVG string path.
    */
   get path() {
-    let x1 = this._centre.x - this._radius;
-    let x2 = this._centre.x + this._radius;
+    let point1 = new Point(this._centre.x - this._radius, this._centre.y);
+    let point2 = new Point(this._centre.x + this._radius, this._centre.y);
     return `
-      M ${x1},${this._centre.y}
-      A ${this._radius} ${this._radius} 0 1 0 ${x2},${this._centre.y}
-      A ${this._radius} ${this._radius} 0 1 0 ${x1},${this._centre.y}
+      M ${point1}
+      A ${this._radius} ${this._radius} 0 1 0 ${point2}
+      A ${this._radius} ${this._radius} 0 0 0 ${point1}
       Z
     `;
   }
