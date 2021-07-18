@@ -12,6 +12,9 @@ limitations under the License.
 */
 
 
+const { PathCommands } = require('./base');
+
+
 /** Point logic. */
 class Point {
 
@@ -25,24 +28,13 @@ class Point {
   };
 
   /**
-   * Validate coordinates.
-   * @param {number} x - X coordinate.
-   * @param {number} y - Y coordinate.
-   */
-  static validateCoordinates(x, y) {
-    Point.validateCoordinate(x);
-    Point.validateCoordinate(y);
-  };
-
-  /**
    * Creation.
    * @param {number} x - X coordinate.
    * @param {number} y - Y coordinate.
    */
   constructor(x, y) {
-    Point.validateCoordinates(x, y);
-    this._x = x;
-    this._y = y;
+    this.x = x;
+    this.y = y;
   }
 
   /**
@@ -65,17 +57,35 @@ class Point {
   }
 
   /**
+   * Set x value.
+   * @param {number} value - X coordinate.
+   */
+  set x(value) {
+    Point.validateCoordinate(value);
+    this._x = value;
+  }
+
+  /**
    * Get y value.
    * @return {number} Y coordinate.
    */
   get y() {
     return this._y;
   }
+
+  /**
+   * Set y value.
+   * @param {number} value - Y coordinate.
+   */
+  set y(value) {
+    Point.validateCoordinate(value);
+    this._y = value;
+  }
 }
 
 
-/** Points logic. */
-class Points {
+/** Points comands logic. */
+class PointsCommands extends PathCommands {
 
   /**
    * Validate items.
@@ -89,7 +99,9 @@ class Points {
       if (!Array.isArray(item) || item.length != 2) {
         throw Error('Point coordinates has to be array of two integers.');
       }
-      Point.validateCoordinates(...item);
+      for (let coord of item) {
+        Point.validateCoordinate(coord);
+      }
     }
   };
 
@@ -100,8 +112,10 @@ class Points {
    * @param {boolean} [options.isOpen] - Whether poins path is open or close.
    */
   constructor(items, options=null) {
+    super();
     this._options = options || {};
     this.items = items;
+    this.setValue();
   }
 
   /**
@@ -127,15 +141,12 @@ class Points {
    * @param {number[][]} items - Array of (x, y) pairs.
    */
   set items(items) {
-    Points.validateItems(items);
+    PointsCommands.validateItems(items);
     this._items = this._createItems(items);
   }
 
-  /**
-   * Get SVG string path.
-   * @returns {string} SVG string path.
-   */
-  get path() {
+  /** Set value. */
+  setValue() {
     let parts = this.items.map((point, index) => {
       let command = index === 0 ? 'M' : 'L';
       return `${command} ${point}`;
@@ -143,7 +154,7 @@ class Points {
     if (!this._options.isOpen) {
       parts.push('Z');
     }
-    return parts.join(' ');
+    this.value = parts.join(' ');
   }
 
   /**
@@ -159,5 +170,5 @@ class Points {
 
 module.exports = {
   Point: Point,
-  Points: Points,
+  PointsCommands: PointsCommands,
 };

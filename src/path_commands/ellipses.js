@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { PathCommands } = require('./base');
-const { Point } = require('../points');
+const { Point } = require('./points');
 
 
 class EllipseRadiuses {

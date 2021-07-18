@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('../../layers/canvas/main');
-const { Point, Points } = require('../../points');
+const { Point, PointsCommands } = require('../../path_commands/points');
 
 
 class CanvasItem {
@@ -100,7 +100,7 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Creation.
-   * @param {Points|number[][]} points - Points instatce or array of (x, y) pairs.
+   * @param {PointsCommands|number[][]} points - PointsCommands instatce or array of (x, y) pairs.
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
@@ -114,7 +114,7 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Get points.
-   * @return {Points} Points.
+   * @return {PointsCommands} Points.
    */
   get points() {
     return this._points;
@@ -122,13 +122,13 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Set points.
-   * @param {Points|number[][]} value - Points instatce or array of (x, y) pairs.
+   * @param {PointsCommands|number[][]} value - PointsCommands instatce or array of (x, y) pairs.
    */
   set points(value) {
-    if (value instanceof Points) {
+    if (value instanceof PointsCommands) {
       this._points = value;
     } else {
-      this._points = new Points(value);
+      this._points = new PointsCommands(value);
     }
   }
 
@@ -137,7 +137,7 @@ class CanvasPolygon extends CanvasItem {
    * @returns {string} SVG string path.
    */
   get path() {
-    return this.points.path;
+    return this.points.value;
   }
 }
 
