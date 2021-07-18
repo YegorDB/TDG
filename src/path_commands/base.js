@@ -13,6 +13,7 @@ limitations under the License.
 
 
 class PathCommands {
+  static NONE = 'none';
 
   /**
    * Validate value.
@@ -22,6 +23,8 @@ class PathCommands {
     if ((typeof value) != 'string') {
       throw Error('Path commands has to be an string.');
     }
+
+    if (value == PathCommands.NONE) return;
 
     let starts = [
       '(M(\\s+\\d+,\\d+)+)',
@@ -50,7 +53,7 @@ class PathCommands {
    * @param {string} value - Path commands value.
    */
   constructor(value) {
-    this._value = value;
+    this._value = value || PathCommands.NONE;
   }
 
   /**
@@ -66,8 +69,12 @@ class PathCommands {
    * @param {string} value - Path commands value.
    */
   set value(value) {
-    if (!value) return;
     PathCommands.validate(value);
     this._value = value;
   }
 }
+
+
+module.exports = {
+  PathCommands: PathCommands,
+};
