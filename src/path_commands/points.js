@@ -115,7 +115,6 @@ class PointsCommands extends PathCommands {
     super();
     this._options = options || {};
     this.items = items;
-    this.setValue();
   }
 
   /**
@@ -143,10 +142,12 @@ class PointsCommands extends PathCommands {
   set items(items) {
     PointsCommands.validateItems(items);
     this._items = this._createItems(items);
+    this.setValue();
   }
 
   /** Set value. */
   setValue() {
+    if (!this.items) return;
     let parts = this.items.map((point, index) => {
       let command = index === 0 ? 'M' : 'L';
       return `${command} ${point}`;

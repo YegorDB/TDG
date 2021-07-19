@@ -13,6 +13,7 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('../../layers/canvas/main');
+const { CircleCommands } = require('../../path_commands/ellipses');
 const { Point, PointsCommands } = require('../../path_commands/points');
 
 
@@ -100,7 +101,7 @@ class CanvasPolygon extends CanvasItem {
 
   /**
    * Creation.
-   * @param {PointsCommands|number[][]} points - PointsCommands instatce or array of (x, y) pairs.
+   * @param {number[][]} points - Array of (x, y) pairs.
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
@@ -109,27 +110,26 @@ class CanvasPolygon extends CanvasItem {
    */
   constructor(points, options=null) {
     super(options);
-    this.points = points;
+    this.commands = new PointsCommands(points);
   }
 
   /**
-   * Get points.
-   * @return {PointsCommands} Points.
+   * Get commands.
+   * @return {PointsCommands} Commands.
    */
-  get points() {
-    return this._points;
+  get commands() {
+    return this._commands;
   }
 
   /**
-   * Set points.
-   * @param {PointsCommands|number[][]} value - PointsCommands instatce or array of (x, y) pairs.
+   * Set commands.
+   * @param {PointsCommands} value - PointsCommands instance.
    */
-  set points(value) {
-    if (value instanceof PointsCommands) {
-      this._points = value;
-    } else {
-      this._points = new PointsCommands(value);
+  set commands(value) {
+    if (!(value instanceof PointsCommands)) {
+      throw Error('Commands value has to be an PointsCommands instance.');
     }
+    this._commands = value;
   }
 
   /**
@@ -137,7 +137,7 @@ class CanvasPolygon extends CanvasItem {
    * @returns {string} SVG string path.
    */
   get path() {
-    return this.points.value;
+    return this.commands.value;
   }
 }
 
@@ -156,47 +156,26 @@ class CanvasCircle extends CanvasItem {
    */
   constructor(centre, radius, options=null) {
     super(options);
-    this.centre = centre;
-    this.radius = radius;
+    this.commands = new CircleCommands(centre, radius);
   }
 
   /**
-   * Get centre.
-   * @return {Point} Point.
+   * Get commands.
+   * @return {CircleCommands} Commands.
    */
-  get centre() {
-    return this._centre;
+  get commands() {
+    return this._commands;
   }
 
   /**
-   * Set centre.
-   * @param {Point|number[]} value - Point instatce or (x, y) pair.
+   * Set commands.
+   * @param {CircleCommands} value - CircleCommands instance.
    */
-  set centre(value) {
-    if (value instanceof Point) {
-      this._centre = value;
-    } else {
-      this._centre = new Point(...value);
+  set commands(value) {
+    if (!(value instanceof CircleCommands)) {
+      throw Error('Commands value has to be an CircleCommands instance.');
     }
-  }
-
-  /**
-   * Get radius.
-   * @return {number} Radius.
-   */
-  get radius() {
-    return this._radius;
-  }
-
-  /**
-   * Set radius.
-   * @param {number} value - Radius.
-   */
-  set radius(value) {
-    if (!Number.isInteger(value)) {
-      throw Error('Radius value has to be an integer.');
-    }
-    this._radius = value;
+    this._commands = value;
   }
 
   /**
@@ -204,14 +183,7 @@ class CanvasCircle extends CanvasItem {
    * @returns {string} SVG string path.
    */
   get path() {
-    let point1 = new Point(this._centre.x - this._radius, this._centre.y);
-    let point2 = new Point(this._centre.x + this._radius, this._centre.y);
-    return `
-      M ${point1}
-      A ${this._radius} ${this._radius} 0 1 0 ${point2}
-      A ${this._radius} ${this._radius} 0 0 0 ${point1}
-      Z
-    `;
+    return this.commands.value;
   }
 }
 

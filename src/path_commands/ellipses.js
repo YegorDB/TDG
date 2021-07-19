@@ -84,7 +84,6 @@ class EllipseCommands extends PathCommands {
     super();
     this.centre = centre;
     this.radiuses = radiuses;
-    this.setValue();
   }
 
   /**
@@ -105,6 +104,7 @@ class EllipseCommands extends PathCommands {
     } else {
       this._centre = new Point(...value);
     }
+    this.setValue();
   }
 
   /**
@@ -125,10 +125,12 @@ class EllipseCommands extends PathCommands {
     } else {
       this._radiuses = new EllipseRadiuses(...value);
     }
+    this.setValue();
   }
 
   /** Set value. */
   setValue() {
+    if (!this.centre || !this.radiuses) return;
     let point1 = new Point(this.centre.x - this.radiuses.first, this.centre.y);
     let point2 = new Point(this.centre.x + this.radiuses.first, this.centre.y);
     this.value = `
@@ -141,6 +143,38 @@ class EllipseCommands extends PathCommands {
 }
 
 
+class CircleCommands extends EllipseCommands {
+
+  /**
+   * Creation.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {number} radius - Radius.
+   */
+  constructor(centre, radius) {
+    super(centre, [radius, radius]);
+    this.radius = radius;
+  }
+
+  /**
+   * Get radius.
+   * @return {number} Radius.
+   */
+  get radius() {
+    return this._radius;
+  }
+
+  /**
+   * Set radius.
+   * @param {number} value - Radius.
+   */
+  set radius(value) {
+    this.radiuses = [value, value];
+    this._radius = value;
+  }
+}
+
+
 module.exports = {
   EllipseCommands: EllipseCommands,
+  CircleCommands: CircleCommands,
 };

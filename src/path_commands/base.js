@@ -42,7 +42,7 @@ class PathCommands {
       '(\\s+[A]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\d+,\\d+)+)',
       '(\\s+[a]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\-?\\d+,\\-?\\d+)+)',
     ].join('|');
-    let re = new RegExp(`^(${starts})(${draws})((\\s+(${starts}))?(${draws}))*(\\s+[Zz])?$`);
+    let re = new RegExp(`^\\s*(${starts})(${draws})((\\s+(${starts}))?(${draws}))*(\\s+[Zz])?\\s*$`);
     if (!value.match(re)) {
       throw Error('Wrond path commands string.');
     }
