@@ -38,6 +38,17 @@ class EllipseRadiuses {
   }
 
   /**
+   * Primitive.
+   * @return {string|null} Primitive value.
+   */
+  [Symbol.toPrimitive](hint) {
+    if (hint === 'string') {
+      return `${this.first} ${this.second}`;
+    }
+    return null;
+  }
+
+  /**
    * Get first radius.
    * @return {number} First radius.
    */
@@ -135,8 +146,8 @@ class EllipseCommands extends PathCommands {
     let point2 = new Point(this.centre.x + this.radiuses.first, this.centre.y);
     this.value = `
       M ${point1}
-      A ${this.radiuses.first} ${this.radiuses.second} 0 1 0 ${point2}
-      A ${this.radiuses.first} ${this.radiuses.second} 0 0 0 ${point1}
+      A ${this.radiuses} 0 1 0 ${point2}
+        ${this.radiuses} 0 0 0 ${point1}
       Z
     `;
   }
