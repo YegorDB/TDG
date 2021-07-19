@@ -53,7 +53,7 @@ class PathCommands {
    * @param {string} value - Path commands value.
    */
   constructor(value) {
-    this._value = value || PathCommands.NONE;
+    this.value = value || PathCommands.NONE;
   }
 
   /**

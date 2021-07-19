@@ -13,6 +13,7 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('../../layers/canvas/main');
+const { PathCommands } = require('../../path_commands/base');
 const { CircleCommands } = require('../../path_commands/ellipses');
 const { Point, PointsCommands } = require('../../path_commands/points');
 
@@ -35,11 +36,19 @@ class CanvasItem {
   }
 
   /**
+   * Get commands.
+   * @return {PathCommands} Commands.
+   */
+  get commands() {
+    return new PathCommands(null);
+  }
+
+  /**
    * Get path.
    * @returns {string} SVG string path.
    */
   get path() {
-    return '';
+    return this.commands.value;
   }
 
   /**
@@ -97,6 +106,43 @@ class CanvasItem {
 }
 
 
+class CanvasPath extends CanvasItem {
+
+  /**
+   * Creation.
+   * @param {string} value - Path commands value.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  constructor(value, options=null) {
+    super(options);
+    this.commands = new PathCommands(value);
+  }
+
+  /**
+   * Get commands.
+   * @return {PathCommands} Commands.
+   */
+  get commands() {
+    return this._commands;
+  }
+
+  /**
+   * Set commands.
+   * @param {PathCommands} value - PathCommands instance.
+   */
+  set commands(value) {
+    if (!(value instanceof PathCommands)) {
+      throw Error('Commands value has to be an PathCommands instance.');
+    }
+    this._commands = value;
+  }
+}
+
+
 class CanvasPolygon extends CanvasItem {
 
   /**
@@ -130,14 +176,6 @@ class CanvasPolygon extends CanvasItem {
       throw Error('Commands value has to be an PointsCommands instance.');
     }
     this._commands = value;
-  }
-
-  /**
-   * Get path.
-   * @returns {string} SVG string path.
-   */
-  get path() {
-    return this.commands.value;
   }
 }
 
@@ -177,19 +215,12 @@ class CanvasCircle extends CanvasItem {
     }
     this._commands = value;
   }
-
-  /**
-   * Get path.
-   * @returns {string} SVG string path.
-   */
-  get path() {
-    return this.commands.value;
-  }
 }
 
 
 module.exports = {
-  CanvasItem: CanvasItem,
-  CanvasPolygon: CanvasPolygon,
   CanvasCircle: CanvasCircle,
+  CanvasItem: CanvasItem,
+  CanvasPath: CanvasPath,
+  CanvasPolygon: CanvasPolygon,
 };
