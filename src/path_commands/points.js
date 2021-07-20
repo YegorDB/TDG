@@ -43,7 +43,7 @@ class Point {
    */
   [Symbol.toPrimitive](hint) {
     if (hint === 'string') {
-      return `${this.x},${this.y}`;
+      return `${this.x} ${this.y}`;
     }
     return null;
   }

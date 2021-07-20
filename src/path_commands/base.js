@@ -12,6 +12,12 @@ limitations under the License.
 */
 
 
+/**
+ * Path commands.
+ *
+ * SVG path d property (https://svgwg.org/svg2-draft/paths.html#DProperty)
+ *   commands with only whitespases values separators.
+ */
 class PathCommands {
   static NONE = 'none';
 
@@ -27,20 +33,20 @@ class PathCommands {
     if (value == PathCommands.NONE) return;
 
     let starts = [
-      '(M(\\s+\\d+,\\d+)+)',
-      '(m(\\s+\\-?\\d+,\\-?\\d+)+)',
+      '(M((\\s+\\d+){2})+)',
+      '(m((\\s+\\-?\\d+){2})+)',
     ].join('|');
     let draws = [
-      '(\\s+[LT](\\s+\\d+,\\d+)+)',
-      '(\\s+[lt](\\s+\\-?\\d+,\\-?\\d+)+)',
+      '(\\s+[LT]((\\s+\\d+){2})+)',
+      '(\\s+[lt]((\\s+\\-?\\d+){2})+)',
       '(\\s+[HV](\\s+\\d+)+)',
       '(\\s+[hv](\\s+\\-?\\d+)+)',
-      '(\\s+[C]((\\s+\\d+,\\d+){3})+)',
-      '(\\s+[c]((\\s+\\-?\\d+,\\-?\\d+){3})+)',
-      '(\\s+[SQ]((\\s+\\d+,\\d+){2})+)',
-      '(\\s+[sq]((\\s+\\-?\\d+,\\-?\\d+){2})+)',
-      '(\\s+[A]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\d+,\\d+)+)',
-      '(\\s+[a]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}\\s+\\-?\\d+,\\-?\\d+)+)',
+      '(\\s+[C](((\\s+\\d+){2}){3})+)',
+      '(\\s+[c](((\\s+\\-?\\d+){2}){3})+)',
+      '(\\s+[SQ](((\\s+\\d+){2}){2})+)',
+      '(\\s+[sq](((\\s+\\-?\\d+){2}){2})+)',
+      '(\\s+[A]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}(\\s+\\d+){2})+)',
+      '(\\s+[a]((\\s+\\d+){2}\\s+\\-?\\d+(\\s+[01]){2}(\\s+\\-?\\d+){2})+)',
     ].join('|');
     let re = new RegExp(`^\\s*(${starts})(${draws})((\\s+(${starts}))?(${draws}))*(\\s+[Zz])?\\s*$`);
     if (!value.match(re)) {
