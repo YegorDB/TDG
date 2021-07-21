@@ -13,14 +13,16 @@ limitations under the License.
 
 
 const { CanvasItem } = require('./base');
-const { PointsCommands } = require('../../path_commands/points');
+const { Point, PointsCommands } = require('../../path_commands/points');
 
 
 class CanvasPolyline extends CanvasItem {
 
+  static COMMANDS_OPTIONS = {};
+
   /**
    * Creation.
-   * @param {number[][]} points - Array of (x, y) pairs.
+   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
    * @param {Object} [options] - Options.
    * @param {boolean} [options.stroke=true] - Whether stroke object or not.
    * @param {boolean} [options.fill] - Whether fill object or not.
@@ -29,7 +31,27 @@ class CanvasPolyline extends CanvasItem {
    */
   constructor(points, options=null) {
     super(options);
-    this.commands = new PointsCommands(points, {isOpen: true});
+    this.points = points;
+  }
+
+  /**
+   * Get points.
+   * @return {number[][]|Point[]} Points.
+   */
+  get points() {
+    return this._points;
+  }
+
+  /**
+   * Set points.
+   * @param {number[][]|Point[]} value - Array of (x, y) pairs or Point instances.
+   */
+  set points(value) {
+    this.commands = new PointsCommands(value, this.constructor.COMMANDS_OPTIONS);
+    this._points = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
   }
 
   /**

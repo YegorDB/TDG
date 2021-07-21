@@ -109,7 +109,7 @@ class PointsCommands extends PathCommands {
    * Creation.
    * @param {number[][]} items - Array of (x, y) pairs.
    * @param {Object|null} [options] - Options.
-   * @param {boolean} [options.isOpen] - Whether poins path is open or close.
+   * @param {boolean} [options.isClose] - Whether poins path is close or open.
    */
   constructor(items, options=null) {
     super();
@@ -152,7 +152,7 @@ class PointsCommands extends PathCommands {
       let command = index === 0 ? 'M' : 'L';
       return `${command} ${point}`;
     });
-    if (!this._options.isOpen) {
+    if (this._options.isClose) {
       parts.push('Z');
     }
     this.value = parts.join(' ');

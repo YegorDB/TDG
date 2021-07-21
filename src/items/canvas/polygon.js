@@ -12,44 +12,12 @@ limitations under the License.
 */
 
 
-const { CanvasItem } = require('./base');
-const { PointsCommands } = require('../../path_commands/points');
+const { CanvasPolyline } = require('./polyline');
 
 
-class CanvasPolygon extends CanvasItem {
+class CanvasPolygon extends CanvasPolyline {
 
-  /**
-   * Creation.
-   * @param {number[][]} points - Array of (x, y) pairs.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  constructor(points, options=null) {
-    super(options);
-    this.commands = new PointsCommands(points);
-  }
-
-  /**
-   * Get commands.
-   * @return {PointsCommands} Commands.
-   */
-  get commands() {
-    return this._commands;
-  }
-
-  /**
-   * Set commands.
-   * @param {PointsCommands} value - PointsCommands instance.
-   */
-  set commands(value) {
-    if (!(value instanceof PointsCommands)) {
-      throw Error('Commands value has to be an PointsCommands instance.');
-    }
-    this._commands = value;
-  }
+  static COMMANDS_OPTIONS = { isClose: true };
 }
 
 
