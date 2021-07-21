@@ -17,6 +17,7 @@ const { CanvasCircle } = require('./circle');
 const { CanvasEllipse } = require('./ellipse');
 const { CanvasPath } = require('./path');
 const { CanvasPolygon } = require('./polygon');
+const { CanvasPolyline } = require('./polyline');
 
 
 module.exports = {
@@ -25,4 +26,5 @@ module.exports = {
   CanvasItem: CanvasItem,
   CanvasPath: CanvasPath,
   CanvasPolygon: CanvasPolygon,
+  CanvasPolyline: CanvasPolyline,
 };
