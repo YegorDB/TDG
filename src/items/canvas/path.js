@@ -29,7 +29,27 @@ class CanvasPath extends CanvasItem {
    */
   constructor(value, options=null) {
     super(options);
+    this.value = value;
+  }
+
+  /**
+   * Get value.
+   * @return {string} Path commands value.
+   */
+  get value() {
+    return this._value;
+  }
+
+  /**
+   * Set value.
+   * @param {string} value - Path commands value.
+   */
+  set value(value) {
     this.commands = new PathCommands(value);
+    this._value = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
   }
 
   /**

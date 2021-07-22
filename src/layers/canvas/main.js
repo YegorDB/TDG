@@ -26,6 +26,14 @@ class CanvasLayer extends BaseLayer {
   }
 
   /**
+   * Get layer dimentions.
+   * @return {Dimensions} dimentions.
+   */
+  get dimensions() {
+    return this._dimensions;
+  }
+
+  /**
    * Set layer dimentions.
    * @param {Dimensions} value.
    */
@@ -58,7 +66,7 @@ class CanvasLayer extends BaseLayer {
   /** Refresh layer items. */
   refresh() {
     this.clear();
-    for (let item of this.items) {
+    for (let item of Object.values(this.items)) {
       item.draw();
     }
   }

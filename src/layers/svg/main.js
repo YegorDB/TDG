@@ -20,6 +20,14 @@ const { Dimensions, UTILS } = require('../../base');
 class SVGLayer extends BaseLayer {
 
   /**
+   * Get layer dimentions.
+   * @return {Dimensions} dimentions.
+   */
+  get dimensions() {
+    return this._dimensions;
+  }
+
+  /**
    * Set layer dimentions.
    * @param {Dimensions} value.
    */

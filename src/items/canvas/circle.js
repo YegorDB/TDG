@@ -32,6 +32,48 @@ class CanvasCircle extends CanvasItem {
   constructor(centre, radius, options=null) {
     super(options);
     this.commands = new CircleCommands(centre, radius);
+    this._centre = centre;
+    this._radius = radius;
+  }
+
+  /**
+   * Get centre.
+   * @return {Point|number[]} Point instatce or (x, y) pair.
+   */
+  get centre() {
+    return this._centre;
+  }
+
+  /**
+   * Set centre.
+   * @param {Point|number[]} value - Point instatce or (x, y) pair.
+   */
+  set centre(value) {
+    this.commands.centre = value;
+    this._centre = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
+  }
+
+  /**
+   * Get radius.
+   * @return {number} Radius.
+   */
+  get radius() {
+    return this._radius;
+  }
+
+  /**
+   * Set radius.
+   * @param {number} value - Radius.
+   */
+  set radius(value) {
+    this.commands.radius = value;
+    this._radius = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
   }
 
   /**

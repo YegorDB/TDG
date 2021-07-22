@@ -32,6 +32,48 @@ class CanvasEllipse extends CanvasItem {
   constructor(centre, radiuses, options=null) {
     super(options);
     this.commands = new EllipseCommands(centre, radiuses);
+    this._centre = centre;
+    this._radiuses = radiuses;
+  }
+
+  /**
+   * Get centre.
+   * @return {Point|number[]} Point instatce or (x, y) pair.
+   */
+  get centre() {
+    return this._centre;
+  }
+
+  /**
+   * Set centre.
+   * @param {Point|number[]} value - Point instatce or (x, y) pair.
+   */
+  set centre(value) {
+    this.commands.centre = value;
+    this._centre = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
+  }
+
+  /**
+   * Get radiuses.
+   * @return {number} EllipseRadiuses instatce or (r1, r2) pair.
+   */
+  get radiuses() {
+    return this._radiuses;
+  }
+
+  /**
+   * Set radiuses.
+   * @param {number} value - EllipseRadiuses instatce or (r1, r2) pair.
+   */
+  set radiuses(value) {
+    this.commands.radiuses = value;
+    this._radiuses = value;
+    if (this.layer) {
+      this.layer.refresh();
+    }
   }
 
   /**
