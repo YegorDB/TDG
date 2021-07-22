@@ -51,9 +51,7 @@ class CanvasCircle extends CanvasItem {
   set centre(value) {
     this.commands.centre = value;
     this._centre = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**
@@ -71,9 +69,7 @@ class CanvasCircle extends CanvasItem {
   set radius(value) {
     this.commands.radius = value;
     this._radius = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**

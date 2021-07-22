@@ -27,10 +27,83 @@ class CanvasItem {
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
   constructor(options=null) {
-    this._options = {
+    options = {
       stroke: true,
       ...(options || {}),
     };
+
+    this.stroke = options.stroke;
+    this.fill = options.fill;
+    this.flatParams = options.flatParams;
+    this.byMethodParams = options.byMethodParams;
+  }
+
+  /**
+   * Get stroke.
+   * @return {boolean} Whether stroke object or not.
+   */
+  get stroke() {
+    return this._stroke;
+  }
+
+  /**
+   * Set stroke.
+   * @param {boolean} value - Whether stroke object or not.
+   */
+  set stroke(value) {
+    this._stroke = !!value;
+    this._refresh();
+  }
+
+  /**
+   * Get fill.
+   * @return {boolean} Whether fill object or not.
+   */
+  get fill() {
+    return this._fill;
+  }
+
+  /**
+   * Set fill.
+   * @param {boolean} value - Whether fill object or not.
+   */
+  set fill(value) {
+    this._fill = !!value;
+    this._refresh();
+  }
+
+  /**
+   * Get flat params.
+   * @return {Object} Canvas 2d context flat params.
+   */
+  get flatParams() {
+    return this._flatParams;
+  }
+
+  /**
+   * Set flat params.
+   * @param {Object} value - Canvas 2d context flat params.
+   */
+  set flatParams(value) {
+    this._flatParams = {...value};
+    this._refresh();
+  }
+
+  /**
+   * Get by method params.
+   * @return {Object} Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  get byMethodParams() {
+    return this._byMethodParams;
+  }
+
+  /**
+   * Set by method params.
+   * @param {Object} value - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  set byMethodParams(value) {
+    this._byMethodParams = {...value};
+    this._refresh();
   }
 
   /**
@@ -77,28 +150,79 @@ class CanvasItem {
     this.layer.ctx.save();
     this._setFlatParams();
     this._setByMethodParams();
-    if (this._options.stroke) {
+    if (this.stroke) {
       this.layer.ctx.stroke(path);
     }
-    if (this._options.fill) {
+    if (this.fill) {
       this.layer.ctx.fill(path);
     }
     this.layer.ctx.restore();
   }
 
-  /** Set canvas 2d context flat params. */
+  /**
+   * Set flat param.
+   * @param {string} name - Name of canvas 2d context flat param.
+   * @param {*} value - Value of canvas 2d context flat param.
+   */
+  setFlatParam(name, value) {
+    if (typeof name != 'string') {
+      throw Error('Name has to be a string.');
+    }
+    this._flatParams = {
+      ...(this._flatParams || {}),
+      [name]: value,
+    };
+    this._refresh();
+  }
+
+  /**
+   * Set by method param.
+   * @param {string} name - Name of canvas 2d context method to set params.
+   * @param {*[]} args - Array of arguments of canvas 2d context method to set params.
+   */
+  setByMethodParam(name, args) {
+    if (typeof name != 'string') {
+      throw Error('Name has to be a string.');
+    }
+    if (!Array.isArray(args)) {
+      throw Error('Arguments have to be an array.');
+    }
+    this._byMethodParams = {
+      ...(this._byMethodParams || {}),
+      [name]: args,
+    };
+    this._refresh();
+  }
+
+  /**
+   * Set canvas 2d context flat params.
+   * @private
+   */
   _setFlatParams() {
-    if (!this._options.flatParams) return;
-    for (let [key, value] of Object.entries(this._options.flatParams)) {
+    if (!this.flatParams) return;
+    for (let [key, value] of Object.entries(this.flatParams)) {
       this.layer.ctx[key] = value;
     }
   }
 
-  /** Set canvas 2d context by method params. */
+  /**
+   * Set canvas 2d context by method params.
+   * @private
+   */
   _setByMethodParams() {
-    if (!this._options.byMethodParams) return;
-    for (let [method, args] of Object.entries(this._options.byMethodParams)) {
+    if (!this.byMethodParams) return;
+    for (let [method, args] of Object.entries(this.byMethodParams)) {
       this.layer.ctx[method](...args);
+    }
+  }
+
+  /**
+   * Refresh.
+   * @private
+   */
+  _refresh() {
+    if (this._commands && this.layer) {
+      this.layer.refresh();
     }
   }
 }

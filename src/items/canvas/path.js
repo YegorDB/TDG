@@ -47,9 +47,7 @@ class CanvasPath extends CanvasItem {
   set value(value) {
     this.commands = new PathCommands(value);
     this._value = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**

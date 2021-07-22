@@ -49,9 +49,7 @@ class CanvasPolyline extends CanvasItem {
   set points(value) {
     this.commands = new PointsCommands(value, this.constructor.COMMANDS_OPTIONS);
     this._points = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**

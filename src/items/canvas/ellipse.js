@@ -51,9 +51,7 @@ class CanvasEllipse extends CanvasItem {
   set centre(value) {
     this.commands.centre = value;
     this._centre = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**
@@ -71,9 +69,7 @@ class CanvasEllipse extends CanvasItem {
   set radiuses(value) {
     this.commands.radiuses = value;
     this._radiuses = value;
-    if (this.layer) {
-      this.layer.refresh();
-    }
+    this._refresh();
   }
 
   /**
