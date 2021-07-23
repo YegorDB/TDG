@@ -19,10 +19,19 @@ const { Dimensions } = require('../../base');
 /** Canvas layer logic. */
 class CanvasLayer extends BaseLayer {
 
-  /** Create canvas layer. */
-  constructor() {
+  /**
+   * Create canvas layer.
+   * @param {finction} [options] - Options.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - canvas 2d context,
+   *     it will be fire on layer refresh.
+   */
+  constructor(options) {
+    options = options || {};
+
     super();
     this.ctx = this.element.getContext('2d');
+    this._drawFunct = options.drawFunct;
   }
 
   /**
@@ -41,6 +50,7 @@ class CanvasLayer extends BaseLayer {
     super.dimensions = value;
     this.element.width = value.width;
     this.element.height = value.height;
+    this.refresh();
   }
 
   /**
@@ -66,6 +76,9 @@ class CanvasLayer extends BaseLayer {
   /** Refresh layer items. */
   refresh() {
     this.clear();
+    if (this._drawFunct) {
+      this._drawFunct(this.ctx);
+    }
     for (let item of Object.values(this.items)) {
       item.draw();
     }
