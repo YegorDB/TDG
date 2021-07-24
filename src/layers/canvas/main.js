@@ -20,10 +20,10 @@ const { Dimensions } = require('../../base');
 class CanvasLayer extends BaseLayer {
 
   /**
-   * Create canvas layer.
+   * Creation.
    * @param {finction} [options] - Options.
    * @param {finction} [options.drawFunct] - Draw function
-   *     with one argument - canvas 2d context,
+   *     with one argument - CanvasRenderingContext2D,
    *     it will be fire on layer refresh.
    */
   constructor(options) {
@@ -76,12 +76,7 @@ class CanvasLayer extends BaseLayer {
   /** Refresh layer items. */
   refresh() {
     this.clear();
-    if (this._drawFunct) {
-      this._drawFunct(this.ctx);
-    }
-    for (let item of Object.values(this.items)) {
-      item.draw();
-    }
+    this._draw();
   }
 
   /** Clear layer element. */
@@ -90,7 +85,21 @@ class CanvasLayer extends BaseLayer {
   }
 
   /**
+   * Draw layer items.
+   * @private
+   */
+  _draw() {
+    if (this._drawFunct) {
+      this._drawFunct(this.ctx);
+    }
+    for (let item of Object.values(this.items)) {
+      item.draw();
+    }
+  }
+
+  /**
    * Create layer element.
+   * @private
    * @return {canvas element} Layer element.
    */
   _createElement() {
@@ -99,6 +108,71 @@ class CanvasLayer extends BaseLayer {
 }
 
 
+/** Canvas layer with background image pattern logic. */
+class CanvasLayerBGImage extends CanvasLayer {
+
+  /**
+   * Creation.
+   * @param {finction} imageSrc - Image source.
+   * @param {finction} [options] - Options.
+   * @param {finction} [options.repetition='repeat'] - CanvasRenderingContext2D
+   *     createPattern method repetition argument.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - CanvasRenderingContext2D,
+   *     it will be fire on layer refresh.
+   */
+  constructor(imageSrc, options) {
+    options = options || {};
+
+    super(options);
+
+    this._repetition = options.repetition || 'repeat';
+    this._image = new Image();
+    this._image.onload = () => {
+      this.refresh();
+    };
+    this.imageSrc = imageSrc;
+  }
+
+  /**
+   * Get image source.
+   * @return {string} Image source.
+   */
+  get imageSrc() {
+    return this._imageUrl;
+  }
+
+  /**
+   * Set image source.
+   * @param {string} value - Image source.
+   */
+  set imageSrc(value) {
+    this._image.src = value;
+  }
+
+  /**
+   * Draw layer items.
+   * @private
+   */
+  _draw() {
+    this._drawBGImage();
+    super._draw();
+  }
+
+  /**
+   * Draw background image.
+   * @private
+   */
+  _drawBGImage() {
+    this.ctx.save();
+    this.ctx.fillStyle = this.ctx.createPattern(this._image, this._repetition);
+    this.ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    this.ctx.restore();
+  }
+}
+
+
 module.exports = {
   CanvasLayer: CanvasLayer,
+  CanvasLayerBGImage: CanvasLayerBGImage,
 };
