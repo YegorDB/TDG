@@ -21,7 +21,7 @@ class CanvasLayer extends BaseLayer {
 
   /**
    * Creation.
-   * @param {finction} [options] - Options.
+   * @param {Object} [options] - Options.
    * @param {finction} [options.drawFunct] - Draw function
    *     with one argument - CanvasRenderingContext2D,
    *     it will be fire on layer refresh.
@@ -108,14 +108,71 @@ class CanvasLayer extends BaseLayer {
 }
 
 
-/** Canvas layer with background image pattern logic. */
-class CanvasLayerBGImage extends CanvasLayer {
+/** Canvas layer with background color. */
+class CanvasLayerWithBGColor extends CanvasLayer {
 
   /**
    * Creation.
-   * @param {finction} imageSrc - Image source.
-   * @param {finction} [options] - Options.
-   * @param {finction} [options.repetition='repeat'] - CanvasRenderingContext2D
+   * @param {string} bgColor - Background color.
+   * @param {Object} [options] - Options.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - CanvasRenderingContext2D,
+   *     it will be fire on layer refresh.
+   */
+  constructor(bgColor, options) {
+    super(options);
+    this.bgColor = bgColor;
+  }
+
+  /**
+   * Get background color.
+   * @return {string} Background color.
+   */
+  get bgColor() {
+    return this._bgColor;
+  }
+
+  /**
+   * Set background color.
+   * @param {string} value - Background color.
+   */
+  set bgColor(value) {
+    this._bgColor = value;
+    if (this.dimensions) {
+      this.refresh();
+    }
+  }
+
+  /**
+   * Draw layer items.
+   * @private
+   */
+  _draw() {
+    this._drawBGColor();
+    super._draw();
+  }
+
+  /**
+   * Draw background color.
+   * @private
+   */
+  _drawBGColor() {
+    this.ctx.save();
+    this.ctx.fillStyle = this._bgColor;
+    this.ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    this.ctx.restore();
+  }
+}
+
+
+/** Canvas layer with background image pattern. */
+class CanvasLayerWithBGImage extends CanvasLayer {
+
+  /**
+   * Creation.
+   * @param {string} imageSrc - Image source.
+   * @param {Object} [options] - Options.
+   * @param {string} [options.repetition='repeat'] - CanvasRenderingContext2D
    *     createPattern method repetition argument.
    * @param {finction} [options.drawFunct] - Draw function
    *     with one argument - CanvasRenderingContext2D,
@@ -174,5 +231,6 @@ class CanvasLayerBGImage extends CanvasLayer {
 
 module.exports = {
   CanvasLayer: CanvasLayer,
-  CanvasLayerBGImage: CanvasLayerBGImage,
+  CanvasLayerWithBGColor: CanvasLayerWithBGColor,
+  CanvasLayerWithBGImage: CanvasLayerWithBGImage,
 };
