@@ -12,7 +12,6 @@ limitations under the License.
 */
 
 
-const { CanvasLayer } = require('../../layers/canvas/main');
 const { PathCommands } = require('../../path_commands/base');
 
 
@@ -26,7 +25,7 @@ class CanvasItem {
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  constructor(options=null) {
+  constructor(options) {
     options = {
       stroke: true,
       ...(options || {}),
@@ -135,9 +134,6 @@ class CanvasItem {
    * @param {CanvasLayer} value - Layer.
    */
   set layer(value) {
-    if (!(value instanceof CanvasLayer)) {
-      throw Error('Layer has to be instance of CanvasLayer.');
-    }
     this._layer = value;
   }
 

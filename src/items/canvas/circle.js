@@ -29,7 +29,7 @@ class CanvasCircle extends CanvasItem {
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  constructor(centre, radius, options=null) {
+  constructor(centre, radius, options) {
     super(options);
     this.commands = new CircleCommands(centre, radius);
     this._centre = centre;

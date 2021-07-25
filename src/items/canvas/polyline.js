@@ -29,7 +29,7 @@ class CanvasPolyline extends CanvasItem {
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  constructor(points, options=null) {
+  constructor(points, options) {
     super(options);
     this.points = points;
   }
