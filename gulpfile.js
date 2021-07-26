@@ -7,17 +7,17 @@ const buffer = require('vinyl-buffer');
 
 
 function build(cb) {
-  browserify('../src/tdg.js')
+  browserify('./src/tdg.js')
     .bundle()
     .pipe(source('tdg.js'))
     .pipe(buffer())
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(dest('../lib/'));
+    .pipe(dest('./lib/'));
   cb();
 }
 
 
 exports.default = function() {
-  watch('../src/**/*.js', build);
+  watch('./src/**/*.js', build);
 };
