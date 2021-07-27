@@ -13,12 +13,12 @@ limitations under the License.
 
 
 const { CanvasLayer } = require('./base');
-const { CanvasLayerWithBGColor } = require('./with_bg_color');
+const { CanvasLayerWithBGFiller } = require('./with_bg_filler');
 const { CanvasLayerWithBGImage } = require('./with_bg_image');
 
 
 module.exports = {
   CanvasLayer: CanvasLayer,
-  CanvasLayerWithBGColor: CanvasLayerWithBGColor,
+  CanvasLayerWithBGFiller: CanvasLayerWithBGFiller,
   CanvasLayerWithBGImage: CanvasLayerWithBGImage,
 };

@@ -15,36 +15,39 @@ limitations under the License.
 const { CanvasLayer } = require('./base');
 
 
-/** Canvas layer with background color. */
-class CanvasLayerWithBGColor extends CanvasLayer {
+/** Canvas layer with background filler. */
+class CanvasLayerWithBGFiller extends CanvasLayer {
 
   /**
    * Creation.
-   * @param {string} bgColor - Background color.
+   * @param {*} bgFiller - Background filler
+   *     (anything CanvasRenderingContext2D.fillStyle could be used with).
    * @param {Object} [options] - Options.
    * @param {finction} [options.drawFunct] - Draw function
    *     with one argument - CanvasRenderingContext2D,
    *     it will be fire on layer refresh.
    */
-  constructor(bgColor, options) {
+  constructor(bgFiller, options) {
     super(options);
-    this.bgColor = bgColor;
+    this.bgFiller = bgFiller;
   }
 
   /**
-   * Get background color.
-   * @return {string} Background color.
+   * Get background filler.
+   * @return {*} Background filler
+   *     (anything CanvasRenderingContext2D.fillStyle could be used with).
    */
-  get bgColor() {
-    return this._bgColor;
+  get bgFiller() {
+    return this._bgFiller;
   }
 
   /**
-   * Set background color.
-   * @param {string} value - Background color.
+   * Set background filler.
+   * @param {*} value - Background filler
+   *     (anything CanvasRenderingContext2D.fillStyle could be used with).
    */
-  set bgColor(value) {
-    this._bgColor = value;
+  set bgFiller(value) {
+    this._bgFiller = value;
     if (this.dimensions) {
       this.refresh();
     }
@@ -55,17 +58,17 @@ class CanvasLayerWithBGColor extends CanvasLayer {
    * @private
    */
   _draw() {
-    this._drawBGColor();
+    this._drawBGFiller();
     super._draw();
   }
 
   /**
-   * Draw background color.
+   * Draw background filler.
    * @private
    */
-  _drawBGColor() {
+  _drawBGFiller() {
     this.ctx.save();
-    this.ctx.fillStyle = this._bgColor;
+    this.ctx.fillStyle = this.bgFiller;
     this.ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
     this.ctx.restore();
   }
@@ -73,5 +76,5 @@ class CanvasLayerWithBGColor extends CanvasLayer {
 
 
 module.exports = {
-  CanvasLayerWithBGColor: CanvasLayerWithBGColor,
+  CanvasLayerWithBGFiller: CanvasLayerWithBGFiller,
 };
