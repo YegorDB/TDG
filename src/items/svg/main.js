@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Yegor Bitensky
+Copyright 2021 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,47 +12,11 @@ limitations under the License.
 */
 
 
-const { UTILS } = require('../../base');
-
-
-/**
- * Class representing SVG item.
- * @class
- */
-class SVGItem {
-
-  /**
-   * Create SVG item.
-   * @param {string} name - SVG element name.
-   * @param {Object} [attrs] - SVG element attributes.
-   */
-  constructor(name, attrs) {
-    this.element = UTILS.createSvgElement(name);
-    for (let [name, value] of Object.entries(attrs || {})) {
-      this.element.setAttribute(name, value);
-    }
-  }
-
-  /**
-   * Get SVG item attribute.
-   * @param {string} name - SVG element attribute name.
-   * @return {string} SVG element attribute value.
-   */
-  getAttr(name) {
-    return this.element.getAttribute(name);
-  }
-
-  /**
-   * Set SVG item attribute.
-   * @param {string} name - SVG element attribute name.
-   * @param {string} value - SVG element attribute value.
-   */
-  setAttr(name, value) {
-    this.element.setAttribute(name, value);
-  }
-}
+const { SVGItem } = require('./base');
+const { SVGPath } = require('./path');
 
 
 module.exports = {
   SVGItem: SVGItem,
+  SVGPath: SVGPath,
 };
