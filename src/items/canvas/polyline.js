@@ -69,6 +69,8 @@ class CanvasPolyline extends CanvasItem {
       throw Error('Commands value has to be an PointsCommands instance.');
     }
     this._commands = value;
+    this._points = value.items;
+    this._refresh();
   }
 }
 

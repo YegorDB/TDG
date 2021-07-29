@@ -89,6 +89,9 @@ class CanvasEllipse extends CanvasItem {
       throw Error('Commands value has to be an EllipseCommands instance.');
     }
     this._commands = value;
+    this._centre = value.centre;
+    this._radiuses = value.radiuses;
+    this._refresh();
   }
 }
 

@@ -89,6 +89,9 @@ class CanvasCircle extends CanvasItem {
       throw Error('Commands value has to be an CircleCommands instance.');
     }
     this._commands = value;
+    this._centre = value.centre;
+    this._radius = value.radius;
+    this._refresh();
   }
 }
 

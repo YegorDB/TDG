@@ -67,6 +67,8 @@ class CanvasPath extends CanvasItem {
       throw Error('Commands value has to be an PathCommands instance.');
     }
     this._commands = value;
+    this._value = value.value;
+    this._refresh();
   }
 }
 
