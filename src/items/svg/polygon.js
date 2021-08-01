@@ -15,7 +15,7 @@ limitations under the License.
 const { SVGPolyline } = require('./polyline');
 
 
-/** SVG polygon */
+/** SVG polygon. */
 class SVGPolygon extends SVGPolyline {
 
   static COMMANDS_OPTIONS = { isClose: true };

@@ -16,13 +16,15 @@ const { SVGItem } = require('./base');
 const { PathCommands } = require('../../path_commands/base');
 
 
-/** SVG path */
+/** SVG path. */
 class SVGPath extends SVGItem {
 
   /**
    * Creation.
    * @param {string} value - Path commands value.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(value, attrs) {
     super('path', attrs);

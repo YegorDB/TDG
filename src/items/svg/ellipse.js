@@ -17,6 +17,7 @@ const { EllipseRadiuses, EllipseCommands } = require('../../path_commands/ellips
 const { Point } = require('../../path_commands/points');
 
 
+/** SVG ellipse. */
 class SVGEllipse extends SVGItem {
 
   /**
@@ -24,6 +25,8 @@ class SVGEllipse extends SVGItem {
    * @param {Point|number[]} centre - Point instatce or (x, y) pair.
    * @param {EllipseRadiuses|number[]} radiuses - EllipseRadiuses instatce or (r1, r2) pair.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(centre, radiuses, attrs) {
     super('path', attrs);

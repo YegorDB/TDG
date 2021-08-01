@@ -17,6 +17,7 @@ const { CircleCommands } = require('../../path_commands/ellipses');
 const { Point } = require('../../path_commands/points');
 
 
+/** SVG circle. */
 class SVGCircle extends SVGItem {
 
   /**
@@ -24,6 +25,8 @@ class SVGCircle extends SVGItem {
    * @param {Point|number[]} centre - Point instatce or (x, y) pair.
    * @param {number} radius - Radius.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(centre, radius, attrs) {
     super('path', attrs);

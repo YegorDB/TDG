@@ -16,7 +16,7 @@ const { SVGItem } = require('./base');
 const { Point, PointsCommands } = require('../../path_commands/points');
 
 
-/** SVG polyline */
+/** SVG polyline. */
 class SVGPolyline extends SVGItem {
 
   static COMMANDS_OPTIONS = {};
@@ -25,6 +25,8 @@ class SVGPolyline extends SVGItem {
    * Creation.
    * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(points, attrs) {
     super('path', attrs);
