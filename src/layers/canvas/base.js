@@ -51,8 +51,6 @@ class CanvasLayer extends BaseLayer {
    */
   set dimensions(value) {
     super.dimensions = value;
-    this.element.width = value.width;
-    this.element.height = value.height;
     this.refresh();
   }
 

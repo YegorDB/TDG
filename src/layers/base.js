@@ -42,6 +42,8 @@ class BaseLayer {
   set dimensions(value) {
     Dimensions.validate(value);
     this._dimensions = value;
+    this.element.setAttribute('width', value.width);
+    this.element.setAttribute('height', value.height);
   }
 
   /**

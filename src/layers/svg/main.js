@@ -23,24 +23,6 @@ const {
 class SVGLayer extends BaseLayer {
 
   /**
-   * Get layer dimentions.
-   * @return {Dimensions} dimentions.
-   */
-  get dimensions() {
-    return this._dimensions;
-  }
-
-  /**
-   * Set layer dimentions.
-   * @param {Dimensions} value.
-   */
-  set dimensions(value) {
-    super.dimensions = value;
-    this.element.style.width = `${value.width}px`;
-    this.element.style.height = `${value.height}px`;
-  }
-
-  /**
    * Create item.
    * @param {string} name - Item name.
    * @param {string} elementName - SVG element name.
