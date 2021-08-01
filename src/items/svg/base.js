@@ -58,6 +58,14 @@ class SVGItem {
   setAttr(name, value) {
     this.element.setAttribute(name, value);
   }
+
+  /**
+   * Remove SVG item attribute.
+   * @param {string} name - SVG element attribute name.
+   */
+  removeAttr(name) {
+    this.element.removeAttribute(name);
+  }
 }
 
 
