@@ -13,43 +13,45 @@ limitations under the License.
 
 
 const { SVGItem } = require('./base');
-const { PathCommands } = require('../../path_commands/base');
+const { Point, PointsCommands } = require('../../path_commands/points');
 
 
-/** SVG path */
-class SVGPath extends SVGItem {
+/** SVG polyline */
+class SVGPolyline extends SVGItem {
+
+  static COMMANDS_OPTIONS = {};
 
   /**
    * Creation.
-   * @param {string} value - Path commands value.
+   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
    * @param {Object} [attrs] - SVG element attributes.
    */
-  constructor(value, attrs) {
+  constructor(points, attrs) {
     super('path', attrs);
-    this.value = value;
+    this.points = points;
   }
 
   /**
-   * Get value.
-   * @return {string} Path commands value.
+   * Get points.
+   * @return {number[][]|Point[]} Points.
    */
-  get value() {
-    return this._value;
+  get points() {
+    return this._points;
   }
 
   /**
-   * Set value.
-   * @param {string} value - Path commands value.
+   * Set points.
+   * @param {number[][]|Point[]} value - Array of (x, y) pairs or Point instances.
    */
-  set value(value) {
-    this.commands = new PathCommands(value);
-    this._value = value;
+  set points(value) {
+    this.commands = new PointsCommands(value, this.constructor.COMMANDS_OPTIONS);
+    this._points = value;
     this.setAttr('d', this.commands.value);
   }
 
   /**
    * Get commands.
-   * @return {PathCommands} Commands.
+   * @return {PointsCommands} Commands.
    */
   get commands() {
     return this._commands;
@@ -57,19 +59,19 @@ class SVGPath extends SVGItem {
 
   /**
    * Set commands.
-   * @param {PathCommands} value - PathCommands instance.
+   * @param {PointsCommands} value - PointsCommands instance.
    */
   set commands(value) {
-    if (!(value instanceof PathCommands)) {
-      throw Error('Commands value has to be an PathCommands instance.');
+    if (!(value instanceof PointsCommands)) {
+      throw Error('Commands value has to be an PointsCommands instance.');
     }
     this._commands = value;
-    this._value = value.value;
+    this._points = value.items;
     this.setAttr('d', this.commands.value);
   }
 }
 
 
 module.exports = {
-  SVGPath: SVGPath,
+  SVGPolyline: SVGPolyline,
 };

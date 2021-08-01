@@ -15,10 +15,7 @@ limitations under the License.
 const { UTILS } = require('../../base');
 
 
-/**
- * Class representing SVG item.
- * @class
- */
+/** SVG item */
 class SVGItem {
 
   /**
@@ -63,7 +60,7 @@ class SVGItem {
    * Remove SVG item attribute.
    * @param {string} name - SVG element attribute name.
    */
-  removeAttr(name) {
+  rmAttr(name) {
     this.element.removeAttribute(name);
   }
 }

@@ -12,15 +12,16 @@ limitations under the License.
 */
 
 
-const { SVGItem } = require('./base');
-const { SVGPath } = require('./path');
-const { SVGPolygon } = require('./polygon');
 const { SVGPolyline } = require('./polyline');
 
 
+/** SVG polygon */
+class SVGPolygon extends SVGPolyline {
+
+  static COMMANDS_OPTIONS = { isClose: true };
+}
+
+
 module.exports = {
-  SVGItem: SVGItem,
-  SVGPath: SVGPath,
   SVGPolygon: SVGPolygon,
-  SVGPolyline: SVGPolyline,
 };
