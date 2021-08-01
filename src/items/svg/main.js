@@ -13,6 +13,7 @@ limitations under the License.
 
 
 const { SVGItem } = require('./base');
+const { SVGCircle } = require('./circle');
 const { SVGPath } = require('./path');
 const { SVGPolygon } = require('./polygon');
 const { SVGPolyline } = require('./polyline');
@@ -20,6 +21,7 @@ const { SVGPolyline } = require('./polyline');
 
 module.exports = {
   SVGItem: SVGItem,
+  SVGCircle: SVGCircle,
   SVGPath: SVGPath,
   SVGPolygon: SVGPolygon,
   SVGPolyline: SVGPolyline,
