@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { SVGItem } = require('./base');
-const { PathCommands } = require('../../path_commands/base');
+const { PathCommands } = require('../../path_commands/main');
 
 
 /** SVG path. */

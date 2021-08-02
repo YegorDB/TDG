@@ -12,10 +12,15 @@ limitations under the License.
 */
 
 
+const { PathCommands } = require('./base');
+const { EllipseCommands, CircleCommands } = require('./ellipses');
+const { Point, PointsCommands } = require('./points');
+
+
 module.exports = {
-  base: require('./base'),
-  items: require('./items/main'),
-  layers: require('./layers/main'),
-  path_commands: require('./path_commands/main'),
-  screen: require('./screen'),
+  CircleCommands: CircleCommands,
+  EllipseCommands: EllipseCommands,
+  PathCommands: PathCommands,
+  Point: Point,
+  PointsCommands: PointsCommands,
 };

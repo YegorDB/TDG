@@ -1,9 +1,11 @@
 {
-  "name": "TDG",
+  "name": "two-dimensions-graphic",
   "version": "0.2.0",
-  "description": "Tool to create multi layers two dimensions graphics with canvas and SVG.",
+  "description": "Multi layers two dimensions graphic tool with canvas and SVG.",
   "keywords": [
-    "2d-graphics"
+    "2d-graphics",
+    "canvas",
+    "svg"
   ],
   "homepage": "https://github.com/YegorDB/TDG#readme",
   "license": "Apache-2.0",

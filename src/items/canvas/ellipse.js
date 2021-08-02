@@ -13,8 +13,9 @@ limitations under the License.
 
 
 const { CanvasItem } = require('./base');
-const { EllipseRadiuses, EllipseCommands } = require('../../path_commands/ellipses');
-const { Point } = require('../../path_commands/points');
+const {
+  EllipseRadiuses, EllipseCommands, Point,
+} = require('../../path_commands/main');
 
 
 class CanvasEllipse extends CanvasItem {

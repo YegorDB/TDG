@@ -13,7 +13,7 @@ limitations under the License.
 
 
 const { CanvasItem } = require('./base');
-const { Point, PointsCommands } = require('../../path_commands/points');
+const { Point, PointsCommands } = require('../../path_commands/main');
 
 
 class CanvasPolyline extends CanvasItem {

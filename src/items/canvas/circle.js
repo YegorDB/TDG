@@ -13,8 +13,7 @@ limitations under the License.
 
 
 const { CanvasItem } = require('./base');
-const { CircleCommands } = require('../../path_commands/ellipses');
-const { Point } = require('../../path_commands/points');
+const { CircleCommands, Point } = require('../../path_commands/main');
 
 
 class CanvasCircle extends CanvasItem {

@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-const { PathCommands } = require('../../path_commands/base');
+const { PathCommands } = require('../../path_commands/main');
 
 
 class CanvasItem {
