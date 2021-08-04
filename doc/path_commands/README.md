@@ -1,6 +1,6 @@
 # Path commands
 
-> SVG path ("d" attribute)[https://svgwg.org/svg2-draft/paths.html#DProperty] commands
+> SVG path ["d" attribute](https://svgwg.org/svg2-draft/paths.html#DProperty) commands
 
 
 
@@ -69,4 +69,90 @@ true
 'M 4 3 V 8 h 5'
 > pc2.value;
 'M 4 3 V 8 h 5'
+```
+
+
+
+## EllipseRadiuses
+
+> Ellipse radiuses handle logic.
+
+Server
+```javascript
+> const { EllipseRadiuses } = require('two-dimensions-graphic').path_commands;
+undefined
+```
+
+Browser
+```javascript
+> const { EllipseRadiuses } = TDG.path_commands;
+undefined
+```
+
+
+### EllipseRadiuses.validateValue(value)
+
+> Validate radius value.
+
+```javascript
+> EllipseRadiuses.validateValue('radius value')
+Uncaught Error: Radius value has to be an integer.
+> EllipseRadiuses.validateValue(5)
+undefined
+```
+
+
+### EllipseRadiuses.constructor(r1, r2)
+- `r1` {number} - First radius.
+- `r2` {number} - Second radius.
+
+```javascript
+> var er1 = new EllipseRadiuses(3, 8);
+undefined
+> er1.first
+3
+> er1.second
+8
+```
+
+
+### EllipseRadiuses string primitive
+
+```javascript
+> var er2 = new EllipseRadiuses(12, 7);
+undefined
+> er2[Symbol.toPrimitive]('string')
+'12 7'
+> `${er2}`
+'12 7'
+```
+
+
+### EllipseRadiuses.first
+> First raduis getter.
+
+
+### EllipseRadiuses.first(value)
+> First raduis setter.
+
+```javascript
+> er2.first = 4;
+4
+> `${er2}`
+'4 7'
+```
+
+
+### EllipseRadiuses.second
+> Second raduis getter.
+
+
+### EllipseRadiuses.second(value)
+> Second raduis setter.
+
+```javascript
+> er2.second = 9;
+9
+> `${er2}`
+'4 9'
 ```

@@ -186,6 +186,7 @@ class CircleCommands extends EllipseCommands {
 
 
 module.exports = {
+  EllipseRadiuses: EllipseRadiuses,
   EllipseCommands: EllipseCommands,
   CircleCommands: CircleCommands,
 };

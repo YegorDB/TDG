@@ -13,13 +13,14 @@ limitations under the License.
 
 
 const { PathCommands } = require('./base');
-const { EllipseCommands, CircleCommands } = require('./ellipses');
+const { EllipseRadiuses, EllipseCommands, CircleCommands } = require('./ellipses');
 const { Point, PointsCommands } = require('./points');
 
 
 module.exports = {
   CircleCommands: CircleCommands,
   EllipseCommands: EllipseCommands,
+  EllipseRadiuses: EllipseRadiuses,
   PathCommands: PathCommands,
   Point: Point,
   PointsCommands: PointsCommands,
