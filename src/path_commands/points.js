@@ -142,11 +142,14 @@ class PointsCommands extends PathCommands {
   set items(items) {
     PointsCommands.validateItems(items);
     this._items = this._createItems(items);
-    this.setValue();
+    this._setValue();
   }
 
-  /** Set value. */
-  setValue() {
+  /**
+   * Set value.
+   * @private
+   */
+  _setValue() {
     if (!this.items) return;
     let parts = this.items.map((point, index) => {
       let command = index === 0 ? 'M' : 'L';

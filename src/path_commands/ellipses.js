@@ -115,7 +115,7 @@ class EllipseCommands extends PathCommands {
     } else {
       this._centre = new Point(...value);
     }
-    this.setValue();
+    this._setValue();
   }
 
   /**
@@ -136,20 +136,22 @@ class EllipseCommands extends PathCommands {
     } else {
       this._radiuses = new EllipseRadiuses(...value);
     }
-    this.setValue();
+    this._setValue();
   }
 
-  /** Set value. */
-  setValue() {
+  /**
+   * Set value.
+   * @private
+   */
+  _setValue() {
     if (!this.centre || !this.radiuses) return;
     let point1 = new Point(this.centre.x - this.radiuses.first, this.centre.y);
     let point2 = new Point(this.centre.x + this.radiuses.first, this.centre.y);
-    this.value = `
-      M ${point1}
-      A ${this.radiuses} 0 1 0 ${point2}
-        ${this.radiuses} 0 0 0 ${point1}
-      Z
-    `;
+    this.value = [
+      `M ${point1}`,
+      `A ${this.radiuses} 0 1 0 ${point2} ${this.radiuses} 0 0 0 ${point1}`,
+      'Z',
+    ].join(' ');
   }
 }
 
