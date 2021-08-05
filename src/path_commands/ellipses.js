@@ -165,7 +165,7 @@ class CircleCommands extends EllipseCommands {
    */
   constructor(centre, radius) {
     super(centre, [radius, radius]);
-    this.radius = radius;
+    this._radius = radius;
   }
 
   /**

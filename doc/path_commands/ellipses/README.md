@@ -156,3 +156,54 @@ EllipseRadiuses { _first: 2, _second: 6 }
 > ec1.value;
 'M 10 10 A 2 6 0 1 0 14 10 2 6 0 0 0 10 10 Z'
 ```
+
+
+
+## CircleCommands
+
+> Extends EllipseCommands
+
+Server
+```javascript
+> const { CircleCommands } = require('two-dimensions-graphic').path_commands;
+undefined
+```
+
+Browser
+```javascript
+> const { CircleCommands } = TDG.path_commands;
+undefined
+```
+
+
+### CircleCommands.constructor(centre, radius)
+- `centre` {Point|number[]} - Point instatce or (x, y) pair.
+- `radius` {number} - Radius.
+
+```javascript
+> var cc1 = new CircleCommands([9, 18], 2);
+undefined
+> cc1.value;
+'M 7 18 A 2 2 0 1 0 11 18 2 2 0 0 0 7 18 Z'
+> cc1.radius;
+2
+```
+
+
+### CircleCommands.radius
+> Radius getter.
+
+
+### CircleCommands.radius(value)
+> Radius setter.
+
+- `value` {number} - Radius.
+
+```javascript
+> cc1.radius = 4;
+4
+> cc1.radius;
+4
+> cc1.value;
+'M 5 18 A 4 4 0 1 0 13 18 4 4 0 0 0 5 18 Z'
+```
