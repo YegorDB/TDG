@@ -4,3 +4,4 @@
 
 - [Base](base)
 - [Ellipses](ellipses)
+- [Points](points)

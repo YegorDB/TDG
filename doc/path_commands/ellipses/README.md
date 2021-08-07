@@ -20,6 +20,8 @@ undefined
 ### EllipseRadiuses.validateValue(value)
 > Validate radius value.
 
+> Throw an error if validation failed, nothing otherwise.
+
 - `value` {number} - Raduis value.
 
 ```javascript
@@ -63,6 +65,8 @@ undefined
 ### EllipseRadiuses.first(value)
 > First raduis setter.
 
+- `value` {number} - First radius.
+
 ```javascript
 > er2.first = 4;
 4
@@ -77,6 +81,8 @@ undefined
 
 ### EllipseRadiuses.second(value)
 > Second raduis setter.
+
+- `value` {number} - Second radius.
 
 ```javascript
 > er2.second = 9;
