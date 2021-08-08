@@ -1,6 +1,8 @@
 # Documentation
 
 - [Path commands](path_commands)
+- [Items](items)
+
 
 
 ## Items
