@@ -108,10 +108,10 @@ class PointsCommands extends PathCommands {
   /**
    * Creation.
    * @param {number[][]} items - Array of (x, y) pairs.
-   * @param {Object|null} [options] - Options.
+   * @param {Object} [options] - Options.
    * @param {boolean} [options.isClose] - Whether poins path is close or open.
    */
-  constructor(items, options=null) {
+  constructor(items, options) {
     super();
     this._options = options || {};
     this.items = items;
@@ -137,11 +137,11 @@ class PointsCommands extends PathCommands {
 
   /**
    * Set items.
-   * @param {number[][]} items - Array of (x, y) pairs.
+   * @param {number[][]} value - Array of (x, y) pairs.
    */
-  set items(items) {
-    PointsCommands.validateItems(items);
-    this._items = this._createItems(items);
+  set items(value) {
+    PointsCommands.validateItems(value);
+    this._items = this._createItems(value);
     this._setValue();
   }
 

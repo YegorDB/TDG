@@ -95,6 +95,8 @@ undefined
 
 ## EllipseCommands
 
+> Extends PathCommands
+
 Server
 ```javascript
 > const { EllipseCommands } = require('two-dimensions-graphic').path_commands;
