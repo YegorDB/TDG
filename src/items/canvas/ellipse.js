@@ -57,7 +57,7 @@ class CanvasEllipse extends CanvasItem {
 
   /**
    * Get radiuses.
-   * @return {number} EllipseRadiuses instatce or (r1, r2) pair.
+   * @return {EllipseRadiuses} EllipseRadiuses instatce or (r1, r2) pair.
    */
   get radiuses() {
     return this._radiuses;
@@ -65,7 +65,7 @@ class CanvasEllipse extends CanvasItem {
 
   /**
    * Set radiuses.
-   * @param {number} value - EllipseRadiuses instatce or (r1, r2) pair.
+   * @param {EllipseRadiuses} value - EllipseRadiuses instatce or (r1, r2) pair.
    */
   set radiuses(value) {
     this.commands.radiuses = value;
