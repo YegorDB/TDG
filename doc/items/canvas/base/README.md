@@ -4,6 +4,8 @@
 
 ## CanvasItem
 
+> Abstract canvas item class
+
 Server
 ```javascript
 > const { CanvasItem } = require('two-dimensions-graphic').items.canvas;
