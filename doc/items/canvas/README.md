@@ -4,3 +4,5 @@
 - [Circle](circle)
 - [Ellipse](ellipse)
 - [Path](path)
+- [Polygon](polygon)
+- [Polyline](polyline)
