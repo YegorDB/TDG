@@ -5,63 +5,6 @@
 
 
 
-## Items
-
-
-### TDG.items.SVGItem
-
-> Class representing SVG item.
-
-
-#### TDG.items.SVGItem.constructor(name[, attrs])
-
-> Create SVG item.
-
-- `name` {string} - SVG element name.
-- `attrs` {Object} - SVG element attributes.
-
-```javascript
-> var rectangle = new TDG.items.SVGItem('rect', {
->   x: 10,
->   y: 40,
->   width: 150,
->   height: 50,
->   fill: 'orange',
-> });
-undefined
-```
-
-
-#### TDG.items.SVGItem.getAttr(name)
-
-> Get SVG item attribute.
-
-- `name` {string} - SVG element attribute name.
-
-> Return SVG element attribute value.
-
-```javascript
-> rectangle.getAttr('fill');
-"orange"
-```
-
-
-#### TDG.items.SVGItem.setAttr(name, value)
-
-> Set SVG item attribute.
-
-- `name` {string} - SVG element attribute name.
-- `value` {string} - SVG element attribute value.
-
-```javascript
-> rectangle.setAttr('fill', 'black');
-undefined
-> rectangle.getAttr('fill');
-"black"
-```
-
-
-
 ## Layers
 
 
