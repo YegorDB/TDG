@@ -1,7 +1,8 @@
 # Documentation
 
-- [Path commands](path_commands)
+- [Base](base)
 - [Items](items)
+- [Path commands](path_commands)
 
 
 

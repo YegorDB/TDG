@@ -17,7 +17,8 @@ const UTILS = {
 
   /**
    * Create svg element.
-   * @param {string} elementName - Name of created svg element like "svg", "circle" etc.
+   * @param {string} elementName - Name of created svg element ("svg", "circle" etc.).
+   * @returns {SVGElement} SVG DOM element.
    */
   createSvgElement(elementName) {
     return document.createElementNS('http://www.w3.org/2000/svg', elementName);
