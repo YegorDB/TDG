@@ -40,7 +40,7 @@ class BaseLayer {
    * @param {Dimensions} value.
    */
   set dimensions(value) {
-    Dimensions.validate(value);
+    Dimensions.validateInstanceof(value);
     this._dimensions = value;
     this.element.setAttribute('width', value.width);
     this.element.setAttribute('height', value.height);

@@ -29,25 +29,39 @@ const UTILS = {
 /** Dimensions logic. */
 class Dimensions {
 
-  /** Validate value. */
-  static validate(value) {
+  /**
+   * Validate value is instance of Dimensions.
+   * @param {*} value - Dimensions value.
+   */
+  static validateInstanceof(value) {
     if (value instanceof Dimensions) return;
     throw Error('Value has to be an instance of Dimensions.');
   };
 
   /**
+   * Validate dimension value.
+   * @param {number} value - Dimension value.
+   */
+  static validateDimension(value) {
+    if (Number.isInteger(value)) return;
+    throw Error('Dimension value has to be an integer.');
+  };
+
+  /**
    * Creation.
-   * @param {integer} width.
-   * @param {integer} height.
+   * @param {number} width.
+   * @param {number} height.
    */
   constructor(width, height) {
+    Dimensions.validateDimension(width);
+    Dimensions.validateDimension(height);
     this._width = width;
     this._height = height;
   }
 
   /**
    * Get width.
-   * @return {integer} Width.
+   * @return {number} Width.
    */
   get width() {
     return this._width;
@@ -55,7 +69,7 @@ class Dimensions {
 
   /**
    * Get height.
-   * @return {integer} Height.
+   * @return {number} Height.
    */
   get height() {
     return this._height;

@@ -59,7 +59,7 @@ class Screen {
    * @param {Dimensions} value.
    */
   set dimensions(value) {
-    Dimensions.validate(value);
+    Dimensions.validateInstanceof(value);
     this._dimensions = value;
     this.element.style.width = `${value.width}px`;
     this.element.style.height = `${value.height}px`;
