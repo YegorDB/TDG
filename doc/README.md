@@ -2,6 +2,7 @@
 
 - [Base](base)
 - [Items](items)
+- [Layers](layers)
 - [Path commands](path_commands)
 
 

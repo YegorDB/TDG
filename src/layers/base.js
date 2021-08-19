@@ -18,7 +18,7 @@ const { Dimensions } = require('../base');
 /** Base layers logic. */
 class BaseLayer {
 
-  /** Create a layer. */
+  /** Creation. */
   constructor() {
     this.element = this.createElement();
     this.items = {};
