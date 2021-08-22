@@ -33,7 +33,7 @@ undefined
 
 
 ### CanvasLayer.createCircle(name, centre, radius[, options])
-> Create circle.
+> Create circle and attach them to layer.
 
 - `name` {string} - Item name.
 - `centre` {Point|number[]} - Point instatce or (x, y) pair.
@@ -48,7 +48,7 @@ undefined
 
 
 ### CanvasLayer.createEllipse(name, centre, radiuses[, options])
-> Create ellipse.
+> Create ellipse and attach them to layer.
 
 - `name` {string} - Item name.
 - `centre` {Point|number[]} - Point instatce or (x, y) pair.
@@ -63,7 +63,7 @@ undefined
 
 
 ### CanvasLayer.createPath(name, value[, options])
-> Create path.
+> Create path and attach them to layer.
 
 - `name` {string} - Item name.
 - `value` {string} - Path commands value.
@@ -77,7 +77,7 @@ undefined
 
 
 ### CanvasLayer.createPolygon(name, points[, options])
-> Create polygon.
+> Create polygon and attach them to layer.
 
 - `name` {string} - Item name.
 - `points` {number[][]|Point[]} - Array of (x, y) pairs or Point instances.
@@ -91,7 +91,7 @@ undefined
 
 
 ### CanvasLayer.createPolyline(name, points[, options])
-> Create polyline.
+> Create polyline and attach them to layer.
 
 - `name` {string} - Item name.
 - `points` {number[][]|Point[]} - Array of (x, y) pairs or Point instances.
