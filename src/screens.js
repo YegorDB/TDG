@@ -20,14 +20,11 @@ const {
 const { SVGLayer } = require('./layers/svg/main');
 
 
-/**
- * Class representing a screen (composition of layers).
- * @class
- */
+/** Composition of layers. */
 class Screen {
 
   /**
-   * Create a screen.
+   * Creation.
    * @param {string} elementId - DOM element id.
    * @param {Object} [options] - Screen creation options.
    * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions [width, height].
@@ -68,7 +65,7 @@ class Screen {
   /**
    * Add a layer.
    * @param {string} name - Layer name.
-   * @param {any Layer class instance} layer - Layer instance.
+   * @param {any layer class instance} layer - Layer instance.
    */
   addLayer(name, layer) {
     if (name in this.layers) {

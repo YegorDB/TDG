@@ -17,5 +17,5 @@ module.exports = {
   items: require('./items/main'),
   layers: require('./layers/main'),
   path_commands: require('./path_commands/main'),
-  screen: require('./screen'),
+  screens: require('./screens'),
 };
