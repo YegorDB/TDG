@@ -5,6 +5,10 @@
 
 ## Install
 
+### Server
+1. `$ npm install two-dimensions-graphic`
+
+### Browser
 1. Copy lib file (`tdg.min.js`).
 2. Add to html file link to copied file.
 
@@ -16,19 +20,21 @@ const screen = new TDG.screen.Screen('dom-element-id', {
   dimensions: [150, 150],
 });
 
-screen.addLayer('background', new TDG.layers.canvas.CanvasLayer());
-screen.layers.background.ctx.fillStyle = 'black';
-screen.layers.background.ctx.fillRect(10, 10, 100, 100);
+screen.createCanvasLayer('background', {
+  drawFunct: (ctx) => {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(10, 10, 100, 100);
+  },
+});
 
-screen.addLayer('foreground', new TDG.layers.svg.SVGLayer());
-let whiteCircle = new TDG.items.svg.SVGItem('circle', {
+screen.createSVGLayer('foreground');
+screen.layers.foreground.createItem('whiteCircle', 'circle', {
   cx: 75,
   cy: 75,
   r: 40,
   fill: 'white',
   stroke: 'black',
 });
-screen.layers.foreground.addItem('whiteCircle', whiteCircle);
 ```
 
 
