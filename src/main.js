@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,10 +12,8 @@ limitations under the License.
 */
 
 
-module.exports = {
-  base: require('./base'),
-  items: require('./items/main'),
-  layers: require('./layers/main'),
-  path_commands: require('./path_commands/main'),
-  screens: require('./screens'),
-};
+export * from './base.js';
+export * from './items/main.js';
+export * from './layers/main.js';
+export * from './path_commands/main.js';
+export * from './screens.js';

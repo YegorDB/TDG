@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Yegor Bitensky
+Copyright 2020-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,12 +12,12 @@ limitations under the License.
 */
 
 
-const { Dimensions } = require('./base');
-const {
+import { Dimensions } from './base.js';
+import {
   CanvasLayer,
   CanvasLayerWithBGFiller, CanvasLayerWithBGImage,
-} = require('./layers/canvas/main');
-const { SVGLayer } = require('./layers/svg/main');
+} from './layers/canvas/main.js';
+import { SVGLayer } from './layers/svg/main.js';
 
 
 /** Composition of layers. */
@@ -159,6 +159,4 @@ class Screen {
 }
 
 
-module.exports = {
-  Screen: Screen,
-};
+export { Screen };

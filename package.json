@@ -22,8 +22,10 @@
     "url": "https://github.com/YegorDB/TDG/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
+  "type": "module",
   "dependencies": {
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
