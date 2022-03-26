@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 
-const { PathCommands } = require('./base');
-const { Point } = require('./points');
+import { PathCommands } from './base.js';
+import { Point } from './points.js';
 
 
 class EllipseRadiuses {
@@ -187,8 +187,4 @@ class CircleCommands extends EllipseCommands {
 }
 
 
-module.exports = {
-  EllipseRadiuses: EllipseRadiuses,
-  EllipseCommands: EllipseCommands,
-  CircleCommands: CircleCommands,
-};
+export { EllipseRadiuses, EllipseCommands, CircleCommands };
