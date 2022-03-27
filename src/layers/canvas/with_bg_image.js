@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-const { CanvasLayer } = require('./base');
+import { CanvasLayer } from './base.js';
 
 
 /** Canvas layer with background image pattern. */
@@ -79,6 +79,4 @@ class CanvasLayerWithBGImage extends CanvasLayer {
 }
 
 
-module.exports = {
-  CanvasLayerWithBGImage: CanvasLayerWithBGImage,
-};
+export { CanvasLayerWithBGImage };

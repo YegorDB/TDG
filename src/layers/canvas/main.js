@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,13 +12,6 @@ limitations under the License.
 */
 
 
-const { CanvasLayer } = require('./base');
-const { CanvasLayerWithBGFiller } = require('./with_bg_filler');
-const { CanvasLayerWithBGImage } = require('./with_bg_image');
-
-
-module.exports = {
-  CanvasLayer: CanvasLayer,
-  CanvasLayerWithBGFiller: CanvasLayerWithBGFiller,
-  CanvasLayerWithBGImage: CanvasLayerWithBGImage,
-};
+export CanvasLayer from './base.js';
+export CanvasLayerWithBGFiller from './with_bg_filler.js';
+export CanvasLayerWithBGImage from './with_bg_image.js';

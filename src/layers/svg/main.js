@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Yegor Bitensky
+Copyright 2020-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,11 +12,11 @@ limitations under the License.
 */
 
 
-const { BaseLayer } = require('../base');
-const { Dimensions, UTILS } = require('../../base');
-const {
+import { BaseLayer } from '../base.js';
+import { Dimensions, UTILS } from '../../base.js';
+import {
   SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline,
-} = require('../../items/svg/main');
+} from '../../items/svg/main.js';
 
 
 /** SVG layer. */
@@ -138,6 +138,4 @@ class SVGLayer extends BaseLayer {
 }
 
 
-module.exports = {
-  SVGLayer: SVGLayer,
-};
+export { SVGLayer };

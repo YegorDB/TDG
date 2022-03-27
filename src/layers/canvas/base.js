@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2021 Yegor Bitensky
+Copyright 2020-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,11 +12,11 @@ limitations under the License.
 */
 
 
-const { BaseLayer } = require('../base');
-const { Dimensions } = require('../../base');
-const {
+import { BaseLayer } from '../base.js';
+import { Dimensions } from '../../base.js';
+import {
   CanvasCircle, CanvasEllipse, CanvasPath, CanvasPolygon, CanvasPolyline,
-} = require('../../items/canvas/main');
+} from '../../items/canvas/main.js';
 
 
 /** Canvas layer logic. */
@@ -191,6 +191,4 @@ class CanvasLayer extends BaseLayer {
 }
 
 
-module.exports = {
-  CanvasLayer: CanvasLayer,
-};
+export { CanvasLayer };
