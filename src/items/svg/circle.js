@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 
-const { SVGItem } = require('./base');
-const { CircleCommands, Point } = require('../../path_commands/main');
+import { SVGItem } from './base.js';
+import { CircleCommands, Point } from '../../path_commands/main.js';
 
 
 /** SVG circle. */
@@ -94,6 +94,4 @@ class SVGCircle extends SVGItem {
 }
 
 
-module.exports = {
-  SVGCircle: SVGCircle,
-};
+export { SVGCircle };

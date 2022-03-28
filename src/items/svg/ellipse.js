@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,10 +12,10 @@ limitations under the License.
 */
 
 
-const { SVGItem } = require('./base');
-const {
+import { SVGItem } from './base.js';
+import {
   EllipseRadiuses, EllipseCommands, Point,
-} = require('../../path_commands/main');
+} from '../../path_commands/main.js';
 
 
 /** SVG ellipse. */
@@ -96,6 +96,4 @@ class SVGEllipse extends SVGItem {
 }
 
 
-module.exports = {
-  SVGEllipse: SVGEllipse,
-};
+export { SVGEllipse };

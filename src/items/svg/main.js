@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,19 +12,9 @@ limitations under the License.
 */
 
 
-const { SVGItem } = require('./base');
-const { SVGCircle } = require('./circle');
-const { SVGEllipse } = require('./ellipse');
-const { SVGPath } = require('./path');
-const { SVGPolygon } = require('./polygon');
-const { SVGPolyline } = require('./polyline');
-
-
-module.exports = {
-  SVGItem: SVGItem,
-  SVGCircle: SVGCircle,
-  SVGEllipse: SVGEllipse,
-  SVGPath: SVGPath,
-  SVGPolygon: SVGPolygon,
-  SVGPolyline: SVGPolyline,
-};
+export { SVGItem } from './base.js';
+export { SVGCircle } from './circle.js';
+export { SVGEllipse } from './ellipse.js';
+export { SVGPath } from './path.js';
+export { SVGPolygon } from './polygon.js';
+export { SVGPolyline } from './polyline.js';
