@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 
-const { CanvasItem } = require('./base');
-const { Point, PointsCommands } = require('../../path_commands/main');
+import { CanvasItem } from './base.js';
+import { Point, PointsCommands } from '../../path_commands/main.js';
 
 
 class CanvasPolyline extends CanvasItem {
@@ -75,6 +75,4 @@ class CanvasPolyline extends CanvasItem {
 }
 
 
-module.exports = {
-  CanvasPolyline: CanvasPolyline,
-};
+export { CanvasPolyline };

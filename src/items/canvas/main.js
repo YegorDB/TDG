@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,19 +12,9 @@ limitations under the License.
 */
 
 
-const { CanvasItem } = require('./base');
-const { CanvasCircle } = require('./circle');
-const { CanvasEllipse } = require('./ellipse');
-const { CanvasPath } = require('./path');
-const { CanvasPolygon } = require('./polygon');
-const { CanvasPolyline } = require('./polyline');
-
-
-module.exports = {
-  CanvasCircle: CanvasCircle,
-  CanvasEllipse: CanvasEllipse,
-  CanvasItem: CanvasItem,
-  CanvasPath: CanvasPath,
-  CanvasPolygon: CanvasPolygon,
-  CanvasPolyline: CanvasPolyline,
-};
+export { CanvasItem } from './base.js';
+export { CanvasCircle } from './circle.js';
+export { CanvasEllipse } from './ellipse.js';
+export { CanvasPath } from './path.js';
+export { CanvasPolygon } from './polygon.js';
+export { CanvasPolyline } from './polyline.js';

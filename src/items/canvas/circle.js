@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Yegor Bitensky
+Copyright 2021-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 
-const { CanvasItem } = require('./base');
-const { CircleCommands, Point } = require('../../path_commands/main');
+import { CanvasItem } from './base.js';
+import { CircleCommands, Point } from '../../path_commands/main.js';
 
 
 class CanvasCircle extends CanvasItem {
@@ -95,6 +95,4 @@ class CanvasCircle extends CanvasItem {
 }
 
 
-module.exports = {
-  CanvasCircle: CanvasCircle,
-};
+export { CanvasCircle };
