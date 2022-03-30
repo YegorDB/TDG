@@ -1,4 +1,4 @@
-const screen = new TDG.screen.Screen('screen-id', {
+const screen = new TDG.screens.Screen('screen-id', {
   dimensions: [300, 300],
 });
 

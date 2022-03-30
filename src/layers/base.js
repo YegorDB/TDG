@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-import { Dimensions } from './base.js';
+import { Dimensions } from '../base.js';
 
 
 /** Base layers logic. */

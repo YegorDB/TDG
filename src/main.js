@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 
-export * from './base.js';
-export * from './items/main.js';
-export * from './layers/main.js';
-export * from './path_commands/main.js';
-export * from './screens.js';
+export * as base from './base.js';
+export * as items from './items/main.js';
+export * as layers from './layers/main.js';
+export * as path_commands from './path_commands/main.js';
+export * as screens from './screens.js';

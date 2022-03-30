@@ -12,6 +12,6 @@ limitations under the License.
 */
 
 
-export CanvasLayer from './base.js';
-export CanvasLayerWithBGFiller from './with_bg_filler.js';
-export CanvasLayerWithBGImage from './with_bg_image.js';
+export { CanvasLayer } from './base.js';
+export { CanvasLayerWithBGFiller } from './with_bg_filler.js';
+export { CanvasLayerWithBGImage } from './with_bg_image.js';
