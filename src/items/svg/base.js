@@ -34,7 +34,7 @@ class SVGItem {
       ...(attrs || {}),
     };
     for (let [name, value] of Object.entries(attrs)) {
-      this.element.setAttribute(name, value);
+      this.setAttr(name, value);
     }
   }
 
