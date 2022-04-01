@@ -15,7 +15,7 @@ limitations under the License.
 import { BaseLayer } from '../base.js';
 import { Dimensions, UTILS } from '../../base.js';
 import {
-  SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline,
+  SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../../items/svg/main.js';
 
 
@@ -106,6 +106,21 @@ class SVGLayer extends BaseLayer {
     let polyline = new SVGPolyline(points, attrs);
     this.addItem(name, polyline);
     return polyline;
+  }
+
+  /**
+   * Create text.
+   * @param {string} name - Item name.
+   * @param {string} value - Value.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
+   */
+  createText(name, value, centre, attrs) {
+    let text = new SVGText(value, centre, attrs);
+    this.addItem(name, text);
+    return text;
   }
 
   /**

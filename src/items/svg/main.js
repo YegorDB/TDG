@@ -18,3 +18,4 @@ export { SVGEllipse } from './ellipse.js';
 export { SVGPath } from './path.js';
 export { SVGPolygon } from './polygon.js';
 export { SVGPolyline } from './polyline.js';
+export { SVGText } from './text.js';
