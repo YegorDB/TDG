@@ -72,31 +72,14 @@ class CanvasText extends CanvasItem {
     this._refresh();
   }
 
-  /** Draw object. */
-  draw() {
-    if (!this.layer) {
-      throw Error('Object has no layer to draw to.');
-    }
-    this.layer.ctx.save();
-    this._setFlatParams();
-    this._setByMethodParams();
-    if (this.stroke) {
-      this.layer.ctx.strokeText(this.value, this.centre.x, this.centre.y);
-    }
-    if (this.fill) {
-      this.layer.ctx.fillText(this.value, this.centre.x, this.centre.y);
-    }
-    this.layer.ctx.restore();
+  /** Draw object stroke. */
+  _drawStroke() {
+    this.layer.ctx.strokeText(this.value, this.centre.x, this.centre.y);
   }
 
-  /**
-   * Refresh.
-   * @private
-   */
-  _refresh() {
-    if (this.layer) {
-      this.layer.refresh();
-    }
+  /** Draw object fill. */
+  _drawFill() {
+    this.layer.ctx.fillText(this.value, this.centre.x, this.centre.y);
   }
 }
 

@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 
-export { CanvasItem } from './base.js';
+export { CanvasItem, CanvasPathItem } from './base.js';
 export { CanvasCircle } from './circle.js';
 export { CanvasEllipse } from './ellipse.js';
 export { CanvasPath } from './path.js';

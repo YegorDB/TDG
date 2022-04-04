@@ -12,11 +12,11 @@ limitations under the License.
 */
 
 
-import { CanvasItem } from './base.js';
+import { CanvasPathItem } from './base.js';
 import { PathCommands } from '../../path_commands/main.js';
 
 
-class CanvasPath extends CanvasItem {
+class CanvasPath extends CanvasPathItem {
 
   /**
    * Creation.

@@ -106,22 +106,6 @@ class CanvasItem {
   }
 
   /**
-   * Get commands.
-   * @return {PathCommands} Commands.
-   */
-  get commands() {
-    return new PathCommands(null);
-  }
-
-  /**
-   * Get path.
-   * @returns {string} SVG string path.
-   */
-  get path() {
-    return this.commands.value;
-  }
-
-  /**
    * Get layer.
    * @return {CanvasLayer} Layer.
    */
@@ -142,17 +126,26 @@ class CanvasItem {
     if (!this.layer) {
       throw Error('Object has no layer to draw to.');
     }
-    let path = new Path2D(this.path);
     this.layer.ctx.save();
     this._setFlatParams();
     this._setByMethodParams();
     if (this.stroke) {
-      this.layer.ctx.stroke(path);
+      this._drawStroke();
     }
     if (this.fill) {
-      this.layer.ctx.fill(path);
+      this._drawFill();
     }
     this.layer.ctx.restore();
+  }
+
+  /** Draw object stroke. */
+  _drawStroke() {
+    throw Error('_drawStroke() method need to be overriden');
+  }
+
+  /** Draw object fill. */
+  _drawFill() {
+    throw Error('_drawFill() method need to be overriden');
   }
 
   /**
@@ -217,11 +210,51 @@ class CanvasItem {
    * @private
    */
   _refresh() {
-    if (this._commands && this.layer) {
-      this.layer.refresh();
-    }
+    if (!this.layer) return;
+    this.layer.refresh();
   }
 }
 
 
-export { CanvasItem };
+class CanvasPathItem extends CanvasItem {
+
+  /**
+   * Get commands.
+   * @return {PathCommands} Commands.
+   */
+  get commands() {
+    return new PathCommands(null);
+  }
+
+  /**
+   * Get path.
+   * @returns {string} SVG string path.
+   */
+  get path() {
+    return this.commands.value;
+  }
+
+  /** Draw object stroke. */
+  _drawStroke() {
+    let path = new Path2D(this.path);
+    this.layer.ctx.stroke(path);
+  }
+
+  /** Draw object fill. */
+  _drawFill() {
+    let path = new Path2D(this.path);
+    this.layer.ctx.fill(path);
+  }
+
+  /**
+   * Refresh.
+   * @private
+   */
+  _refresh() {
+    if (!this._commands) return;
+    super._refresh();
+  }
+}
+
+
+export { CanvasItem, CanvasPathItem };

@@ -12,11 +12,11 @@ limitations under the License.
 */
 
 
-import { CanvasItem } from './base.js';
+import { CanvasPathItem } from './base.js';
 import { Point, PointsCommands } from '../../path_commands/main.js';
 
 
-class CanvasPolyline extends CanvasItem {
+class CanvasPolyline extends CanvasPathItem {
 
   static COMMANDS_OPTIONS = {};
 

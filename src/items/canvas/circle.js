@@ -12,11 +12,11 @@ limitations under the License.
 */
 
 
-import { CanvasItem } from './base.js';
+import { CanvasPathItem } from './base.js';
 import { CircleCommands, Point } from '../../path_commands/main.js';
 
 
-class CanvasCircle extends CanvasItem {
+class CanvasCircle extends CanvasPathItem {
 
   /**
    * Creation.

@@ -12,13 +12,13 @@ limitations under the License.
 */
 
 
-import { CanvasItem } from './base.js';
+import { CanvasPathItem } from './base.js';
 import {
   EllipseRadiuses, EllipseCommands, Point,
 } from '../../path_commands/main.js';
 
 
-class CanvasEllipse extends CanvasItem {
+class CanvasEllipse extends CanvasPathItem {
 
   /**
    * Creation.
