@@ -64,11 +64,7 @@ class CanvasText extends CanvasItem {
    * @param {Point|number[]} value - Point instatce or (x, y) pair.
    */
   set centre(value) {
-    if (value instanceof Point) {
-      this._centre = value;
-    } else {
-      this._centre = new Point(...value);
-    }
+    this._centre = Point.getInstance(value);
     this._refresh();
   }
 

@@ -28,6 +28,17 @@ class Point {
   };
 
   /**
+   * Get point instance.
+   * @param {Point|number[]} value - Point instatce or (x, y) pair.
+   */
+  static getInstance(value) {
+    if (value instanceof Point) {
+      return value;
+    }
+    return new Point(...value);
+  }
+
+  /**
    * Creation.
    * @param {number} x - X coordinate.
    * @param {number} y - Y coordinate.
