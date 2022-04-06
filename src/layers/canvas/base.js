@@ -15,7 +15,10 @@ limitations under the License.
 import { BaseLayer } from '../base.js';
 import { Dimensions } from '../../base.js';
 import {
-  CanvasCircle, CanvasEllipse, CanvasPath, CanvasPolygon, CanvasPolyline,
+  CanvasCircle, CanvasEllipse,
+  CanvasPath,
+  CanvasPolygon, CanvasPolyline,
+  CanvasText,
 } from '../../items/canvas/main.js';
 
 
@@ -165,6 +168,22 @@ class CanvasLayer extends BaseLayer {
     let polyline = new CanvasPolyline(points, options);
     this.addItem(name, polyline);
     return polyline;
+  }
+
+  /**
+   * Create text.
+   * @param {string} value - Text.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createText(name, value, centre) {
+    let text = new CanvasText(value, centre);
+    this.addItem(name, text);
+    return text;
   }
 
   /**

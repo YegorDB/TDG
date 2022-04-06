@@ -18,3 +18,4 @@ export { CanvasEllipse } from './ellipse.js';
 export { CanvasPath } from './path.js';
 export { CanvasPolygon } from './polygon.js';
 export { CanvasPolyline } from './polyline.js';
+export { CanvasText } from './text.js';
