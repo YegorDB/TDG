@@ -28,7 +28,7 @@ class CanvasText extends CanvasItem {
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  constructor(centre, radius, options) {
+  constructor(value, centre, options) {
     super(options);
     this._value = value;
     this.centre = centre;

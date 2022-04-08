@@ -21,6 +21,14 @@ let backgroundLayer = screen.createCanvasLayer('bg', {
     ctx.stroke();
   },
 });
+let textB = backgroundLayer.createText('textB', 'B', [275, 270], {
+  fill: true,
+  stroke: true,
+  flatParams: {
+    fillStyle: '#000',
+    strokeStyle: '#000',
+  },
+});
 
 
 let backLayer = screen.createSVGLayer('back');
@@ -41,4 +49,8 @@ let yellowRectangle = screen.layers.front.createItem('yellowRectangle', 'rect', 
   height: 80,
   fill: '#ffb703',
   stroke: 'none',
+});
+let textA = screen.layers.front.createText('textA', 'A', [250, 270], {
+  fill: '#219ebc',
+  stroke: '#219ebc',
 });

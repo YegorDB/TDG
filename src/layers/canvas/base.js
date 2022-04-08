@@ -180,8 +180,8 @@ class CanvasLayer extends BaseLayer {
    * @param {Object} [options.flatParams] - Canvas 2d context flat params.
    * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
    */
-  createText(name, value, centre) {
-    let text = new CanvasText(value, centre);
+  createText(name, value, centre, options) {
+    let text = new CanvasText(value, centre, options);
     this.addItem(name, text);
     return text;
   }
