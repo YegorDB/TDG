@@ -20,6 +20,7 @@ import {
   CanvasPolygon, CanvasPolyline,
   CanvasText,
 } from '../../items/canvas/main.js';
+import { CanvasItemsManager } from '../../managers.js';
 
 
 /** Canvas layer logic. */
@@ -37,6 +38,7 @@ class CanvasLayer extends BaseLayer {
 
     super();
     this.ctx = this.element.getContext('2d');
+    this.items = new CanvasItemsManager(this);
     this._drawFunct = options.drawFunct;
   }
 
@@ -54,26 +56,6 @@ class CanvasLayer extends BaseLayer {
    */
   set dimensions(value) {
     super.dimensions = value;
-    this.refresh();
-  }
-
-  /**
-   * Add item.
-   * @param {string} name - Item name.
-   * @param {Object} item - Item instance.
-   */
-  addItem(name, item) {
-    super.addItem(name, item);
-    item.layer = this;
-    item.draw();
-  }
-
-  /**
-   * Remove item.
-   * @param {string} name - Item name.
-   */
-  removeItem(name) {
-    super.removeItem(name);
     this.refresh();
   }
 
@@ -101,7 +83,7 @@ class CanvasLayer extends BaseLayer {
    */
   createCircle(name, centre, radius, options) {
     let circle = new CanvasCircle(centre, radius, options);
-    this.addItem(name, circle);
+    this.items.add(name, circle);
     return circle;
   }
 
@@ -118,7 +100,7 @@ class CanvasLayer extends BaseLayer {
    */
   createEllipse(name, centre, radiuses, options) {
     let ellipse = new CanvasEllipse(centre, radiuses, options);
-    this.addItem(name, ellipse);
+    this.items.add(name, ellipse);
     return ellipse;
   }
 
@@ -134,7 +116,7 @@ class CanvasLayer extends BaseLayer {
    */
   createPath(name, value, options) {
     let path = new CanvasPath(value, options);
-    this.addItem(name, path);
+    this.items.add(name, path);
     return path;
   }
 
@@ -150,7 +132,7 @@ class CanvasLayer extends BaseLayer {
    */
   createPolygon(name, points, options) {
     let polygon = new CanvasPolygon(points, options);
-    this.addItem(name, polygon);
+    this.items.add(name, polygon);
     return polygon;
   }
 
@@ -166,7 +148,7 @@ class CanvasLayer extends BaseLayer {
    */
   createPolyline(name, points, options) {
     let polyline = new CanvasPolyline(points, options);
-    this.addItem(name, polyline);
+    this.items.add(name, polyline);
     return polyline;
   }
 
@@ -182,7 +164,7 @@ class CanvasLayer extends BaseLayer {
    */
   createText(name, value, centre, options) {
     let text = new CanvasText(value, centre, options);
-    this.addItem(name, text);
+    this.items.add(name, text);
     return text;
   }
 
@@ -194,7 +176,7 @@ class CanvasLayer extends BaseLayer {
     if (this._drawFunct) {
       this._drawFunct(this.ctx);
     }
-    for (let item of Object.values(this.items)) {
+    for (let item of this.items.values) {
       item.draw();
     }
   }

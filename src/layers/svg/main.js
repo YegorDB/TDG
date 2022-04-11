@@ -17,10 +17,17 @@ import { Dimensions, UTILS } from '../../base.js';
 import {
   SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../../items/svg/main.js';
+import { SVGItemsManager } from '../../managers.js';
 
 
 /** SVG layer. */
 class SVGLayer extends BaseLayer {
+
+  /** Creation. */
+  constructor() {
+    super();
+    this.items = new SVGItemsManager(this);
+  }
 
   /**
    * Create item.
@@ -32,7 +39,7 @@ class SVGLayer extends BaseLayer {
    */
   createItem(name, elementName, attrs) {
     let item = new SVGItem(elementName, attrs);
-    this.addItem(name, item);
+    this.items.add(name, item);
     return item;
   }
 
@@ -47,7 +54,7 @@ class SVGLayer extends BaseLayer {
    */
   createCircle(name, centre, radius, attrs) {
     let circle = new SVGCircle(centre, radius, attrs);
-    this.addItem(name, circle);
+    this.items.add(name, circle);
     return circle;
   }
 
@@ -62,7 +69,7 @@ class SVGLayer extends BaseLayer {
    */
   createEllipse(name, centre, radiuses, attrs) {
     let ellipse = new SVGEllipse(centre, radiuses, attrs);
-    this.addItem(name, ellipse);
+    this.items.add(name, ellipse);
     return ellipse;
   }
 
@@ -76,7 +83,7 @@ class SVGLayer extends BaseLayer {
    */
   createPath(name, value, attrs) {
     let path = new SVGPath(value, attrs);
-    this.addItem(name, path);
+    this.items.add(name, path);
     return path;
   }
 
@@ -90,7 +97,7 @@ class SVGLayer extends BaseLayer {
    */
   createPolygon(name, points, attrs) {
     let polygon = new SVGPolygon(points, attrs);
-    this.addItem(name, polygon);
+    this.items.add(name, polygon);
     return polygon;
   }
 
@@ -104,7 +111,7 @@ class SVGLayer extends BaseLayer {
    */
   createPolyline(name, points, attrs) {
     let polyline = new SVGPolyline(points, attrs);
-    this.addItem(name, polyline);
+    this.items.add(name, polyline);
     return polyline;
   }
 
@@ -119,27 +126,8 @@ class SVGLayer extends BaseLayer {
    */
   createText(name, value, centre, attrs) {
     let text = new SVGText(value, centre, attrs);
-    this.addItem(name, text);
+    this.items.add(name, text);
     return text;
-  }
-
-  /**
-   * Add item.
-   * @param {string} name - Item name.
-   * @param {Object} item - Item instance.
-   */
-  addItem(name, item) {
-    super.addItem(name, item);
-    this.element.appendChild(item.element);
-  }
-
-  /**
-   * Remove item additional logic.
-   * @param {Object} item - Item.
-   */
-  _removeItemAdditional(item) {
-    item.element.remove();
-    item.element = null;
   }
 
   /**

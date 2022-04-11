@@ -21,7 +21,7 @@ class BaseLayer {
   /** Creation. */
   constructor() {
     this.element = this.createElement();
-    this.items = {};
+    this.items = null;
     this._zIndex = null;
     this._initialZIndex = null;
     this._isShowed = true;
@@ -114,38 +114,6 @@ class BaseLayer {
     this._isShowed = false;
     this.element.style.display = 'none';
   }
-
-  /**
-   * Add item.
-   * @param {string} name - Item name.
-   * @param {Object} item - Item instance.
-   */
-  addItem(name, item) {
-    if (name in this.items) {
-      throw Error(`Item with name "${name}" already exists.`);
-    }
-    this.items[name] = item;
-  }
-
-  /**
-   * Remove item.
-   * @param {string} name - Item name.
-   */
-  removeItem(name) {
-    if (!(name in this.items)) {
-      throw Error(`Item with name "${name}" does not exist.`);
-    }
-    this._removeItemAdditional(this.items[name]);
-    delete this.items[name];
-  }
-
-  /**
-   * Remove item additional logic.
-   * @abstract
-   * @private
-   * @param {Object} item - Item.
-   */
-  _removeItemAdditional(item) {}
 }
 
 
