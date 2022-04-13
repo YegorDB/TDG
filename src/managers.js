@@ -13,6 +13,12 @@ limitations under the License.
 
 
 import {
+  CanvasCircle, CanvasEllipse,
+  CanvasPath,
+  CanvasPolygon, CanvasPolyline,
+  CanvasText,
+} from '../../items/canvas/main.js';
+import {
   SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from './items/svg/main.js';
 
@@ -20,9 +26,13 @@ import {
 /** Base inner items manager. */
 class BaseItemsManager {
 
-  /** Creation. */
-  constructor() {
+  /**
+   * Creation.
+   * @param {Object} parent - Parent.
+   */
+  constructor(parent) {
     this.data = {};
+    this._parent = parent;
   }
 
   get values() {
@@ -67,22 +77,13 @@ class BaseItemsManager {
 class CanvasItemsManager extends BaseItemsManager {
 
   /**
-   * Creation.
-   * @param {Object} layer - Canvas layer.
-   */
-  constructor(layer) {
-    super();
-    this._layer = layer;
-  }
-
-  /**
    * Add item.
    * @param {string} name - Item name.
    * @param {Object} item - Item instance.
    */
   add(name, item) {
     super.add(name, item);
-    item.layer = this._layer;
+    item.layer = this._parent;
     item.draw();
   }
 
@@ -92,7 +93,105 @@ class CanvasItemsManager extends BaseItemsManager {
    */
   remove(name) {
     super.remove(name);
-    this._layer.refresh();
+    this._parent.refresh();
+  }
+
+  /**
+   * Create circle.
+   * @param {string} name - Item name.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {number} radius - Radius.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createCircle(name, centre, radius, options) {
+    let circle = new CanvasCircle(centre, radius, options);
+    this.add(name, circle);
+    return circle;
+  }
+
+  /**
+   * Create ellipse.
+   * @param {string} name - Item name.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {EllipseRadiuses|number[]} radiuses - EllipseRadiuses instatce or (r1, r2) pair.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createEllipse(name, centre, radiuses, options) {
+    let ellipse = new CanvasEllipse(centre, radiuses, options);
+    this.add(name, ellipse);
+    return ellipse;
+  }
+
+  /**
+   * Create path.
+   * @param {string} name - Item name.
+   * @param {string} value - Path commands value.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createPath(name, value, options) {
+    let path = new CanvasPath(value, options);
+    this.add(name, path);
+    return path;
+  }
+
+  /**
+   * Create polygon.
+   * @param {string} name - Item name.
+   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createPolygon(name, points, options) {
+    let polygon = new CanvasPolygon(points, options);
+    this.add(name, polygon);
+    return polygon;
+  }
+
+  /**
+   * Create polyline.
+   * @param {string} name - Item name.
+   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createPolyline(name, points, options) {
+    let polyline = new CanvasPolyline(points, options);
+    this.add(name, polyline);
+    return polyline;
+  }
+
+  /**
+   * Create text.
+   * @param {string} value - Text.
+   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
+   * @param {Object} [options] - Options.
+   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
+   * @param {boolean} [options.fill] - Whether fill object or not.
+   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
+   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
+   */
+  createText(name, value, centre, options) {
+    let text = new CanvasText(value, centre, options);
+    this.add(name, text);
+    return text;
   }
 }
 
@@ -101,12 +200,22 @@ class CanvasItemsManager extends BaseItemsManager {
 class SVGItemsManager extends BaseItemsManager {
 
   /**
-   * Creation.
-   * @param {Object} parent - SVG layer or SVG group.
+   * Add item.
+   * @param {string} name - Item name.
+   * @param {Object} item - Item instance.
    */
-  constructor(parent) {
-    super();
-    this._parent = parent;
+  add(name, item) {
+    super.add(name, item);
+    this._parent.element.appendChild(item.element);
+  }
+
+  /**
+   * Remove item additional logic.
+   * @param {Object} item - Item.
+   */
+  _removeAdditional(item) {
+    item.element.remove();
+    item.element = null;
   }
 
   /**
@@ -208,25 +317,6 @@ class SVGItemsManager extends BaseItemsManager {
     let text = new SVGText(value, centre, attrs);
     this.add(name, text);
     return text;
-  }
-
-  /**
-   * Add item.
-   * @param {string} name - Item name.
-   * @param {Object} item - Item instance.
-   */
-  add(name, item) {
-    super.add(name, item);
-    this._parent.element.appendChild(item.element);
-  }
-
-  /**
-   * Remove item additional logic.
-   * @param {Object} item - Item.
-   */
-  _removeAdditional(item) {
-    item.element.remove();
-    item.element = null;
   }
 }
 

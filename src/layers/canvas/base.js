@@ -14,12 +14,6 @@ limitations under the License.
 
 import { BaseLayer } from '../base.js';
 import { Dimensions } from '../../base.js';
-import {
-  CanvasCircle, CanvasEllipse,
-  CanvasPath,
-  CanvasPolygon, CanvasPolyline,
-  CanvasText,
-} from '../../items/canvas/main.js';
 import { CanvasItemsManager } from '../../managers.js';
 
 
@@ -68,104 +62,6 @@ class CanvasLayer extends BaseLayer {
   /** Clear layer element. */
   clear() {
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
-  }
-
-  /**
-   * Create circle.
-   * @param {string} name - Item name.
-   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
-   * @param {number} radius - Radius.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createCircle(name, centre, radius, options) {
-    let circle = new CanvasCircle(centre, radius, options);
-    this.items.add(name, circle);
-    return circle;
-  }
-
-  /**
-   * Create ellipse.
-   * @param {string} name - Item name.
-   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
-   * @param {EllipseRadiuses|number[]} radiuses - EllipseRadiuses instatce or (r1, r2) pair.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createEllipse(name, centre, radiuses, options) {
-    let ellipse = new CanvasEllipse(centre, radiuses, options);
-    this.items.add(name, ellipse);
-    return ellipse;
-  }
-
-  /**
-   * Create path.
-   * @param {string} name - Item name.
-   * @param {string} value - Path commands value.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createPath(name, value, options) {
-    let path = new CanvasPath(value, options);
-    this.items.add(name, path);
-    return path;
-  }
-
-  /**
-   * Create polygon.
-   * @param {string} name - Item name.
-   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createPolygon(name, points, options) {
-    let polygon = new CanvasPolygon(points, options);
-    this.items.add(name, polygon);
-    return polygon;
-  }
-
-  /**
-   * Create polyline.
-   * @param {string} name - Item name.
-   * @param {number[][]|Point[]} points - Array of (x, y) pairs or Point instances.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createPolyline(name, points, options) {
-    let polyline = new CanvasPolyline(points, options);
-    this.items.add(name, polyline);
-    return polyline;
-  }
-
-  /**
-   * Create text.
-   * @param {string} value - Text.
-   * @param {Point|number[]} centre - Point instatce or (x, y) pair.
-   * @param {Object} [options] - Options.
-   * @param {boolean} [options.stroke=true] - Whether stroke object or not.
-   * @param {boolean} [options.fill] - Whether fill object or not.
-   * @param {Object} [options.flatParams] - Canvas 2d context flat params.
-   * @param {Object} [options.byMethodParams] - Canvas 2d context methods to set params (key is method name, value is array of args).
-   */
-  createText(name, value, centre, options) {
-    let text = new CanvasText(value, centre, options);
-    this.items.add(name, text);
-    return text;
   }
 
   /**
