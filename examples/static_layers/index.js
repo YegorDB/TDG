@@ -21,7 +21,7 @@ let backgroundLayer = screen.createCanvasLayer('bg', {
     ctx.stroke();
   },
 });
-let textB = backgroundLayer.createText('textB', 'B', [275, 270], {
+let textB = backgroundLayer.items.createText('textB', 'B', [275, 270], {
   fill: true,
   stroke: true,
   flatParams: {
@@ -32,7 +32,7 @@ let textB = backgroundLayer.createText('textB', 'B', [275, 270], {
 
 
 let backLayer = screen.createSVGLayer('back');
-let blueCircle = screen.layers.back.createItem('blueCircle', 'circle', {
+let blueCircle = screen.layers.back.items.createItem('blueCircle', 'circle', {
   cx: 130,
   cy: 140,
   r: 120,
@@ -42,7 +42,7 @@ let blueCircle = screen.layers.back.createItem('blueCircle', 'circle', {
 
 
 let frontLayer = screen.createSVGLayer('front');
-let yellowRectangle = screen.layers.front.createItem('yellowRectangle', 'rect', {
+let yellowRectangle = screen.layers.front.items.createItem('yellowRectangle', 'rect', {
   x: 150,
   y: 200,
   width: 120,
@@ -50,7 +50,7 @@ let yellowRectangle = screen.layers.front.createItem('yellowRectangle', 'rect', 
   fill: '#ffb703',
   stroke: 'none',
 });
-let textA = screen.layers.front.createText('textA', 'A', [250, 270], {
+let textA = screen.layers.front.items.createText('textA', 'A', [250, 270], {
   fill: '#219ebc',
   stroke: '#219ebc',
 });

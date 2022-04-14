@@ -14,7 +14,7 @@ limitations under the License.
 
 import { BaseLayer } from '../base.js';
 import { Dimensions } from '../../base.js';
-import { CanvasItemsManager } from '../../managers.js';
+import { CanvasItemsManager } from '../../items_managers/canvas.js';
 
 
 /** Canvas layer logic. */
