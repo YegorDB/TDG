@@ -1,5 +1,5 @@
 /*
-Copyright 2022 Yegor Bitensky
+Copyright 2020-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -29,15 +29,6 @@ class SVGItemsManager extends BaseItemsManager {
   add(name, item) {
     super.add(name, item);
     this._parent.element.appendChild(item.element);
-  }
-
-  /**
-   * Remove item additional logic.
-   * @param {Object} item - Item.
-   */
-  _removeAdditional(item) {
-    item.element.remove();
-    item.element = null;
   }
 
   /**

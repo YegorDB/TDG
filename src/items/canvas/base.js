@@ -213,6 +213,9 @@ class CanvasItem {
     if (!this.layer) return;
     this.layer.refresh();
   }
+
+  /** Remove item. */
+  remove() {}
 }
 
 

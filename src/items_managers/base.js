@@ -1,5 +1,5 @@
 /*
-Copyright 2022 Yegor Bitensky
+Copyright 2020-2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -48,17 +48,9 @@ class BaseItemsManager {
     if (!(name in this.data)) {
       throw Error(`Item with name "${name}" does not exist.`);
     }
-    this._removeAdditional(this.data[name]);
+    this.data[name].remove();
     delete this.data[name];
   }
-
-  /**
-   * Remove item additional logic.
-   * @abstract
-   * @private
-   * @param {Object} item - Item.
-   */
-  _removeAdditional(item) {}
 }
 
 

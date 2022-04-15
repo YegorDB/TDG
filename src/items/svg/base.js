@@ -63,6 +63,12 @@ class SVGItem {
   rmAttr(name) {
     this.element.removeAttribute(name);
   }
+
+  /** Remove item. */
+  remove() {
+    this.element.remove();
+    this.element = null;
+  }
 }
 
 
