@@ -20,39 +20,22 @@ class SVGGroup extends SVGItem {
 
   /**
    * Creation.
+   * @param {function} [itemsManager] - Items manager class.
    * @param {Object} [attrs] - SVG element attributes.
    * @param {string} [attrs.fill="none"] - SVG element fill value.
    * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
-  constructor(attrs) {
+  constructor(itemsManager, attrs) {
     super('g', attrs);
-    this.items = {};
+    this.items = new itemsManager(this);
   }
 
-  /**
-   * Add item.
-   * @param {string} name - Item name.
-   * @param {Object} item - Item instance.
-   */
-  addItem(name, item) {
-    if (name in this.items) {
-      throw Error(`Item with name "${name}" already exists.`);
+  /** Remove item. */
+  remove() {
+    for (let item of this.items.values) {
+      item.remove();
     }
-    this.items[name] = item;
-    this.element.appendChild(item.element);
-  }
-
-  /**
-   * Remove item.
-   * @param {string} name - Item name.
-   */
-  removeItem(name) {
-    if (!(name in this.items)) {
-      throw Error(`Item with name "${name}" does not exist.`);
-    }
-    this.items[name].element.remove();
-    this.items[name].element = null;
-    delete this.items[name];
+    super.remove();
   }
 }
 
