@@ -14,7 +14,8 @@ limitations under the License.
 
 import { BaseItemsManager } from './base.js';
 import {
-  SVGCircle, SVGEllipse, SVGItem, SVGPath, SVGPolygon, SVGPolyline, SVGText,
+  SVGCircle, SVGEllipse, SVGGroup, SVGItem,
+  SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../items/svg/main.js';
 
 
@@ -130,6 +131,19 @@ class SVGItemsManager extends BaseItemsManager {
     let text = new SVGText(value, centre, attrs);
     this.add(name, text);
     return text;
+  }
+
+  /**
+   * Create group.
+   * @param {string} name - Item name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
+   */
+  createGroup(name, attrs) {
+    let group = new SVGGroup(SVGItemsManager, attrs);
+    this.add(name, group);
+    return group;
   }
 }
 

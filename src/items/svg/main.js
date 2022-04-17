@@ -15,6 +15,7 @@ limitations under the License.
 export { SVGItem } from './base.js';
 export { SVGCircle } from './circle.js';
 export { SVGEllipse } from './ellipse.js';
+export { SVGGroup } from './group.js';
 export { SVGPath } from './path.js';
 export { SVGPolygon } from './polygon.js';
 export { SVGPolyline } from './polyline.js';
