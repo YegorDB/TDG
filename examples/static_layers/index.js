@@ -42,7 +42,8 @@ let blueCircle = screen.layers.back.items.createItem('blueCircle', 'circle', {
 
 
 let frontLayer = screen.createSVGLayer('front');
-let yellowRectangle = screen.layers.front.items.createItem('yellowRectangle', 'rect', {
+let group1 = screen.layers.front.items.createGroup('group1');
+let yellowRectangle = group1.items.createItem('yellowRectangle', 'rect', {
   x: 150,
   y: 200,
   width: 120,
@@ -50,7 +51,7 @@ let yellowRectangle = screen.layers.front.items.createItem('yellowRectangle', 'r
   fill: '#ffb703',
   stroke: 'none',
 });
-let textA = screen.layers.front.items.createText('textA', 'A', [250, 270], {
+let textA = group1.items.createText('textA', 'A', [250, 270], {
   fill: '#219ebc',
   stroke: '#219ebc',
 });
