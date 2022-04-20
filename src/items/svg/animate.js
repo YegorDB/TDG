@@ -12,17 +12,15 @@ limitations under the License.
 */
 
 
-import { SVGItem } from './base.js';
+import { BaseSVGItem } from './base.js';
 
 
 /** SVG animate. */
-class SVGAnimate extends SVGItem {
+class SVGAnimate extends BaseSVGItem {
 
   /**
    * Creation.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {string} [attrs.fill="none"] - SVG element fill value.
-   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(attrs) {
     super('animate', attrs);

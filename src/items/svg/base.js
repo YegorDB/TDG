@@ -15,24 +15,18 @@ limitations under the License.
 import { UTILS } from '../../base.js';
 
 
-/** SVG item */
-class SVGItem {
+/** Base SVG item */
+class BaseSVGItem {
 
   /**
    * Creation.
    * @param {string} name - SVG element name.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {string} [attrs.fill="none"] - SVG element fill value.
-   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(name, attrs) {
     this.element = UTILS.createSvgElement(name);
 
-    attrs = {
-      fill: 'none',
-      stroke: '#000000',
-      ...(attrs || {}),
-    };
+    attrs = attrs || {};
     for (let [name, value] of Object.entries(attrs)) {
       this.setAttr(name, value);
     }
@@ -72,4 +66,26 @@ class SVGItem {
 }
 
 
-export { SVGItem };
+/** SVG item */
+class SVGItem extends BaseSVGItem {
+
+  /**
+   * Creation.
+   * @param {string} name - SVG element name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {string} [attrs.fill="none"] - SVG element fill value.
+   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
+   */
+  constructor(name, attrs) {
+    attrs = {
+      fill: 'none',
+      stroke: '#000000',
+      ...(attrs || {}),
+    };
+
+    super(name, attrs);
+  }
+}
+
+
+export { BaseSVGItem, SVGItem };

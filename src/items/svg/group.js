@@ -12,18 +12,16 @@ limitations under the License.
 */
 
 
-import { SVGItem } from './base.js';
+import { BaseSVGItem } from './base.js';
 
 
 /** SVG group. */
-class SVGGroup extends SVGItem {
+class SVGGroup extends BaseSVGItem {
 
   /**
    * Creation.
    * @param {function} [itemsManager] - Items manager class.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {string} [attrs.fill="none"] - SVG element fill value.
-   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   constructor(itemsManager, attrs) {
     super('g', attrs);
