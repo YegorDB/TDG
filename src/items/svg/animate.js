@@ -21,8 +21,14 @@ class SVGAnimate extends BaseSVGItem {
   /**
    * Creation.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [attrs.repeatCount="indefinite"] - SVG element attributes.
    */
   constructor(attrs) {
+    attrs = attrs || {};
+    if (!attrs.end && !attrs.max && !attrs.repeatDur && !attrs.repeatCount) {
+      attrs.repeatCount = 'indefinite';
+    }
+
     super('animate', attrs);
   }
 }
