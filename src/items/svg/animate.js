@@ -34,4 +34,17 @@ class SVGAnimate extends BaseSVGItem {
 }
 
 
-export { SVGAnimate };
+/** SVG animate transform. */
+class SVGAnimateTransform extends BaseSVGItem {
+
+  /**
+   * Creation.
+   * @param {Object} [attrs] - SVG element attributes.
+   */
+  constructor(attrs) {
+    super('animateTransform', attrs);
+  }
+}
+
+
+export { SVGAnimate, SVGAnimateTransform };
