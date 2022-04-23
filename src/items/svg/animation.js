@@ -15,15 +15,36 @@ limitations under the License.
 import { BaseSVGItem } from './base.js';
 
 
+/** SVG animation. */
+class SVGAnimation extends BaseSVGItem {
+
+  /**
+   * Creation.
+   * @param {string} name - SVG element name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  constructor(name, attrs, eventHandlers) {
+    super(name, attrs);
+
+    eventHandlers = eventHandlers || {};
+    for (let [event, handler] of Object.entries(eventHandlers)) {
+      this.element.addEventListener(event, handler);
+    }
+  }
+}
+
+
 /** SVG animate. */
-class SVGAnimate extends BaseSVGItem {
+class SVGAnimate extends SVGAnimation {
 
   /**
    * Creation.
    * @param {Object} [attrs] - SVG element attributes.
    * @param {Object} [attrs.repeatCount="indefinite"] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
    */
-  constructor(attrs) {
+  constructor(attrs, eventHandlers) {
     attrs = attrs || {};
     if (!attrs.end && !attrs.max && !attrs.repeatDur && !attrs.repeatCount) {
       attrs.repeatCount = 'indefinite';
@@ -35,13 +56,14 @@ class SVGAnimate extends BaseSVGItem {
 
 
 /** SVG animate transform. */
-class SVGAnimateTransform extends BaseSVGItem {
+class SVGAnimateTransform extends SVGAnimation {
 
   /**
    * Creation.
    * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
    */
-  constructor(attrs) {
+  constructor(attrs, eventHandlers) {
     super('animateTransform', attrs);
   }
 }
