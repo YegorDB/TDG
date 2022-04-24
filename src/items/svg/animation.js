@@ -55,6 +55,20 @@ class SVGAnimate extends SVGAnimation {
 }
 
 
+/** SVG set. */
+class SVGSet extends SVGAnimation {
+
+  /**
+   * Creation.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  constructor(attrs, eventHandlers) {
+    super('set', attrs);
+  }
+}
+
+
 /** SVG animate transform. */
 class SVGAnimateTransform extends SVGAnimation {
 
@@ -69,4 +83,8 @@ class SVGAnimateTransform extends SVGAnimation {
 }
 
 
-export { SVGAnimate, SVGAnimateTransform };
+export {
+  SVGAnimate,
+  SVGSet,
+  SVGAnimateTransform,
+};
