@@ -97,8 +97,4 @@ class SVGAnimateTransform extends SVGAnimation {
 }
 
 
-export {
-  SVGAnimate,
-  SVGSet,
-  SVGAnimateTransform,
-};
+export { SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform };

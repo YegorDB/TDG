@@ -14,13 +14,14 @@ limitations under the License.
 
 import { BaseItemsManager } from './base.js';
 import {
+  SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform,
   SVGCircle, SVGEllipse, SVGGroup, SVGItem,
   SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../items/svg/main.js';
 
 
-/** SVG inner items manager. */
-class SVGItemsManager extends BaseItemsManager {
+/** Base SVG inner items manager. */
+class BaseSVGItemsManager extends BaseItemsManager {
 
   /**
    * Add item.
@@ -31,6 +32,65 @@ class SVGItemsManager extends BaseItemsManager {
     super.add(name, item);
     this._parent.element.appendChild(item.element);
   }
+}
+
+
+/** SVG inner animation items manager. */
+class SVGAnimationManager extends BaseSVGItemsManager {
+
+  /**
+   * Create animate.
+   * @param {string} name - Item name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [attrs.repeatCount="indefinite"] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  createAnimate(name, attrs, eventHandlers) {
+    let animate = new SVGAnimate(attrs, eventHandlers);
+    this.add(name, animate);
+    return animate;
+  }
+
+  /**
+   * Create set.
+   * @param {string} name - Item name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  createSet(name, attrs, eventHandlers) {
+    let set = new SVGSet(attrs, eventHandlers);
+    this.add(name, set);
+    return set;
+  }
+
+  /**
+   * Create animate motion.
+   * @param {string} name - Item name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  createAnimateMotion(name, attrs, eventHandlers) {
+    let animateMotion = new SVGAnimateMotion(attrs, eventHandlers);
+    this.add(name, animateMotion);
+    return animateMotion;
+  }
+
+  /**
+   * Create animate transform.
+   * @param {string} name - Item name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  createAnimateTransform(name, attrs, eventHandlers) {
+    let animateTransform = new SVGAnimateTransform(attrs, eventHandlers);
+    this.add(name, animateTransform);
+    return animateTransform;
+  }
+}
+
+
+/** SVG inner items manager. */
+class SVGItemsManager extends BaseSVGItemsManager {
 
   /**
    * Create item.
@@ -148,4 +208,4 @@ class SVGItemsManager extends BaseItemsManager {
 }
 
 
-export { SVGItemsManager };
+export { SVGAnimationManager, SVGItemsManager };
