@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2022 Yegor Bitensky
+Copyright 2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -54,4 +54,44 @@ class BaseItemsManager {
 }
 
 
-export { BaseItemsManager };
+/** Canvas inner items manager. */
+class CanvasItemsManager extends BaseItemsManager {
+
+  /**
+   * Add item.
+   * @param {string} name - Item name.
+   * @param {Object} item - Item instance.
+   */
+  add(name, item) {
+    super.add(name, item);
+    item.layer = this._parent;
+    item.draw();
+  }
+
+  /**
+   * Remove item.
+   * @param {string} name - Item name.
+   */
+  remove(name) {
+    super.remove(name);
+    this._parent.refresh();
+  }
+}
+
+
+/** SVG inner items manager. */
+class SVGItemsManager extends BaseItemsManager {
+
+  /**
+   * Add item.
+   * @param {string} name - Item name.
+   * @param {Object} item - Item instance.
+   */
+  add(name, item) {
+    super.add(name, item);
+    this._parent.element.appendChild(item.element);
+  }
+}
+
+
+export { CanvasItemsManager, SVGItemsManager };

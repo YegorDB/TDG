@@ -142,8 +142,6 @@ const SVGCreator = {
   /**
    * Create group.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {string} [attrs.fill="none"] - SVG element fill value.
-   * @param {string} [attrs.stroke="#000000"] - SVG element stroke value.
    */
   group(attrs) {
     return new SVGGroup(attrs);

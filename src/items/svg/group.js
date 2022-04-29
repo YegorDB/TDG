@@ -20,20 +20,10 @@ class SVGGroup extends BaseSVGItem {
 
   /**
    * Creation.
-   * @param {function} [itemsManager] - Items manager class.
    * @param {Object} [attrs] - SVG element attributes.
    */
-  constructor(itemsManager, attrs) {
+  constructor(attrs) {
     super('g', attrs);
-    this.items = new itemsManager(this);
-  }
-
-  /** Remove item. */
-  remove() {
-    for (let item of this.items.values) {
-      item.remove();
-    }
-    super.remove();
   }
 }
 

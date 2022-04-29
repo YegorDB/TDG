@@ -14,7 +14,7 @@ limitations under the License.
 
 import { BaseLayer } from '../base.js';
 import { UTILS } from '../../base.js';
-import { SVGItemsManager } from '../../items_managers/svg.js';
+import { SVGItemsManager } from '../../managers/items.js';
 
 
 /** SVG layer. */

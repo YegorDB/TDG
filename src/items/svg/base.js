@@ -13,6 +13,7 @@ limitations under the License.
 
 
 import { UTILS } from '../../base.js';
+import { SVGItemsManager } from '../../managers/items.js';
 
 
 /** Base SVG item */
@@ -30,6 +31,8 @@ class BaseSVGItem {
     for (let [name, value] of Object.entries(attrs)) {
       this.setAttr(name, value);
     }
+
+    this.items = new SVGItemsManager(this);
   }
 
   /**
@@ -60,6 +63,9 @@ class BaseSVGItem {
 
   /** Remove item. */
   remove() {
+    for (let item of this.items.values) {
+      item.remove();
+    }
     this.element.remove();
     this.element = null;
   }
