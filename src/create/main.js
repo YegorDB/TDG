@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2022 Yegor Bitensky
+Copyright 2022 Yegor Bitensky
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,9 +12,5 @@ limitations under the License.
 */
 
 
-export * as base from './base.js';
-export * as create from './create/main.js';
-export * as items from './items/main.js';
-export * as layers from './layers/main.js';
-export * as path_commands from './path_commands/main.js';
-export * as screens from './screens.js';
+export { CanvasCreator as canvas } from './canvas.js';
+export { SVGCreator as svg } from './svg.js';
