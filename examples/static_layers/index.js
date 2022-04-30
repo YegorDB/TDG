@@ -21,7 +21,8 @@ let backgroundLayer = screen.createCanvasLayer('bg', {
     ctx.stroke();
   },
 });
-let textB = backgroundLayer.items.createText('textB', 'B', [275, 270], {
+
+let textB = TDG.create.canvas.text('B', [275, 270], {
   fill: true,
   stroke: true,
   flatParams: {
@@ -29,21 +30,27 @@ let textB = backgroundLayer.items.createText('textB', 'B', [275, 270], {
     strokeStyle: '#000',
   },
 });
+backgroundLayer.items.add('textB', textB);
 
 
 let backLayer = screen.createSVGLayer('back');
-let blueCircle = screen.layers.back.items.createItem('blueCircle', 'circle', {
+
+let blueCircle = TDG.create.svg.item('circle', {
   cx: 130,
   cy: 140,
   r: 120,
   fill: '#219ebc',
   stroke: 'none',
 });
+screen.layers.back.items.add('blueCircle', blueCircle);
 
 
 let frontLayer = screen.createSVGLayer('front');
-let group1 = screen.layers.front.items.createGroup('group1');
-let yellowRectangle = group1.items.createItem('yellowRectangle', 'rect', {
+
+let group1 = TDG.create.svg.group();
+screen.layers.front.items.add('group1', group1);
+
+let yellowRectangle = TDG.create.svg.item('rect', {
   x: 150,
   y: 200,
   width: 120,
@@ -51,7 +58,10 @@ let yellowRectangle = group1.items.createItem('yellowRectangle', 'rect', {
   fill: '#ffb703',
   stroke: 'none',
 });
-let textA = group1.items.createText('textA', 'A', [250, 270], {
+group1.items.add('yellowRectangle', yellowRectangle);
+
+let textA = TDG.create.svg.text('A', [250, 270], {
   fill: '#219ebc',
   stroke: '#219ebc',
 });
+group1.items.add('textA', textA);
