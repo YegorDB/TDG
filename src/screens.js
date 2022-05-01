@@ -146,16 +146,6 @@ class Screen {
     this.addLayer(name, layer);
     return layer;
   }
-
-  /**
-   * Create SVG layer.
-   * @param {string} name - Layer name.
-   */
-  createSVGLayer(name) {
-    let layer = new SVGLayer();
-    this.addLayer(name, layer);
-    return layer;
-  }
 }
 
 

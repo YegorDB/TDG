@@ -17,10 +17,16 @@ import {
   SVGCircle, SVGEllipse, SVGGroup, SVGItem,
   SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../items/svg/main.js';
+import { SVGLayer } from '../layers/svg/main.js';
 
 
 /** SVG creator. */
 const SVGCreator = {
+
+  /** Create layer. */
+  layer(name) {
+    return new SVGLayer();
+  },
 
   /**
    * Create animate.

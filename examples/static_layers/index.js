@@ -35,7 +35,8 @@ let textB = TDG.create.canvas.text('B', [275, 270], {
 backgroundLayer.items.add('textB', textB);
 
 
-let backLayer = screen.createSVGLayer('back');
+let backLayer = TDG.create.svg.layer();
+screen.addLayer('back', backLayer);
 
 let blueCircle = TDG.create.svg.item('circle', {
   cx: 130,
@@ -47,7 +48,8 @@ let blueCircle = TDG.create.svg.item('circle', {
 screen.layers.back.items.add('blueCircle', blueCircle);
 
 
-let frontLayer = screen.createSVGLayer('front');
+let frontLayer = TDG.create.svg.layer();
+screen.addLayer('front', frontLayer);
 
 let group1 = TDG.create.svg.group();
 screen.layers.front.items.add('group1', group1);
