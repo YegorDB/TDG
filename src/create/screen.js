@@ -12,6 +12,18 @@ limitations under the License.
 */
 
 
-export { CanvasCreator as canvas } from './canvas.js';
-export { createScreen as screen } from './screen.js';
-export { SVGCreator as svg } from './svg.js';
+import { Screen } from '../screens.js';
+
+
+/**
+ * Create screen.
+ * @param {string} elementId - DOM element id.
+ * @param {Object} [options] - Screen creation options.
+ * @param {integer[]} [options.dimensions=[100, 100]] - Screen dimensions [width, height].
+ */
+function createScreen(elementId, options) {
+  return new Screen(elementId, options);
+}
+
+
+export { createScreen };

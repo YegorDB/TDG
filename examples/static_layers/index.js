@@ -1,25 +1,27 @@
-const screen = new TDG.screens.Screen('screen-id', {
+const screen = TDG.create.screen('screen-id', {
   dimensions: [300, 300],
 });
 
 
+function drawBackground(ctx) {
+  ctx.strokeStyle = '#8ecae6';
+  ctx.beginPath();
+  let d = 6;
+  for (let i = d; i <= 300; i += d) {
+    ctx.moveTo(0, i);
+    ctx.lineTo(i, 0);
+    ctx.moveTo(300, i);
+    ctx.lineTo(i, 300);
+    ctx.moveTo(i - d, 0);
+    ctx.lineTo(300, 300 + d - i);
+    ctx.moveTo(0, i - d);
+    ctx.lineTo(300 + d - i, 300);
+  }
+  ctx.stroke();
+}
+
 let backgroundLayer = screen.createCanvasLayer('bg', {
-  drawFunct: (ctx) => {
-    ctx.strokeStyle = '#8ecae6';
-    ctx.beginPath();
-    let d = 6;
-    for (let i = d; i <= 300; i += d) {
-      ctx.moveTo(0, i);
-      ctx.lineTo(i, 0);
-      ctx.moveTo(300, i);
-      ctx.lineTo(i, 300);
-      ctx.moveTo(i - d, 0);
-      ctx.lineTo(300, 300 + d - i);
-      ctx.moveTo(0, i - d);
-      ctx.lineTo(300 + d - i, 300);
-    }
-    ctx.stroke();
-  },
+  drawFunct: drawBackground,
 });
 
 let textB = TDG.create.canvas.text('B', [275, 270], {
