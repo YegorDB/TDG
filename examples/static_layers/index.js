@@ -20,9 +20,10 @@ function drawBackground(ctx) {
   ctx.stroke();
 }
 
-let backgroundLayer = screen.createCanvasLayer('bg', {
+let backgroundLayer = TDG.create.canvas.layer({
   drawFunct: drawBackground,
 });
+screen.addLayer('bg', backgroundLayer);
 
 let textB = TDG.create.canvas.text('B', [275, 270], {
   fill: true,

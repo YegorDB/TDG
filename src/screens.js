@@ -13,11 +13,6 @@ limitations under the License.
 
 
 import { Dimensions } from './base.js';
-import {
-  CanvasLayer,
-  CanvasLayerWithBGFiller, CanvasLayerWithBGImage,
-} from './layers/canvas/main.js';
-import { SVGLayer } from './layers/svg/main.js';
 
 
 /** Composition of layers. */
@@ -98,53 +93,6 @@ class Screen {
     if (this._activeLayerName == null) return;
     this.layers[this._activeLayerName].resetZIndex();
     this._activeLayerName = null;
-  }
-
-  /**
-   * Create canvas layer.
-   * @param {string} name - Layer name.
-   * @param {Object} [options] - Options.
-   * @param {finction} [options.drawFunct] - Draw function
-   *     with one argument - CanvasRenderingContext2D,
-   *     it will be fire on layer refresh.
-   */
-  createCanvasLayer(name, options) {
-    let layer = new CanvasLayer(options);
-    this.addLayer(name, layer);
-    return layer;
-  }
-
-  /**
-   * Create canvas layer with background filler.
-   * @param {string} name - Layer name.
-   * @param {*} bgFiller - Background filler
-   *     (anything CanvasRenderingContext2D.fillStyle could be used with).
-   * @param {Object} [options] - Options.
-   * @param {finction} [options.drawFunct] - Draw function
-   *     with one argument - CanvasRenderingContext2D,
-   *     it will be fire on layer refresh.
-   */
-  createCanvasLayerWithBGFiller(name, bgFiller, options) {
-    let layer = new CanvasLayerWithBGFiller(bgFiller, options);
-    this.addLayer(name, layer);
-    return layer;
-  }
-
-  /**
-   * Create canvas layer with background image pattern.
-   * @param {string} name - Layer name.
-   * @param {string} imageSrc - Image source.
-   * @param {Object} [options] - Options.
-   * @param {string} [options.repetition='repeat'] - CanvasRenderingContext2D
-   *     createPattern method repetition argument.
-   * @param {finction} [options.drawFunct] - Draw function
-   *     with one argument - CanvasRenderingContext2D,
-   *     it will be fire on layer refresh.
-   */
-  createCanvasLayerWithBGImage(name, imageSrc, options) {
-    let layer = new CanvasLayerWithBGImage(imageSrc, options);
-    this.addLayer(name, layer);
-    return layer;
   }
 }
 

@@ -16,10 +16,52 @@ import {
   CanvasCircle, CanvasEllipse, CanvasPath,
   CanvasPolygon, CanvasPolyline, CanvasText,
 } from '../items/canvas/main.js';
+import {
+  CanvasLayer,
+  CanvasLayerWithBGFiller, CanvasLayerWithBGImage,
+} from '../layers/canvas/main.js';
 
 
 /** Canvas creator. */
 const CanvasCreator = {
+
+  /**
+   * Create layer.
+   * @param {Object} [options] - Options.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - CanvasRenderingContext2D,
+   *     it will be fire on layer refresh.
+   */
+  layer(options) {
+    return new CanvasLayer(options);
+  },
+
+  /**
+   * Create layer with background filler.
+   * @param {*} bgFiller - Background filler
+   *     (anything CanvasRenderingContext2D.fillStyle could be used with).
+   * @param {Object} [options] - Options.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - CanvasRenderingContext2D,
+   *     it will be fire on layer refresh.
+   */
+  layerWithBGFiller(bgFiller, options) {
+    return new CanvasLayerWithBGFiller(bgFiller, options);
+  },
+
+  /**
+   * Create layer with background image pattern.
+   * @param {string} imageSrc - Image source.
+   * @param {Object} [options] - Options.
+   * @param {string} [options.repetition='repeat'] - CanvasRenderingContext2D
+   *     createPattern method repetition argument.
+   * @param {finction} [options.drawFunct] - Draw function
+   *     with one argument - CanvasRenderingContext2D,
+   *     it will be fire on layer refresh.
+   */
+  layerWithBGImage(imageSrc, options) {
+    return new CanvasLayerWithBGImage(imageSrc, options);
+  },
 
   /**
    * Create circle.
