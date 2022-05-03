@@ -31,7 +31,7 @@
 
 
 ## create.canvas.circle(centre, radius[, options])
-> Create circle.
+> Create canvas circle.
 
 - `centre` {Point|number[]} - Point instatce or (x, y) pair.
 - `radius` {number} - Radius.
@@ -45,7 +45,7 @@
 
 
 ## create.canvas.ellipse(centre, radiuses[, options])
-> Create ellipse.
+> Create canvas ellipse.
 
 - `centre` {Point|number[]} - Point instatce or (x, y) pair.
 - `radiuses` {EllipseRadiuses|number[]} - EllipseRadiuses instatce or (r1, r2) pair.
@@ -59,7 +59,7 @@
 
 
 ## create.canvas.path(value[, options])
-> Create path.
+> Create canvas path.
 
 - `value` {string} - Path commands value.
 - `options` {Object} - Options.
@@ -72,7 +72,7 @@
 
 
 ## create.canvas.polygon(points[, options])
-> Create polygon.
+> Create canvas polygon.
 
 - `points` {number[][]|Point[]} - Array of (x, y) pairs or Point instances.
 - `options` {Object} - Options.
@@ -85,7 +85,7 @@
 
 
 ## create.canvas.polyline(points[, options])
-> Create polyline.
+> Create canvas polyline.
 
 - `points` {number[][]|Point[]} - Array of (x, y) pairs or Point instances.
 - `options` {Object} - Options.
@@ -98,7 +98,7 @@
 
 
 ## create.canvas.text(value, centre[, options])
-> Create text.
+> Create canvas text.
 
 - `value` {string} - Text.
 - `centre` {Point|number[]} - Point instatce or (x, y) pair.

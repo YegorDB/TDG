@@ -54,11 +54,3 @@ undefined
 ### Screen.deactivateLayer()
 
 > Move activated layer to its original position in relation to other layers.
-
-
-### Screen.createSVGLayer(name)
-> Create SVG layer and attach them to screen.
-
-- `name` {string} - Layer name.
-
-> Returns SVGLayer
