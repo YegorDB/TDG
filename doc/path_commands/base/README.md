@@ -8,7 +8,9 @@
 
 Server
 ```javascript
-> const { PathCommands } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { PathCommands } = path_commands;
 undefined
 ```
 

@@ -6,7 +6,9 @@
 
 Server
 ```javascript
-> const { Point } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { Point } = path_commands;
 undefined
 ```
 
@@ -99,7 +101,9 @@ undefined
 
 Server
 ```javascript
-> const { PointsCommands } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { PointsCommands } = path_commands;
 undefined
 ```
 

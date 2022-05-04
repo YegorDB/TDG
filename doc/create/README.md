@@ -11,6 +11,6 @@ import { create } from 'two-dimensions-graphic';
 
 Browser
 ```javascript
-> const create = TDG.create;
+> const { create } = TDG;
 undefined
 ```

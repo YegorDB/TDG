@@ -8,7 +8,9 @@
 
 Server
 ```javascript
-> const { SVGPolygon } = require('two-dimensions-graphic').items.svg;
+import { items } from 'two-dimensions-graphic';
+
+> const { SVGPolygon } = items.svg;
 undefined
 ```
 

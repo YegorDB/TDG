@@ -4,11 +4,11 @@
 
 ## Screen
 
-
-
 Server
 ```javascript
-> const { Screen } = require('two-dimensions-graphic').screens;
+import { screens } from 'two-dimensions-graphic';
+
+> const { Screen } = screens;
 undefined
 ```
 

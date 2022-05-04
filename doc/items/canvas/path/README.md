@@ -8,7 +8,9 @@
 
 Server
 ```javascript
-> const { CanvasPath } = require('two-dimensions-graphic').items.canvas;
+import { items } from 'two-dimensions-graphic';
+
+> const { CanvasPath } = items.canvas;
 undefined
 ```
 

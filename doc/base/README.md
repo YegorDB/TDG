@@ -8,7 +8,9 @@
 
 Server
 ```javascript
-> const { UTILS } = require('two-dimensions-graphic').base;
+import { base } from 'two-dimensions-graphic';
+
+> const { UTILS } = base;
 undefined
 ```
 
@@ -40,7 +42,9 @@ undefined
 
 Server
 ```javascript
-> const { Dimensions } = require('two-dimensions-graphic').base;
+import { base } from 'two-dimensions-graphic';
+
+> const { Dimensions } = base;
 undefined
 ```
 

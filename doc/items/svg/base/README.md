@@ -6,7 +6,9 @@
 
 Server
 ```javascript
-> const { SVGItem } = require('two-dimensions-graphic').items.svg;
+import { items } from 'two-dimensions-graphic';
+
+> const { SVGItem } = items.svg;
 undefined
 ```
 

@@ -6,7 +6,9 @@
 
 Server
 ```javascript
-> const { EllipseRadiuses } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { EllipseRadiuses } = path_commands;
 undefined
 ```
 
@@ -99,7 +101,9 @@ undefined
 
 Server
 ```javascript
-> const { EllipseCommands } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { EllipseCommands } = path_commands;
 undefined
 ```
 
@@ -115,8 +119,6 @@ undefined
 - `radiuses` {EllipseRadiuses|number[]} - EllipseRadiuses instatce or (r1, r2) pair.
 
 ```javascript
-> const { EllipseCommands } = require('/app/src/main.js').path_commands;
-undefined
 > var ec1 = new EllipseCommands([9, 17], [5, 3]);
 undefined
 > ec1.value;
@@ -173,7 +175,9 @@ EllipseRadiuses { _first: 2, _second: 6 }
 
 Server
 ```javascript
-> const { CircleCommands } = require('two-dimensions-graphic').path_commands;
+import { path_commands } from 'two-dimensions-graphic';
+
+> const { CircleCommands } = path_commands;
 undefined
 ```
 
