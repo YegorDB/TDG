@@ -32,7 +32,15 @@ class BaseSVGItem {
       this.setAttr(name, value);
     }
 
-    this.items = new SVGItemsManager(this);
+    this._items = new SVGItemsManager(this);
+  }
+
+  /**
+   * Get SVG element inner items manager.
+   * @return {SVGItemsManager} SVG element inner items manager.
+   */
+  get items() {
+    return this._items;
   }
 
   /**

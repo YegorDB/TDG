@@ -21,7 +21,6 @@ class BaseLayer {
   /** Creation. */
   constructor() {
     this.element = this.createElement();
-    this.items = null;
     this._zIndex = null;
     this._initialZIndex = null;
     this._isShowed = true;
