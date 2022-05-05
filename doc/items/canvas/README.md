@@ -6,3 +6,4 @@
 - [Path](path)
 - [Polygon](polygon)
 - [Polyline](polyline)
+- [Text](text)
