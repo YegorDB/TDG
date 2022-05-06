@@ -7,6 +7,16 @@
 > Returns SVGLayer instance
 
 
+## create.svg.animation(name[, attrs, eventHandlers])
+> Create SVG animation.
+
+- `name` {string} - SVG animation element name.
+- `attrs` {Object} - SVG element attributes.
+- `eventHandlers` {Object} - SVG animation element event handlers.
+
+> Returns SVGAnimation instance
+
+
 ## create.svg.animate([attrs, eventHandlers])
 > Create SVG animate.
 
