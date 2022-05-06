@@ -20,7 +20,7 @@ class SVGAnimation extends BaseSVGItem {
 
   /**
    * Creation.
-   * @param {string} name - SVG element name.
+   * @param {string} name - SVG animation element name.
    * @param {Object} [attrs] - SVG element attributes.
    * @param {Object} [eventHandlers] - SVG animation element event handlers.
    */
@@ -97,4 +97,8 @@ class SVGAnimateTransform extends SVGAnimation {
 }
 
 
-export { SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform };
+export {
+  SVGAnimation,
+  SVGAnimate, SVGSet,
+  SVGAnimateMotion, SVGAnimateTransform
+};

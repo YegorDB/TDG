@@ -13,7 +13,7 @@ limitations under the License.
 
 
 import {
-  SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform,
+  SVGAnimation, SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform,
   SVGCircle, SVGEllipse, SVGGroup, SVGItem,
   SVGPath, SVGPolygon, SVGPolyline, SVGText,
 } from '../items/svg/main.js';
@@ -26,6 +26,16 @@ const SVGCreator = {
   /** Create layer. */
   layer(name) {
     return new SVGLayer();
+  },
+
+  /**
+   * Create animation.
+   * @param {string} name - SVG animation element name.
+   * @param {Object} [attrs] - SVG element attributes.
+   * @param {Object} [eventHandlers] - SVG animation element event handlers.
+   */
+  animation(name, attrs, eventHandlers) {
+    return new SVGAnimation(name, attrs, eventHandlers);
   },
 
   /**

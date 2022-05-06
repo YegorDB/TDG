@@ -13,7 +13,7 @@ limitations under the License.
 
 
 export {
-  SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform,
+  SVGAnimation, SVGAnimate, SVGSet, SVGAnimateMotion, SVGAnimateTransform,
 } from './animation.js';
 export { SVGItem } from './base.js';
 export { SVGCircle } from './circle.js';
