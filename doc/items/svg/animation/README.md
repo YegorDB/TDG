@@ -50,3 +50,27 @@ undefined
 - `attrs` {Object} - SVG element attributes.
 - `attrs.repeatCount="indefinite"` {Object} - Animation repeat count.
 - `eventHandlers` {Object} - SVG animation element event handlers.
+
+
+## SVGSet
+
+> Extends SVGAnimation
+
+Server
+```javascript
+import { items } from 'two-dimensions-graphic';
+
+> const { SVGSet } = items.svg;
+undefined
+```
+
+Browser
+```javascript
+> const { SVGSet } = TDG.items.svg;
+undefined
+```
+
+### SVGSet.constructor([attrs, eventHandlers])
+
+- `attrs` {Object} - SVG element attributes.
+- `eventHandlers` {Object} - SVG animation element event handlers.
