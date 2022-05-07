@@ -41,7 +41,7 @@ const SVGCreator = {
   /**
    * Create animate.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {Object} [attrs.repeatCount="indefinite"] - SVG element attributes.
+   * @param {Object} [attrs.repeatCount="indefinite"] - Animation repeat count.
    * @param {Object} [eventHandlers] - SVG animation element event handlers.
    */
   animate(attrs, eventHandlers) {

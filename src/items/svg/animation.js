@@ -41,7 +41,7 @@ class SVGAnimate extends SVGAnimation {
   /**
    * Creation.
    * @param {Object} [attrs] - SVG element attributes.
-   * @param {Object} [attrs.repeatCount="indefinite"] - SVG element attributes.
+   * @param {Object} [attrs.repeatCount="indefinite"] - Animation repeat count.
    * @param {Object} [eventHandlers] - SVG animation element event handlers.
    */
   constructor(attrs, eventHandlers) {
