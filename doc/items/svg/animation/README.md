@@ -98,3 +98,27 @@ undefined
 
 - `attrs` {Object} - SVG element attributes.
 - `eventHandlers` {Object} - SVG animation element event handlers.
+
+
+## SVGAnimateTransform
+
+> Extends SVGAnimation
+
+Server
+```javascript
+import { items } from 'two-dimensions-graphic';
+
+> const { SVGAnimateTransform } = items.svg;
+undefined
+```
+
+Browser
+```javascript
+> const { SVGAnimateTransform } = TDG.items.svg;
+undefined
+```
+
+### SVGAnimateTransform.constructor([attrs, eventHandlers])
+
+- `attrs` {Object} - SVG element attributes.
+- `eventHandlers` {Object} - SVG animation element event handlers.
