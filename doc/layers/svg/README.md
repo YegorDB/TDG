@@ -19,3 +19,7 @@ Browser
 > const { SVGLayer } = TDG.layers.svg;
 undefined
 ```
+
+
+### SVGLayer.items
+> SVG element inner items manager getter.
